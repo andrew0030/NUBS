@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "ubs:blocks/chakra_infused_planks"
+    }
+}

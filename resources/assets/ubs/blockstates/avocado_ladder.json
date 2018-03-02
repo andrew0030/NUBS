@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "ubs:avocado_ladder" },
+        "facing=east":  { "model": "ubs:avocado_ladder", "y": 90 },
+        "facing=south": { "model": "ubs:avocado_ladder", "y": 180 },
+        "facing=west":  { "model": "ubs:avocado_ladder", "y": 270 }
+    }
+}

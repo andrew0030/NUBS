@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=chakra_infused": { "model": "ubs:planks_chakra_infused" },
+        "variant=avocado": { "model": "ubs:planks_avocado" }
+    }
+}

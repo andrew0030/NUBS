@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "ubs:grill" },
+        "facing=south": { "model": "ubs:grill", "y": 180 },
+        "facing=west":  { "model": "ubs:grill", "y": 270 },
+        "facing=east":  { "model": "ubs:grill", "y": 90 }
+    }
+}

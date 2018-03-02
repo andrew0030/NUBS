@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "ubs:salad_0" },
+        "age=1": { "model": "ubs:salad_1" },
+        "age=2": { "model": "ubs:salad_2" },
+        "age=3": { "model": "ubs:salad_3" },
+        "age=4": { "model": "ubs:salad_4" },
+        "age=5": { "model": "ubs:salad_5" },
+        "age=6": { "model": "ubs:salad_6" },
+        "age=7": { "model": "ubs:salad_7" }
+    }
+}

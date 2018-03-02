@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "ubs:blocks/chakra_infused_door_bottom",
+        "top": "ubs:blocks/chakra_infused_door_top"
+    }
+}

@@ -1,0 +1,9 @@
+
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "ubs:blocks/chakra_infused_planks",
+        "top": "ubs:blocks/chakra_infused_planks",
+        "side": "ubs:blocks/chakra_infused_planks"
+    }
+}

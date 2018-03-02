@@ -1,0 +1,76 @@
+{
+	"__comment": "Designed by Andrew0030 with Cubik Studio - https://cubik.studio",
+	"textures": {
+	       "texture": "ubs:items/chopsticks",
+		"particle": "ubs:items/chopsticks"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box41",
+			"from": [ 5, 7.5, 9 ],
+			"to": [ 13, 8, 9.5 ],
+			"rotation": { "origin": [ 5, 7.5, 9 ], "axis": "z", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 8, 4.5, 16, 5 ], "texture": "#texture" },
+				"up": { "uv": [ 8, 5.5, 16, 6 ], "texture": "#texture" },
+				"north": { "uv": [ 7, 5.5, 15, 6 ], "texture": "#texture" },
+				"south": { "uv": [ 7, 6, 15, 6.5 ], "texture": "#texture" },
+				"west": { "uv": [ 11, 5, 11.5, 5.5 ], "texture": "#texture" },
+				"east": { "uv": [ 11, 5, 11.5, 5.5 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box41",
+			"from": [ 5, 6, 9.5 ],
+			"to": [ 13, 6.5, 10 ],
+			"rotation": { "origin": [ 5, 8, 9 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 7, 4.5, 15, 5 ], "texture": "#texture" },
+				"up": { "uv": [ 7, 5, 15, 5.5 ], "texture": "#texture" },
+				"north": { "uv": [ 7, 5.5, 15, 6 ], "texture": "#texture" },
+				"south": { "uv": [ 7, 6, 15, 6.5 ], "texture": "#texture" },
+				"west": { "uv": [ 11, 5, 11.5, 5.5 ], "texture": "#texture" },
+				"east": { "uv": [ 11, 5, 11.5, 5.5 ], "texture": "#texture" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 127, -75, 25 ],
+			"translation":  [ 0.6956, 0, 2.7824 ],
+			"scale":  [ 0.8, 0.8, 0.8 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 180, -75, 25 ],
+			"translation":  [ 0.6956, -2.782, 1.391 ],
+			"scale":  [ 0.8, 0.8, 0.8 ]
+		},
+		"firstperson_righthand": {
+			"rotation":  [ -42, -77, 28 ],
+			"translation":  [ -0.694, 4.8694, -1.39 ]
+		},
+		"firstperson_lefthand": {
+			"rotation":  [ -42, -77, -50 ],
+			"translation":  [ -0.694, 6.2607, 2.0882 ]
+		},
+		"gui": {
+			"rotation":  [ 36, 51, 33 ],
+			"translation":  [ -4.869, 3.9999, -1.391 ],
+			"scale":  [ 2, 2, 2 ]
+		},
+		"head": {
+			"rotation":  [ 0, 90, -30 ],
+			"translation":  [ -2.782, 17.694, 0 ],
+			"scale":  [ 2, 2, 2 ]
+		},
+		"ground": {
+			"rotation":  [ 0, 0, 14 ],
+			"translation":  [ 0, 2.0869, 0 ]
+		},
+		"fixed": {
+			"rotation":  [ 0, 180, 0 ],
+			"translation":  [ 0, 4.8695, 2.7835 ],
+			"scale":  [ 1.5, 1.5, 1.5 ]
+		}
+	}
+}

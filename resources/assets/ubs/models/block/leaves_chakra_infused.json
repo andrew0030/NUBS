@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "ubs:blocks/chakra_infused_leaves"
+    }
+}

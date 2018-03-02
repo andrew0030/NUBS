@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ubs:blocks/avocado_log_top",
+        "side": "ubs:blocks/avocado_log"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "ubs:block/x_crop_tall",
+    "textures": {
+        "crop": "ubs:blocks/tomato_bottom_4",
+        "plant_bottom": "ubs:blocks/tomato_bottom_2",
+        "plant_top": "ubs:blocks/tomato_top_2"
+    }
+}

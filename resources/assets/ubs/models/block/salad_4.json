@@ -1,0 +1,6 @@
+{
+    "parent": "ubs:block/x_crop",
+    "textures": {
+        "crop": "ubs:blocks/salad_4"
+    }
+}

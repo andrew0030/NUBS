@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=top": { "model": "ubs:chakra_infused_slab_top" },
+        "half=bottom": { "model": "ubs:chakra_infused_slab_bottom" }
+    }
+}

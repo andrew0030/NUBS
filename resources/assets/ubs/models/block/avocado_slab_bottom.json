@@ -1,0 +1,9 @@
+
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "ubs:blocks/avocado_planks",
+        "top": "ubs:blocks/avocado_planks",
+        "side": "ubs:blocks/avocado_planks"
+    }
+}

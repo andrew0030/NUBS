@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "ubs:blocks/avocado_door_bottom",
+        "top": "ubs:blocks/avocado_door_top"
+    }
+}

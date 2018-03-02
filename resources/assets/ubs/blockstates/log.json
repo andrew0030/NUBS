@@ -1,0 +1,14 @@
+
+{
+    "variants": {
+        "axis=y,variant=chakra_infused": { "model": "ubs:log_chakra_infused" },
+        "axis=z,variant=chakra_infused": { "model": "ubs:log_chakra_infused", "x": 90 },
+        "axis=x,variant=chakra_infused": { "model": "ubs:log_chakra_infused", "x": 90, "y": 90 },
+        "axis=none,variant=chakra_infused": { "model": "ubs:log_chakra_infused" },
+        
+        "axis=y,variant=avocado": { "model": "ubs:log_avocado" },
+        "axis=z,variant=avocado": { "model": "ubs:log_avocado", "x": 90 },
+        "axis=x,variant=avocado": { "model": "ubs:log_avocado", "x": 90, "y": 90 },
+        "axis=none,variant=avocado": { "model": "ubs:log_avocado" }
+    }
+}

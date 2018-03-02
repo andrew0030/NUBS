@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "ubs:avocado_pressure_plate_up" },
+        "powered=true": { "model": "ubs:avocado_pressure_plate_down" }
+    }
+}

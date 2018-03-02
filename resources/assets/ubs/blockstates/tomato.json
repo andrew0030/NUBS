@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "ubs:tomato_0" },
+        "age=1": { "model": "ubs:tomato_1" },
+        "age=2": { "model": "ubs:tomato_2" },
+        "age=3": { "model": "ubs:tomato_3" },
+        "age=4": { "model": "ubs:tomato_4" },
+        "age=5": { "model": "ubs:tomato_5" },
+        "age=6": { "model": "ubs:tomato_6" },
+        "age=7": { "model": "ubs:tomato_7" }
+    }
+}

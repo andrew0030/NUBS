@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "ubs:stone_path" },
+        "facing=south": { "model": "ubs:stone_path", "y": 180 },
+        "facing=west":  { "model": "ubs:stone_path", "y": 270 },
+        "facing=east":  { "model": "ubs:stone_path", "y": 90 }
+    }
+}

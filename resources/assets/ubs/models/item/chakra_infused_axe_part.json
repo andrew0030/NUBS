@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "ubs:items/chakra_infused_axe_part"
+    }
+}

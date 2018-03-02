@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_inventory",
+    "textures": {
+        "texture": "ubs:blocks/chakra_infused_planks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "ubs:chakra_infused_ladder" },
+        "facing=east":  { "model": "ubs:chakra_infused_ladder", "y": 90 },
+        "facing=south": { "model": "ubs:chakra_infused_ladder", "y": 180 },
+        "facing=west":  { "model": "ubs:chakra_infused_ladder", "y": 270 }
+    }
+}

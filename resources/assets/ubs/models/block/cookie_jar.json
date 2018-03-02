@@ -1,0 +1,72 @@
+{
+    "__comment": "Designed by Andrew0030 with Cubik Studio - https://cubik.studio",
+    "textures": {
+        "particle": "blocks/glass",
+        "Glass": "blocks/glass",
+        "Top": "blocks/coal_block"
+    },
+    "elements": [    
+        {
+            "__comment": "Box1",
+            "from": [ 3, 0, 3 ],
+            "to": [ 13, 11, 13 ],
+            "faces": {
+                "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" },
+                "up": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" },
+                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" },
+                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" },
+                "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#Glass" }
+            }
+        },
+        {
+            "__comment": "Box2",
+            "from": [ 4, 11, 4 ],
+            "to": [ 12, 12, 12 ],
+            "faces": {
+                "down": { "uv": [ 4, 4, 12, 12 ], "texture": "#Top" },
+                "up": { "uv": [ 4, 4, 12, 12 ], "texture": "#Top" },
+                "north": { "uv": [ 4, 4, 12, 5 ], "texture": "#Top" },
+                "south": { "uv": [ 4, 4, 12, 5 ], "texture": "#Top" },
+                "west": { "uv": [ 4, 4, 12, 5 ], "texture": "#Top" },
+                "east": { "uv": [ 4, 4, 12, 5 ], "texture": "#Top" }
+            }
+        }
+    ],
+    "display": {
+        "thirdperson_righthand": {
+            "rotation":  [ 75, 45, 0 ],
+            "translation":  [ 0, 2.5, 0 ],
+            "scale":  [ 0.375, 0.375, 0.375 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation":  [ 75, 45, 0 ],
+            "translation":  [ 0, 2.5, 0 ],
+            "scale":  [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson_righthand": {
+            "rotation":  [ 0, 45, 0 ],
+            "scale":  [ 0.4, 0.4, 0.4 ]
+        },
+        "firstperson_lefthand": {
+            "rotation":  [ 0, 45, 0 ],
+            "scale":  [ 0.4, 0.4, 0.4 ]
+        },
+        "gui": {
+            "rotation":  [ 30, 225, 0 ],
+            "scale":  [ 0.625, 0.625, 0.625 ]
+        },
+        "head": {
+            "rotation":  [ 0, 0, 180 ],
+            "translation":  [ 0, -4.173, 0 ],
+            "scale":  [ 1.5, 1.5, 1.5 ]
+        },
+        "ground": {
+            "translation":  [ 0, 3, 0 ],
+            "scale":  [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "scale":  [ 0.5, 0.5, 0.5 ]
+        }
+    }
+}

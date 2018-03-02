@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "ubs:chakra_infused_pressure_plate_up" },
+        "powered=true": { "model": "ubs:chakra_infused_pressure_plate_down" }
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "check_decay=true,decayable=true,variant=chakra_infused": { "model": "ubs:leaves_chakra_infused" },
+        "check_decay=true,decayable=false,variant=chakra_infused": { "model": "ubs:leaves_chakra_infused" },
+        "check_decay=false,decayable=true,variant=chakra_infused": { "model": "ubs:leaves_chakra_infused" },
+        "check_decay=false,decayable=false,variant=chakra_infused": { "model": "ubs:leaves_chakra_infused" },
+        
+        "check_decay=true,decayable=true,variant=avocado": { "model": "ubs:leaves_avocado" },
+        "check_decay=true,decayable=false,variant=avocado": { "model": "ubs:leaves_avocado" },
+        "check_decay=false,decayable=true,variant=avocado": { "model": "ubs:leaves_avocado" },
+        "check_decay=false,decayable=false,variant=avocado": { "model": "ubs:leaves_avocado" }
+    }
+}

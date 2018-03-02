@@ -1,0 +1,100 @@
+//creative tabs
+itemGroup.UBS Blocks=UBS Blocks
+itemGroup.UBS Items=UBS Items
+itemGroup.UBS Foods=UBS Foods
+itemGroup.UBS Tools=UBS Tools
+
+//entities
+entity.ubs.crab.name=Crab
+
+//containers
+container.cooking_pot=Cooking Pot
+
+//items
+item.big_bowl.name=Big Bowl
+item.ramen.name=Ramen
+item.chopsticks.name=Chopsticks
+item.crushed_quartz.name=Crushed Quartz
+item.special_clay.name=Special Clay
+item.crusher.name=Crusher
+item.uncooked_bowl.name=Uncooked Bowl
+item.flour.name=Flour
+item.calamari.name=Calamari
+item.calamari_cooked.name=Cooked Calamari
+item.smoke_bomb.name=Smoke Bomb
+item.salad.name=Salad
+item.sliced_salad.name=Sliced Salad
+item.kitchen_knife.name=Kitchen Knife
+item.tomato_seeds.name=Tomato Seeds
+item.tomato.name=Tomato
+item.sliced_tomato.name=Sliced Tomato
+item.salt.name=Salt
+item.bacon.name=Bacon
+item.bacon_cooked.name=Cooked Bacon
+item.tomato_salad.name=Tomato Salad
+item.poison_smoke_bomb.name=Poison Smoke Bomb
+item.chakra_infused_tool.name=Chakra Infused Tool
+item.chakra_infused_shovel_part.name=Chakra Infused Shovel Part
+item.chakra_infused_pickaxe_part.name=Chakra Infused Pickaxe Part
+item.chakra_infused_axe_part.name=Chakra Infused Axe Part
+item.advanced_chakra_infused_tool.name=Advanced Chakra Infused Tool
+item.crab_meat.name=Crab Meat
+item.cooked_crab_meat.name=Cooked Crab Meat
+item.chakra_berries.name=Chakra Berries
+item.backpack.name=Backpack
+item.katana.name=Katana
+item.shuriken.name=Shuriken
+
+//blocks
+tile.chakra_infused_stairs.name=Chakra Infused Stairs
+tile.chakra_infused_slab_half.name=Chakra Infused Slab
+tile.chakra_infused_fence.name=Chakra Infused Fence
+tile.chakra_infused_fence_gate.name=Chakra Infused Gate
+tile.grill.name=Grill
+tile.salad.name=Salad
+tile.chakra_infused_door.name=Chakra Infused Door
+tile.chakra_infused_button.name=Chakra Infused Button
+tile.chakra_infused_pressure_plate.name=Chakra Infused Pressure Plate
+tile.chakra_infused_trapdoor.name=Chakra Infused Trapdoor
+tile.tomato.name=Tomato
+tile.wild_salad.name=Wild Salad
+tile.camp_fire.name=Camp Fire
+tile.stone_salt.name=Salt Stone
+tile.nether_salt.name=Nether Salt Stone
+tile.chakra_infused_ladder.name=Chakra Infused Ladder
+tile.planks_chakra_infused.name=Chakra Infused Planks
+tile.planks_avocado.name=Avocado Planks
+tile.log_chakra_infused.name=Chakra Infused Log
+tile.log_avocado.name=Avocado Log
+tile.leaves_chakra_infused.name=Chakra Infused Leaves
+tile.leaves_avocado.name=Avocado Leaves
+tile.sapling_chakra_infused.name=Chakra Infused Sapling
+tile.sapling_avocado.name=Avocado Sapling
+tile.avocado_pressure_plate.name=Avocado Pressure Plate
+tile.avocado_fence.name=Avocado Fence
+tile.avocado_fence_gate.name=Avocado Gate
+tile.avocado_trapdoor.name=Avocado Trapdoor
+tile.avocado_button.name=Avocado Button
+tile.avocado_slab_half.name=Avocado Slab
+tile.avocado_stairs.name=Avocado Stairs
+tile.avocado_ladder.name=Avocado Ladder
+tile.stone_path.name=Stone Path
+tile.avocado_door.name=Avocado Door
+tile.chakra_infused_grass.name=Chakra Infused Grass
+tile.cookie_jar.name=Cookie Jar
+tile.chakra_infused_bush.name=Chakra Infused Bush
+tile.chakra_infused_tall_bush.name=Chakra Infused Tall Bush
+tile.chakra_infused_berry_bush.name=Chakra Infused Berry Bush
+tile.chakra_infused_berry_bushwb.name=Chakra Infused Berry Bush With Berries
+tile.chakra_infused_mushroom.name=Chakra Infused Mushroom
+tile.chakra_infused_flower.name=Chakra Infused Flower
+tile.wild_tomato.name=Wild Tomato
+tile.chakra_ore.name=Chakra Ore
+tile.nether_chakra_ore.name=Nether Chakra Ore
+tile.end_chakra_ore.name=End Chakra Ore
+tile.cooking_pot.name=Cooking Pot
+
+//subtitles
+subtitle.sm_thrown=Smoke Bomb Thrown
+subtitle.backpack=Backpack Opened
+subtitle.jump=Player Jumped

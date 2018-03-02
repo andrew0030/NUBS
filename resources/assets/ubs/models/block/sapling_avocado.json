@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "ubs:blocks/avocado_sapling"
+    }
+}

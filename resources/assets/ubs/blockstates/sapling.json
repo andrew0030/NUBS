@@ -1,0 +1,10 @@
+{
+    "variants": 
+    {
+        "stage=0,variant=chakra_infused": { "model": "ubs:sapling_chakra_infused" },
+        "stage=1,variant=chakra_infused": { "model": "ubs:sapling_chakra_infused" },
+        
+        "stage=0,variant=avocado": { "model": "ubs:sapling_avocado" },
+        "stage=1,variant=avocado": { "model": "ubs:sapling_avocado" }
+    }
+}

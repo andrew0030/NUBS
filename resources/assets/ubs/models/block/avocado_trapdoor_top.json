@@ -1,0 +1,6 @@
+{
+    "parent": "block/trapdoor_top",
+    "textures": {
+        "texture": "ubs:blocks/avocado_trapdoor"
+    }
+}
