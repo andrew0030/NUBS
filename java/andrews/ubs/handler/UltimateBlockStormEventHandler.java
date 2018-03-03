@@ -2,7 +2,6 @@ package andrews.ubs.handler;
 
 import andrews.ubs.capabilities.chakra.Chakra;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
-import andrews.ubs.network.PacketHandler;
 import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +39,8 @@ public class UltimateBlockStormEventHandler
             IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
             
             float f = player.rotationYaw * 0.017453292F;//The Yaw Direction
-            
+            chakra.consume(5);
+            Chakra.syncWithClient(player, chakra.getChakra());
             if(player.isSprinting() == true)
             {
                 if(player.moveForward == 1)
