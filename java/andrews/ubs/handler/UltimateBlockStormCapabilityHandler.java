@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
@@ -41,10 +42,13 @@ public class UltimateBlockStormCapabilityHandler
      * @param event
      */
     @SubscribeEvent
-    public void playerLogged(PlayerLoggedInEvent event)
+    public void playerLogged(EntityJoinWorldEvent event)
     {
-        EntityPlayer player = event.player;
-        IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
-        Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra());
+    	if (!event.getEntity().getEntityWorld().isRemote && event.getEntity() instanceof EntityPlayerMP)
+    	{
+    		EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
+    		IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
+    		Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra());
+    	}
     }
 }

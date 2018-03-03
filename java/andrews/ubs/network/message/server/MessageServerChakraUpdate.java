@@ -42,7 +42,8 @@ public class MessageServerChakraUpdate implements IMessage, IMessageHandler<Mess
     }
     
     @SideOnly(Side.CLIENT)
-    private void updatePlayersChakra(float chakra) {
+    private void updatePlayersChakra(float chakra)
+    {
         IChakra iChakra = Minecraft.getMinecraft().thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
         iChakra.set(chakra);
         UtilsLogger.getLogger().info("Got chakra update from server " + iChakra.getChakra());

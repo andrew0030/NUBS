@@ -2,6 +2,7 @@ package andrews.ubs.handler;
 
 import andrews.ubs.capabilities.chakra.Chakra;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
+import andrews.ubs.network.PacketHandler;
 import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,9 +36,11 @@ public class UltimateBlockStormEventHandler
         {
 
             EntityPlayer player = (EntityPlayer)event.getEntity();
-
+            
+            IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
+            
             float f = player.rotationYaw * 0.017453292F;//The Yaw Direction
-
+            
             if(player.isSprinting() == true)
             {
                 if(player.moveForward == 1)
@@ -48,6 +51,8 @@ public class UltimateBlockStormEventHandler
                         player.motionY += add_Y_Sprint;
                         player.motionZ += (double)(MathHelper.cos(f + 15) * sprintingSpeedPush * -1);
                         player.playSound(UltimateBlockStormSoundHandler.jump, 1, 1);
+                        chakra.consume(5);
+                        Chakra.syncWithClient(player, chakra.getChakra());
                     }
                     else if (player.moveStrafing == -1)
                     {
@@ -55,14 +60,17 @@ public class UltimateBlockStormEventHandler
                         player.motionY += add_Y_Sprint;
                         player.motionZ += (double)(MathHelper.cos(f - 15) * sprintingSpeedPush * -1);
                         player.playSound(UltimateBlockStormSoundHandler.jump, 1, 1);
+                        chakra.consume(5);
+                        Chakra.syncWithClient(player, chakra.getChakra());
                     }
                     else
                     {
                         player.motionX -= (double)(MathHelper.sin(f) * sprintingSpeedPush);
                         player.motionY += add_Y_Sprint;
                         player.motionZ += (double)(MathHelper.cos(f) * sprintingSpeedPush);
-                        if(player.worldObj.isRemote)
-                            player.playSound(UltimateBlockStormSoundHandler.jump, 1, 1);
+                        player.playSound(UltimateBlockStormSoundHandler.jump, 1, 1);
+                        chakra.consume(5);
+                        Chakra.syncWithClient(player, chakra.getChakra());
                     }
                 }
             }
@@ -259,7 +267,7 @@ public class UltimateBlockStormEventHandler
         IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
 
         chakra.fill(100);
-        Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra());
+        Chakra.syncWithClient(player, chakra.getChakra());
         
         String message = String.format("You refreshed yourself in the bed. You restored your chakra, you have §7%d§r chakra left.", (int) chakra.getChakra());
 
