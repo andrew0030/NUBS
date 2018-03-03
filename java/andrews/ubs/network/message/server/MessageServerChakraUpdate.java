@@ -2,6 +2,7 @@ package andrews.ubs.network.message.server;
 
 import andrews.ubs.capabilities.chakra.ChakraProvider;
 import andrews.ubs.utils.IChakra;
+import andrews.ubs.utils.UtilsLogger;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -13,6 +14,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MessageServerChakraUpdate implements IMessage, IMessageHandler<MessageServerChakraUpdate, IMessage>
 {
     private float chakra;
+    
+    public MessageServerChakraUpdate() {
+    }
     
     public MessageServerChakraUpdate(float chakra) {
         this.chakra = chakra;
@@ -41,5 +45,6 @@ public class MessageServerChakraUpdate implements IMessage, IMessageHandler<Mess
     private void updatePlayersChakra(float chakra) {
         IChakra iChakra = Minecraft.getMinecraft().thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
         iChakra.set(chakra);
+        UtilsLogger.getLogger().info("Got chakra update from server " + iChakra.getChakra());
     }
 }
