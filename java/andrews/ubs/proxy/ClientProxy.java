@@ -1,7 +1,6 @@
 package andrews.ubs.proxy;
 
-import andrews.ubs.capabilities.chakra.Chakra;
-import andrews.ubs.capabilities.chakra.ChakraStorage;
+import andrews.ubs.handler.UltimateBlockStormClientEventHandler;
 import andrews.ubs.handler.UltimateBlockStormEventHandler;
 import andrews.ubs.handler.UltimateBlockStormRenderHandler;
 import andrews.ubs.handler.GuiOverlay.ChakraBar;
@@ -15,7 +14,6 @@ import andrews.ubs.init.UltimateBlockStormItems;
 import andrews.ubs.init.UltimateBlockStormTools;
 import andrews.ubs.tileentity.TileEntityJar;
 import andrews.ubs.tileentity.render.RendererJar;
-import andrews.ubs.utils.IChakra;
 import andrews.ubs.world.gen.ChakraBerryBushGen;
 import andrews.ubs.world.gen.ChakraInfusedBushGen;
 import andrews.ubs.world.gen.ChakraInfusedFlowerGen;
@@ -27,7 +25,6 @@ import andrews.ubs.world.gen.TreeGen;
 import andrews.ubs.world.gen.WildSaladGen;
 import andrews.ubs.world.gen.WildTomatoGen;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -86,5 +83,6 @@ public class ClientProxy implements CommonProxy {
 		MinecraftForge.EVENT_BUS.register(new StaminaBar());
 		MinecraftForge.EVENT_BUS.register(new HighJumpsButton());
 		MinecraftForge.EVENT_BUS.register(new WaterWalkButton());
+		MinecraftForge.EVENT_BUS.register(new UltimateBlockStormClientEventHandler());
 	}
 }

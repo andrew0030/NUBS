@@ -3,6 +3,7 @@ package andrews.ubs.capabilities.chakra;
 import andrews.ubs.network.PacketHandler;
 import andrews.ubs.network.message.server.MessageServerChakraUpdate;
 import andrews.ubs.utils.IChakra;
+import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -18,6 +19,7 @@ public class Chakra implements IChakra
 		this.chakra -= points;
 		
 		if (this.chakra < 0.0F) this.chakra = 0.0F;
+		UtilsLogger.getLogger().info("consume " + chakra);
 	}
 	
 	public void fill(float points)
@@ -39,7 +41,9 @@ public class Chakra implements IChakra
 	
 	public static void syncWithClient(EntityPlayer player, float chakraValue)
 	 {
-	    if (player.worldObj.isRemote) return;
+	    if (player.worldObj.isRemote) {
+	        return;
+	    }
 	    PacketHandler.INSTANCE.sendTo(new MessageServerChakraUpdate(chakraValue), (EntityPlayerMP)player);
 	 }
 }

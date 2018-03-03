@@ -1,6 +1,7 @@
 package andrews.ubs.capabilities.chakra;
 
 import andrews.ubs.utils.IChakra;
+import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagFloat;
@@ -18,12 +19,16 @@ public class ChakraStorage implements IStorage<IChakra>
 	@Override
 	public NBTBase writeNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side)
 	{
-		return new NBTTagFloat(instance.getChakra());
+	    float chakra = instance.getChakra();
+	    UtilsLogger.getLogger().info("saving nbt " + chakra);
+		return new NBTTagFloat(chakra);
 	}
 
 	@Override
 	public void readNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side, NBTBase nbt)
 	{
-		instance.set(((NBTPrimitive) nbt).getFloat());
+	    float chakra = ((NBTPrimitive) nbt).getFloat();
+	    UtilsLogger.getLogger().info("loading nbt " + chakra);
+		instance.set(chakra);
 	}
 }
