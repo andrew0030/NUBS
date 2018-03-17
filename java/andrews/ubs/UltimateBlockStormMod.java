@@ -4,9 +4,9 @@ import andrews.ubs.capabilities.chakra.Chakra;
 import andrews.ubs.capabilities.chakra.ChakraStorage;
 import andrews.ubs.capabilities.stamina.Stamina;
 import andrews.ubs.capabilities.stamina.StaminaStorage;
+import andrews.ubs.commands.CommandSetChakra;
 import andrews.ubs.gui.GuiHandler;
 import andrews.ubs.handler.UltimateBlockStormCapabilityHandler;
-import andrews.ubs.handler.UltimateBlockStormEventHandler;
 import andrews.ubs.handler.UltimateBlockStormFuelHandler;
 import andrews.ubs.handler.UltimateBlockStormRecipeHandler;
 import andrews.ubs.handler.UltimateBlockStormSoundHandler;
@@ -34,6 +34,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -141,7 +142,8 @@ public class UltimateBlockStormMod {
  *PostInit
  */
     @EventHandler
-    public void postinit(FMLPostInitializationEvent event) {
+    public void postinit(FMLPostInitializationEvent event)
+    {
     	
     //Logger message
     	UtilsLogger.getLogger().info("Post Initialize [#}<======================================================================>{#]");
@@ -151,4 +153,13 @@ public class UltimateBlockStormMod {
     	
     }
     
+/**
+ *Server Starting Event 
+ *(Used for commands)
+ */
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+		event.registerServerCommand(new CommandSetChakra());
+	}
 }

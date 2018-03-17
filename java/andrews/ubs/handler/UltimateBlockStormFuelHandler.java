@@ -2,7 +2,6 @@ package andrews.ubs.handler;
 
 import andrews.ubs.init.UltimateBlockStormBlocks;
 import andrews.ubs.init.UltimateBlockStormItems;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.IFuelHandler;

@@ -7,7 +7,6 @@ import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorProjectileDispense;
 import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

@@ -12,6 +12,7 @@ public class UltimateBlockStormSoundHandler {
 	public static SoundEvent sb_thrown;
 	public static SoundEvent backpack;
 	public static SoundEvent jump;
+	public static SoundEvent fall_trap;
 	
 	public static void init() {
 		size = SoundEvent.REGISTRY.getKeys().size();
@@ -19,6 +20,7 @@ public class UltimateBlockStormSoundHandler {
 		sb_thrown = register("sb_thrown");
 		backpack = register("backpack");
 		jump = register("jump");
+		fall_trap = register("fall_trap");
 	}
 	
 	public static SoundEvent register(String name) {

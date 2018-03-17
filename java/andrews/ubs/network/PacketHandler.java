@@ -3,6 +3,7 @@ package andrews.ubs.network;
 import andrews.ubs.Reference;
 import andrews.ubs.network.message.client.MessageClientKeyPress;
 import andrews.ubs.network.message.server.MessageServerChakraUpdate;
+import andrews.ubs.network.message.server.MessageServerStaminaUpdate;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,5 +26,6 @@ public class PacketHandler
 		
 	//Client Side
 		INSTANCE.registerMessage(MessageServerChakraUpdate.class, MessageServerChakraUpdate.class, nextID(), Side.CLIENT);
+		INSTANCE.registerMessage(MessageServerStaminaUpdate.class, MessageServerStaminaUpdate.class, nextID(), Side.CLIENT);
 	}
 }

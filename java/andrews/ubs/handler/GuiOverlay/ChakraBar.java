@@ -3,7 +3,6 @@ package andrews.ubs.handler.GuiOverlay;
 import andrews.ubs.Reference;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
 import andrews.ubs.utils.IChakra;
-import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ResourceLocation;

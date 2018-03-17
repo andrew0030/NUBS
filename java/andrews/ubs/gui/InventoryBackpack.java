@@ -1,13 +1,8 @@
 package andrews.ubs.gui;
 
-import andrews.ubs.init.UltimateBlockStormItems;
-import andrews.ubs.items.ItemBackpack;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.SlotFurnaceFuel;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

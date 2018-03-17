@@ -32,6 +32,12 @@ import andrews.ubs.blocks.BlockChakraOre;
 import andrews.ubs.blocks.BlockCookieJar;
 import andrews.ubs.blocks.BlockCookingPot;
 import andrews.ubs.blocks.BlockEndChakraOre;
+import andrews.ubs.blocks.BlockFallingTrapCobblestone;
+import andrews.ubs.blocks.BlockFallingTrapFrame;
+import andrews.ubs.blocks.BlockFallingTrapGrass;
+import andrews.ubs.blocks.BlockFallingTrapNether;
+import andrews.ubs.blocks.BlockFallingTrapSand;
+import andrews.ubs.blocks.BlockFallingTrapStone;
 import andrews.ubs.blocks.BlockGrill;
 import andrews.ubs.blocks.BlockNetherChakraOre;
 import andrews.ubs.blocks.BlockSalad;
@@ -102,6 +108,12 @@ public class UltimateBlockStormBlocks {
 	public static Block nether_chakra_ore;
 	public static Block end_chakra_ore;
 	public static Block cooking_pot;
+	public static Block falling_trap_frame;
+	public static Block falling_trap_grass;
+	public static Block falling_trap_stone;
+	public static Block falling_trap_cobblestone;
+	public static Block falling_trap_nether;
+	public static Block falling_trap_sand;
 	
 	public static void init() {
 		chakra_infused_stairs = new BlockChakraInfusedStairs("chakra_infused_stairs");
@@ -149,6 +161,12 @@ public class UltimateBlockStormBlocks {
 		nether_chakra_ore = new BlockNetherChakraOre("nether_chakra_ore");
 		end_chakra_ore = new BlockEndChakraOre("end_chakra_ore");
 		cooking_pot = new BlockCookingPot("cooking_pot");
+		falling_trap_frame = new BlockFallingTrapFrame("falling_trap_frame");
+		falling_trap_grass = new BlockFallingTrapGrass("falling_trap_grass");
+		falling_trap_stone = new BlockFallingTrapStone("falling_trap_stone");
+		falling_trap_cobblestone = new BlockFallingTrapCobblestone("falling_trap_cobblestone");
+		falling_trap_nether = new BlockFallingTrapNether("falling_trap_nether");
+		falling_trap_sand = new BlockFallingTrapSand("falling_trap_sand");
 		
 	}
 
@@ -198,6 +216,12 @@ public class UltimateBlockStormBlocks {
 		registerBlock(nether_chakra_ore);
 		registerBlock(end_chakra_ore);
 		registerBlock(cooking_pot);
+		registerBlock(falling_trap_frame);
+		GameRegistry.register(falling_trap_grass);
+		GameRegistry.register(falling_trap_stone);
+		GameRegistry.register(falling_trap_cobblestone);
+		GameRegistry.register(falling_trap_nether);
+		GameRegistry.register(falling_trap_sand);
 		
 	}
 	
@@ -237,6 +261,7 @@ public class UltimateBlockStormBlocks {
 		registerRender(nether_chakra_ore);
 		registerRender(end_chakra_ore);
 		registerRender(cooking_pot);
+		registerRender(falling_trap_frame);
 		
 		for(int i = 0; i < BlockUBSPlanks.EnumType.values().length; i++)
 		{

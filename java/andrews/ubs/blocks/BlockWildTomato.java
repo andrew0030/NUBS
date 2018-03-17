@@ -5,8 +5,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import andrews.ubs.Reference;
-import andrews.ubs.UltimateBlockStormMod;
-import andrews.ubs.init.UltimateBlockStormBlocks;
 import andrews.ubs.init.UltimateBlockStormItems;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;

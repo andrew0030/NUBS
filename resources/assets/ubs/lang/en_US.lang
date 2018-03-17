@@ -44,6 +44,11 @@ item.chakra_berries.name=Chakra Berries
 item.backpack.name=Backpack
 item.katana.name=Katana
 item.shuriken.name=Shuriken
+item.cover_grass.name=Grass Cover
+item.cover_stone.name=Stone Cover
+item.cover_cobblestone.name=Cobblestone Cover
+item.cover_nether.name=Nether Cover
+item.cover_sand.name=Sand Cover
 
 //blocks
 tile.chakra_infused_stairs.name=Chakra Infused Stairs
@@ -93,8 +98,15 @@ tile.chakra_ore.name=Chakra Ore
 tile.nether_chakra_ore.name=Nether Chakra Ore
 tile.end_chakra_ore.name=End Chakra Ore
 tile.cooking_pot.name=Cooking Pot
+tile.falling_trap_frame.name=Falling Trap Frame
+tile.falling_trap_grass.name=Falling Trap Grass
+tile.falling_trap_stone.name=Falling Trap Stone
+tile.falling_trap_cobblestone.name=Falling Trap Cobblestone
+tile.falling_trap_nether.name=Falling Trap Nether
+tile.falling_trap_sand.name=Falling Trap Sand
 
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown
 subtitle.backpack=Backpack Opened
 subtitle.jump=Player Jumped
+subtitle.fall_trap=Player Fell Through Fall Trap

@@ -13,6 +13,11 @@ import andrews.ubs.items.ItemChakraInfusedShovelPart;
 import andrews.ubs.items.ItemChopsticks;
 import andrews.ubs.items.ItemCookedBacon;
 import andrews.ubs.items.ItemCookedCrabMeat;
+import andrews.ubs.items.ItemCoverCobblestone;
+import andrews.ubs.items.ItemCoverGrass;
+import andrews.ubs.items.ItemCoverNether;
+import andrews.ubs.items.ItemCoverSand;
+import andrews.ubs.items.ItemCoverStone;
 import andrews.ubs.items.ItemCrabMeat;
 import andrews.ubs.items.ItemCrushedQuartz;
 import andrews.ubs.items.ItemCrusher;
@@ -69,6 +74,11 @@ public class UltimateBlockStormItems {
 	public static Item chakra_berries;
 	public static Item backpack;
 	public static Item shuriken;
+	public static Item cover_grass;
+	public static Item cover_stone;
+	public static Item cover_cobblestone;
+	public static Item cover_nether;
+	public static Item cover_sand;
 
 	
 	public static void init() {
@@ -101,6 +111,11 @@ public class UltimateBlockStormItems {
 		chakra_berries = new ItemChakraBerries("chakra_berries");
 		backpack = new ItemBackpack("backpack");
 		shuriken = new ItemShuriken("shuriken");
+		cover_grass = new ItemCoverGrass("cover_grass");
+		cover_stone = new ItemCoverStone("cover_stone");
+		cover_cobblestone = new ItemCoverCobblestone("cover_cobblestone");
+		cover_nether = new ItemCoverNether("cover_nether");
+		cover_sand = new ItemCoverSand("cover_sand");
 
 	}
 	
@@ -134,6 +149,11 @@ public class UltimateBlockStormItems {
 		registerItem(chakra_berries);
 		registerItem(backpack);
 		registerItem(shuriken);
+		registerItem(cover_grass);
+		registerItem(cover_stone);
+		registerItem(cover_cobblestone);
+		registerItem(cover_nether);
+		registerItem(cover_sand);
 		
 	}
 	
@@ -167,6 +187,11 @@ public class UltimateBlockStormItems {
 		registerRender(chakra_berries);
 		registerRender(backpack);
 		registerRender(shuriken);
+		registerRender(cover_grass);
+		registerRender(cover_stone);
+		registerRender(cover_cobblestone);
+		registerRender(cover_nether);
+		registerRender(cover_sand);
 		
 	}
 	

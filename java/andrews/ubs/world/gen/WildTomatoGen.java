@@ -3,8 +3,6 @@ package andrews.ubs.world.gen;
 import java.util.ArrayList;
 import java.util.Random;
 
-import andrews.ubs.init.UltimateBlockStormBlocks;
-import andrews.ubs.world.biome.BiomeChakraInfused;
 import andrews.ubs.world.gen.generators.WorldGenWildTomato;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

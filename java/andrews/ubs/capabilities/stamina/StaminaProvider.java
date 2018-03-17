@@ -1,6 +1,5 @@
 package andrews.ubs.capabilities.stamina;
 
-import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.IStamina;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;

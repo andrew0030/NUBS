@@ -20,12 +20,12 @@ public class ItemCalamari extends ItemFood {
 	}
 	
 	@Override
-	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player){
-	        if (!worldIn.isRemote){
-	            //Effect1
-	            player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1200));
-	        }
-	        
-	    }
-	
+	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
+	{
+		if (!worldIn.isRemote)
+		{
+			//Effect 1
+			player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1200));
+	    } 
+	}
 }

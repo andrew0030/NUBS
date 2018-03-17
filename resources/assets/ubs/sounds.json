@@ -9,6 +9,11 @@
        "subtitle": "subtitle.backpack",
        "sounds": [ { "name": "ubs:backpack", "stream": true } ]
     },
+    "fall_trap": {
+       "category": "blocks",
+       "subtitle": "subtitle.fall_trap",
+       "sounds": [ { "name": "ubs:fall_trap", "stream": true } ]
+    },
     "jump": {
        "category": "master",
        "subtitle": "subtitle.jump",

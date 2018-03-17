@@ -1,6 +1,7 @@
 package andrews.ubs.proxy;
 
 import andrews.ubs.handler.UltimateBlockStormClientEventHandler;
+import andrews.ubs.handler.UltimateBlockStormColorHandler;
 import andrews.ubs.handler.UltimateBlockStormEventHandler;
 import andrews.ubs.handler.UltimateBlockStormRenderHandler;
 import andrews.ubs.handler.GuiOverlay.ChakraBar;
@@ -51,6 +52,9 @@ public class ClientProxy implements CommonProxy {
 
 	@Override
 	public void init() {
+		
+	//To register the Color handler
+		UltimateBlockStormColorHandler.registerColourHandlers();
 		
 	//To register the Ore Generator
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);

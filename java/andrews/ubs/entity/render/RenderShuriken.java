@@ -3,10 +3,7 @@ package andrews.ubs.entity.render;
 import org.lwjgl.opengl.GL11;
 
 import andrews.ubs.Reference;
-import andrews.ubs.entity.EntityPoisonSmokeBomb;
 import andrews.ubs.entity.EntityShuriken;
-import andrews.ubs.entity.EntitySmokeBomb;
-import andrews.ubs.entity.model.ModelPoisonSmokeBomb;
 import andrews.ubs.entity.model.ModelShuriken;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;

@@ -1,16 +1,8 @@
 package andrews.ubs.network.message.client;
 
-import akka.io.Tcp.Message;
-import andrews.ubs.network.PacketHandler;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.network.ServerPinger;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
