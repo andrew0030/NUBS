@@ -9,6 +9,7 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -29,7 +30,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFallingTrapGrass extends Block
+public class BlockFallingTrapGrass extends Block implements IBlockColor
 {
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0F, 0.0625F * 14F, 0F, 1.0F, 1.0F, 1.0F);
 	
@@ -114,5 +115,12 @@ public class BlockFallingTrapGrass extends Block
 		{
 			return false;
 		}
+	}
+
+	@SideOnly(Side.CLIENT) 
+	@Override
+	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
+	{
+	    return BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
 	}
 }

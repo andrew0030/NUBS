@@ -90,8 +90,7 @@ public class UltimateBlockStormMod {
     	PacketHandler.init(Reference.MODID);
     	
     //To load the ClientPreInitProxy and ServerPreInitProxy
-    	proxy.preinit();
-    	
+    	proxy.preinit();	
     }
     
 /**

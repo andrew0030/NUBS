@@ -9,7 +9,7 @@ public class Reference {
 	
 //Server and Client Proxy Locations
 	public static final String CLIENT_PROXY_CLASS = "andrews.ubs.proxy.ClientProxy";
-	public static final String SERVER_PROXY_CLASS = "andrews.ubs.proxy.ServerProxy";
+	public static final String SERVER_PROXY_CLASS = "andrews.ubs.proxy.CommonProxy";
 
 //Entity Ids
 	public static final int ENTITY_CRAB = 16001;

@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockChakraInfusedGrass extends Block 
+public class BlockChakraInfusedGrass extends Block
 {
 	public BlockChakraInfusedGrass(String name) 
 	{
