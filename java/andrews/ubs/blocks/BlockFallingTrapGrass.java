@@ -30,7 +30,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFallingTrapGrass extends Block implements IBlockColor
+public class BlockFallingTrapGrass extends Block
 {
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0F, 0.0625F * 14F, 0F, 1.0F, 1.0F, 1.0F);
 	
@@ -115,12 +115,5 @@ public class BlockFallingTrapGrass extends Block implements IBlockColor
 		{
 			return false;
 		}
-	}
-
-	@SideOnly(Side.CLIENT) 
-	@Override
-	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
-	{
-	    return BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
 	}
 }

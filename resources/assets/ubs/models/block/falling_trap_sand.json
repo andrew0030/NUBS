@@ -116,8 +116,8 @@
         },
         {
             "__comment": "PlaneY12",
-            "from": [ 0, 16.001, 0 ],
-            "to": [ 16, 16.002, 16 ],
+            "from": [ 0, 16.009, 0 ],
+            "to": [ 16, 16.010, 16 ],
             "faces": {
                 "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#Top", "cullface": "down", "tintindex": 0 },
                 "up": { "uv": [ 0, 0, 16, 16 ], "texture": "#Top", "cullface": "up", "tintindex": 0 }

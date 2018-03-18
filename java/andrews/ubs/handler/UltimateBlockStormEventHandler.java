@@ -320,4 +320,36 @@ public class UltimateBlockStormEventHandler
         UtilsLogger.getLogger().info("stamina is: " + stamina.getStamina());
         UtilsLogger.getLogger().info("old stamina is: " + stamina.getStamina());
     }
+    
+    //====================================================================
+    //Used to Refill the Stamina and Chakra if the Player is Creative Mode 
+    //====================================================================
+    @SubscribeEvent
+    public void CreativeRefill(LivingUpdateEvent event)
+    {
+        if (event.getEntity() != null && event.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer)event.getEntity();
+            
+            IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
+            IStamina stamina = player.getCapability(StaminaProvider.STAMINA_CAP, null);
+            
+            if(player.isCreative())
+            {
+            	
+            //Chakra
+	            if(chakra.getChakra() < 20)
+				{
+	                chakra.fill(100);
+	                Chakra.syncWithClient(player, chakra.getChakra());
+				}
+	        //Stamina
+	            if(stamina.getStamina() < 20)
+	            {
+	            	stamina.fill(100);
+	                Stamina.syncWithClient(player, stamina.getStamina());
+	            }
+            }
+        }
+    }
 }

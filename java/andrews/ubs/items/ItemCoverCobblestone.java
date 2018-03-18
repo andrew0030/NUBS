@@ -2,12 +2,15 @@ package andrews.ubs.items;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import andrews.ubs.Reference;
 import andrews.ubs.UltimateBlockStormMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 public class ItemCoverCobblestone extends Item
 {
@@ -19,15 +22,22 @@ public class ItemCoverCobblestone extends Item
 		this.setCreativeTab(UltimateBlockStormMod.instance.itemtab);
 	}
 	
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
-	 {
-		par2List.add("\u00A7f" + "=================");
-		par2List.add("Use on Falling Trap");
-		par2List.add("Frame to Cover it");
-		par2List.add("\u00A7f" + "=================");
-		par2List.add("Click on Covered");
-		par2List.add("Trap While Sneaking");
-		par2List.add("to Remove Cover");
-		par2List.add("\u00A7f" + "=================");
-	 }
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advancedToolTip)
+	{
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+		{
+			list.add("\u00A7f" + "=================");
+			list.add("Use on Falling Trap");
+			list.add("Frame to Cover it");
+			list.add("\u00A7f" + "=================");
+			list.add("Click on Covered");
+			list.add("Trap While Sneaking");
+			list.add("to Remove Cover");
+			list.add("\u00A7f" + "=================");
+        }
+		else
+		{
+            list.add("Hold " + "\u00A7e" + "Shift" + "\u00A77" + " for More Information");
+		}
+	}
 }

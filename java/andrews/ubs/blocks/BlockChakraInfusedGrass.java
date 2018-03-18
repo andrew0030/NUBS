@@ -6,7 +6,11 @@ import javax.annotation.Nullable;
 
 import andrews.ubs.Reference;
 import andrews.ubs.UltimateBlockStormMod;
+import andrews.ubs.handler.UltimateBlockStormSoundHandler;
 import andrews.ubs.init.UltimateBlockStormBlocks;
+import andrews.ubs.init.UltimateBlockStormItems;
+import andrews.ubs.utils.UtilsLogger;
+import joptsimple.HelpFormatter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDirt;
@@ -14,14 +18,24 @@ import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.audio.SoundHandler;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -147,5 +161,35 @@ public class BlockChakraInfusedGrass extends Block
                 }
             }
         }
+    }
+    
+//To make the grass become farmland if block is used while holding a Hoe
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+    	if(!worldIn.isRemote)
+	    {
+	    	if(heldItem != null)
+			{
+				if(heldItem.getItem() instanceof ItemHoe)
+				{
+					worldIn.setBlockState(pos, Blocks.FARMLAND.getDefaultState(), 2);
+					worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ITEM_HOE_TILL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					if(!playerIn.isCreative())
+					{
+						if(heldItem.getItemDamage() <= heldItem.getMaxDamage() - 1)
+						{
+							heldItem.setItemDamage(heldItem.getItemDamage() + 1 );
+						}
+						else
+						{
+							heldItem.stackSize--;
+							worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						}
+					}
+				}
+			}
+    	}
+    	return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }
 }
