@@ -49,6 +49,25 @@ item.cover_stone.name=Stone Cover
 item.cover_cobblestone.name=Cobblestone Cover
 item.cover_nether.name=Nether Cover
 item.cover_sand.name=Sand Cover
+item.cloth_piece.white.name=White Cloth Piece
+item.cloth_piece.orange.name=Orange Cloth Piece
+item.cloth_piece.magenta.name=Magenta Cloth Piece
+item.cloth_piece.light_blue.name=Light Blue Cloth Piece
+item.cloth_piece.yellow.name=Yellow Cloth Piece
+item.cloth_piece.lime.name=Lime Cloth Piece
+item.cloth_piece.pink.name=Pink Cloth Piece
+item.cloth_piece.gray.name=Gray Cloth Piece
+item.cloth_piece.light_gray.name=Light Gray Cloth Piece
+item.cloth_piece.cyan.name=Cyan Cloth Piece
+item.cloth_piece.purple.name=Purple Cloth Piece
+item.cloth_piece.blue.name=Blue Cloth Piece
+item.cloth_piece.brown.name=Brown Cloth Piece
+item.cloth_piece.green.name=Green Cloth Piece
+item.cloth_piece.red.name=Red Cloth Piece
+item.cloth_piece.black.name=Black Cloth Piece
+item.triple_bladed_scythe.name=Triple Bladed Scythe
+
+
 
 //blocks
 tile.chakra_infused_stairs.name=Chakra Infused Stairs

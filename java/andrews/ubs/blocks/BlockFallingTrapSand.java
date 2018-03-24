@@ -13,7 +13,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -52,11 +55,11 @@ public class BlockFallingTrapSand extends Block
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
 	}
 	
-//this is used so we can see the blocks around this one, without rendering problems
+//this is used to set if the block should allow light to pass through
 	@Override
 	public boolean isOpaqueCube(IBlockState state) 
 	{
-		return false;
+		return true;
 	}
 		
 //this is used to call the bounding box
@@ -66,6 +69,7 @@ public class BlockFallingTrapSand extends Block
 		return BOUNDING_BOX;
 	}
 	
+//this is used to call the collision box
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
 	{
@@ -79,19 +83,24 @@ public class BlockFallingTrapSand extends Block
 		return new ItemStack(UltimateBlockStormBlocks.falling_trap_frame);
 	}
 	
-//to make the block drop the cover (start breaking)
+//to make the block drop the cover when used
 	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if(!worldIn.isRemote)
 		{
 			if(playerIn.isSneaking())
 			{
-				EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_sand));
-				item.setNoPickupDelay();
-				worldIn.spawnEntityInWorld(item);
+				if(!playerIn.isCreative())
+				{
+					EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_sand));
+					item.setNoPickupDelay();
+					worldIn.spawnEntityInWorld(item);
+				}
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_frame.getDefaultState(), 2);
+				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 			}
 		}
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }
 }

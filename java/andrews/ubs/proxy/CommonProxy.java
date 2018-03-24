@@ -1,8 +1,10 @@
 package andrews.ubs.proxy;
 
+import andrews.ubs.Reference;
 import andrews.ubs.handler.UltimateBlockStormEventHandler;
 import andrews.ubs.init.UltimateBlockStormBiomes;
 import andrews.ubs.init.UltimateBlockStormEntities;
+import andrews.ubs.init.UltimateBlockStormItems;
 import andrews.ubs.world.gen.ChakraBerryBushGen;
 import andrews.ubs.world.gen.ChakraInfusedBushGen;
 import andrews.ubs.world.gen.ChakraInfusedFlowerGen;
@@ -13,6 +15,8 @@ import andrews.ubs.world.gen.OreGen;
 import andrews.ubs.world.gen.TreeGen;
 import andrews.ubs.world.gen.WildSaladGen;
 import andrews.ubs.world.gen.WildTomatoGen;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -52,4 +56,6 @@ public class CommonProxy
 	}
 
 	public void postinit() {}
+	
+	public void registerModelBakeryVariants() {}
 }
