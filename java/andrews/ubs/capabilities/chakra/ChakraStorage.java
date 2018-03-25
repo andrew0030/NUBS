@@ -1,5 +1,6 @@
 package andrews.ubs.capabilities.chakra;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.nbt.NBTBase;
@@ -20,7 +21,10 @@ public class ChakraStorage implements IStorage<IChakra>
 	public NBTBase writeNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side)
 	{
 	    float chakra = instance.getChakra();
-	    UtilsLogger.getLogger().info("saving nbt " + chakra);
+	    if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+	    {
+	    	UtilsLogger.getLogger().info("[ChakraStorage] saving nbt " + chakra);
+	    }
 		return new NBTTagFloat(chakra);
 	}
 
@@ -28,7 +32,10 @@ public class ChakraStorage implements IStorage<IChakra>
 	public void readNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side, NBTBase nbt)
 	{
 	    float chakra = ((NBTPrimitive) nbt).getFloat();
-	    UtilsLogger.getLogger().info("loading nbt " + chakra);
+	    if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+	    {
+	    	UtilsLogger.getLogger().info("[ChakraStorage] loading nbt " + chakra);
+	    }
 		instance.set(chakra);
 	}
 }

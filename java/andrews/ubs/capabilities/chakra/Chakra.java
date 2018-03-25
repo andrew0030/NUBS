@@ -1,5 +1,6 @@
 package andrews.ubs.capabilities.chakra;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.network.PacketHandler;
 import andrews.ubs.network.message.server.MessageServerChakraUpdate;
 import andrews.ubs.utils.IChakra;
@@ -20,7 +21,10 @@ public class Chakra implements IChakra
 
 		if (this.chakra < 0.0F)
 			this.chakra = 0.0F;
-		UtilsLogger.getLogger().info("consume " + chakra);
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+		{
+			UtilsLogger.getLogger().info("[Chakra] consume " + chakra);
+		}
 	}
 
 	public void fill(float points)

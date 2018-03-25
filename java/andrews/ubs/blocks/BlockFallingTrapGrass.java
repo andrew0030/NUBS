@@ -42,8 +42,8 @@ public class BlockFallingTrapGrass extends Block
 		this.setSoundType(SoundType.PLANT);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
-		this.useNeighborBrightness = true;
 		this.setHardness(2);
+		this.lightOpacity = 15;
 	}
 	
 //this is used to make the block break on collision
@@ -66,7 +66,14 @@ public class BlockFallingTrapGrass extends Block
 	@Override
 	public boolean isOpaqueCube(IBlockState state) 
 	{
-		return true;
+		return false;
+	}
+	
+//This is Used so the Blocks next to this one render properly
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
 	}
 		
 //this is used to call the bounding box

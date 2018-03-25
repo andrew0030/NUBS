@@ -1,5 +1,6 @@
 package andrews.ubs.capabilities.stamina;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.network.PacketHandler;
 import andrews.ubs.network.message.server.MessageServerStaminaUpdate;
 import andrews.ubs.utils.IStamina;
@@ -21,7 +22,10 @@ public class Stamina implements IStamina
 
 		if (this.stamina < 0.0F)
 			this.stamina = 0.0F;
-		UtilsLogger.getLogger().info("consume " + stamina);
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+		{
+			UtilsLogger.getLogger().info("[Stamina] consume " + stamina);
+		}
 	}
 
 	public void fill(float points)

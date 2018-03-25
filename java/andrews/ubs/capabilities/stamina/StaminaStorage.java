@@ -1,5 +1,6 @@
 package andrews.ubs.capabilities.stamina;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.utils.IStamina;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.nbt.NBTBase;
@@ -20,7 +21,10 @@ public class StaminaStorage implements IStorage<IStamina>
 	public NBTBase writeNBT(Capability<IStamina> capability, IStamina instance, EnumFacing side)
 	{
 		float stamina = instance.getStamina();
-	    UtilsLogger.getLogger().info("saving nbt " + stamina);
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+	    {
+	    	UtilsLogger.getLogger().info("[StaminaStorage] saving nbt " + stamina);
+	    }
 		return new NBTTagFloat(stamina);
 	}
 
@@ -28,7 +32,10 @@ public class StaminaStorage implements IStorage<IStamina>
 	public void readNBT(Capability<IStamina> capability, IStamina instance, EnumFacing side, NBTBase nbt)
 	{
 		float stamina = ((NBTPrimitive) nbt).getFloat();
-	    UtilsLogger.getLogger().info("loading nbt " + stamina);
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+	    {
+	    	UtilsLogger.getLogger().info("[StaminaStorage] loading nbt " + stamina);
+	    }
 		instance.set(stamina);
 	}
 }

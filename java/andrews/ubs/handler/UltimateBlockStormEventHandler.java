@@ -1,5 +1,6 @@
 package andrews.ubs.handler;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.capabilities.chakra.Chakra;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
 import andrews.ubs.capabilities.stamina.Stamina;
@@ -10,11 +11,15 @@ import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiScreenEvent.PotionShiftEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -47,110 +52,116 @@ public class UltimateBlockStormEventHandler
             
             if(player.isSprinting() == true)
             {
-            	if(chakra.getChakra() >= 3 && stamina.getStamina() >= 5)
+            	if(player.getActivePotionEffect(MobEffects.SLOWNESS) == null) //Used so if Player has Effect Slowness player wont be able to Jump
             	{
-            		player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, UltimateBlockStormSoundHandler.jump, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            		
-	            	if(!player.isCreative())
+	            	if(chakra.getChakra() >= 3 && stamina.getStamina() >= 5)
 	            	{
-	            		stamina.consume(5);
-	            		Stamina.syncWithClient(player, stamina.getStamina());
-	            		chakra.consume(3);
-	            		Chakra.syncWithClient(player, chakra.getChakra());
-	            	}
-	            	
-	                if(player.moveForward == 1)
-	                {
-	                    if(player.moveStrafing == 1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f + 15) * sprintingSpeedPush * -1);
-	                        player.motionY += add_Y_Sprint;
-	                        player.motionZ += (double)(MathHelper.cos(f + 15) * sprintingSpeedPush * -1);
-	                    }
-	                    else if (player.moveStrafing == -1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f - 15) * sprintingSpeedPush * -1);
-	                        player.motionY += add_Y_Sprint;
-	                        player.motionZ += (double)(MathHelper.cos(f - 15) * sprintingSpeedPush * -1);
-	                    }
-	                    else
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f) * sprintingSpeedPush);
-	                        player.motionY += add_Y_Sprint;
-	                        player.motionZ += (double)(MathHelper.cos(f) * sprintingSpeedPush);
-	                    }
-	                }
-	            }
+	            		player.worldObj.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, UltimateBlockStormSoundHandler.jump, SoundCategory.PLAYERS, 1.0F, 1.0F);
+	            		
+		            	if(!player.isCreative())
+		            	{
+		            		stamina.consume(5);
+		            		Stamina.syncWithClient(player, stamina.getStamina());
+		            		chakra.consume(3);
+		            		Chakra.syncWithClient(player, chakra.getChakra());
+		            	}
+		            	
+		                if(player.moveForward == 1)
+		                {
+		                    if(player.moveStrafing == 1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f + 15) * sprintingSpeedPush * -1);
+		                        player.motionY += add_Y_Sprint;
+		                        player.motionZ += (double)(MathHelper.cos(f + 15) * sprintingSpeedPush * -1);
+		                    }
+		                    else if (player.moveStrafing == -1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f - 15) * sprintingSpeedPush * -1);
+		                        player.motionY += add_Y_Sprint;
+		                        player.motionZ += (double)(MathHelper.cos(f - 15) * sprintingSpeedPush * -1);
+		                    }
+		                    else
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f) * sprintingSpeedPush);
+		                        player.motionY += add_Y_Sprint;
+		                        player.motionZ += (double)(MathHelper.cos(f) * sprintingSpeedPush);
+		                    }
+		                }
+		            }
+            	}
             }
             else if(player.isSprinting() == false)
             {
-            	if(stamina.getStamina() >= 2)
+            	if(player.getActivePotionEffect(MobEffects.SLOWNESS) == null) //Used so if Player has Effect Slowness player wont be able to Jump
             	{
-            		if(!player.isCreative())
+	            	if(stamina.getStamina() >= 2)
 	            	{
-	            		stamina.consume(2);
-	            		Stamina.syncWithClient(player, stamina.getStamina());
-	            	}
-            		
-	                if(player.moveForward == 1)
-	                {
-	                    if(player.moveStrafing == 1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f + 15) * walkingSpeedPush * -1);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f + 15) * walkingSpeedPush * -1);
-	                    }
-	                    else if (player.moveStrafing == -1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f - 15) * walkingSpeedPush * -1);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f - 15) * walkingSpeedPush * -1);
-	                    }
-	                    else
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f) * walkingSpeedPush);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f) * walkingSpeedPush);
-	                    }
-	                }
-	                else if(player.moveForward == -1)
-	                {
-	                    if(player.moveStrafing == 1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f - 15) * walkingSpeedPush);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f - 15) * walkingSpeedPush);
-	                    }
-	                    else if (player.moveStrafing == -1)
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f + 15) * walkingSpeedPush);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f + 15) * walkingSpeedPush);
-	                    }
-	                    else
-	                    {
-	                        player.motionX -= (double)(MathHelper.sin(f) * walkingSpeedPush * -1);
-	                        player.motionY += add_Y_Walk;
-	                        player.motionZ += (double)(MathHelper.cos(f) * walkingSpeedPush * -1);
-	                    }
-	                }
-	                else if(player.moveStrafing == -1)
-	                {
-	                    player.motionX -= (double)(MathHelper.sin(f - 55) * walkingSpeedPush);
-	                    player.motionY += add_Y_Walk;
-	                    player.motionZ += (double)(MathHelper.cos(f - 55) * walkingSpeedPush);
-	                }
-	                else if(player.moveStrafing == 1)
-	                {
-	                    player.motionX -= (double)(MathHelper.sin(f + 55) * walkingSpeedPush);
-	                    player.motionY += add_Y_Walk;
-	                    player.motionZ += (double)(MathHelper.cos(f + 55) * walkingSpeedPush);
-	                }
-	                else if(player.moveForward == 0 && player.moveStrafing == 0)
-	                {
-	                    player.motionY += add_Y_Walk;
-	                }
-	            }
+	            		if(!player.isCreative())
+		            	{
+		            		stamina.consume(2);
+		            		Stamina.syncWithClient(player, stamina.getStamina());
+		            	}
+	            		
+		                if(player.moveForward == 1)
+		                {
+		                    if(player.moveStrafing == 1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f + 15) * walkingSpeedPush * -1);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f + 15) * walkingSpeedPush * -1);
+		                    }
+		                    else if (player.moveStrafing == -1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f - 15) * walkingSpeedPush * -1);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f - 15) * walkingSpeedPush * -1);
+		                    }
+		                    else
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f) * walkingSpeedPush);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f) * walkingSpeedPush);
+		                    }
+		                }
+		                else if(player.moveForward == -1)
+		                {
+		                    if(player.moveStrafing == 1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f - 15) * walkingSpeedPush);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f - 15) * walkingSpeedPush);
+		                    }
+		                    else if (player.moveStrafing == -1)
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f + 15) * walkingSpeedPush);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f + 15) * walkingSpeedPush);
+		                    }
+		                    else
+		                    {
+		                        player.motionX -= (double)(MathHelper.sin(f) * walkingSpeedPush * -1);
+		                        player.motionY += add_Y_Walk;
+		                        player.motionZ += (double)(MathHelper.cos(f) * walkingSpeedPush * -1);
+		                    }
+		                }
+		                else if(player.moveStrafing == -1)
+		                {
+		                    player.motionX -= (double)(MathHelper.sin(f - 55) * walkingSpeedPush);
+		                    player.motionY += add_Y_Walk;
+		                    player.motionZ += (double)(MathHelper.cos(f - 55) * walkingSpeedPush);
+		                }
+		                else if(player.moveStrafing == 1)
+		                {
+		                    player.motionX -= (double)(MathHelper.sin(f + 55) * walkingSpeedPush);
+		                    player.motionY += add_Y_Walk;
+		                    player.motionZ += (double)(MathHelper.cos(f + 55) * walkingSpeedPush);
+		                }
+		                else if(player.moveForward == 0 && player.moveStrafing == 0)
+		                {
+		                    player.motionY += add_Y_Walk;
+		                }
+		            }
+            	}
             }
         }
     }
@@ -161,38 +172,6 @@ public class UltimateBlockStormEventHandler
     @SubscribeEvent
     public void livingFall(LivingFallEvent event)
     {	
-        /**		Entity entity = event.getEntity();
-
-		if (entity.worldObj.isRemote || !(entity instanceof EntityPlayerMP)) return;
-
-		EntityPlayer player = (EntityPlayer) entity;
-
-		IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
-
-		UtilsLogger.getLogger().info("chakra fall event: " + chakra.getChakra());
-
-		float points = chakra.getChakra();
-
-		float cost = event.getDistance();
-
-		if(event.getDistance() <= 18)
-		{
-			event.setDistance(0);
-		}
-		else if(event.getDistance() > 18)
-		{
-			if (points > cost)
-			{
-				chakra.consume(cost);
-
-				event.setDistance(0);
-
-				String message = String.format("You absorbed fall damage. It costed §7%d§r chakra, you have §7%d§r chakra left.", (int) cost, (int) chakra.getChakra());
-
-				player.addChatMessage(new TextComponentString(message));
-			}
-		}*/
-
         if (event.getEntityLiving() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer)event.getEntityLiving();
@@ -221,7 +200,10 @@ public class UltimateBlockStormEventHandler
                     String message = String.format("Dodged death Bitch. It costed §7%d§r chakra, you have §7%d§r chakra left.", (int) cost, (int) chakra.getChakra());
                     player.addChatMessage(new TextComponentString(message));
 
-                    UtilsLogger.getLogger().info(chakra.getChakra());
+                    if(UltimateBlockStormMod.DEVELOPER_MODE)
+                    {
+                    	UtilsLogger.getLogger().info("[EventHandler] chakra after falling" + chakra.getChakra());
+                    }
                 }
             }
         }
@@ -294,8 +276,11 @@ public class UltimateBlockStormEventHandler
 
         player.addChatMessage(new TextComponentString(message));
 
-        UtilsLogger.getLogger().info("chakra wake up event: " + chakra.getChakra());
-        UtilsLogger.getLogger().info("stamina wake up event: " + stamina.getStamina());
+        if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+        {
+        	UtilsLogger.getLogger().info("[EventHandler] chakra wake up event: " + chakra.getChakra());
+        	UtilsLogger.getLogger().info("[EventHandler] stamina wake up event: " + stamina.getStamina());
+        }
     }
 
     //============================================
@@ -315,10 +300,13 @@ public class UltimateBlockStormEventHandler
         chakra.set(oldChakra.getChakra());
         stamina.set(oldStamina.getStamina());
 
-        UtilsLogger.getLogger().info("chakra is: " + chakra.getChakra());
-        UtilsLogger.getLogger().info("old chakra is: " + chakra.getChakra());
-        UtilsLogger.getLogger().info("stamina is: " + stamina.getStamina());
-        UtilsLogger.getLogger().info("old stamina is: " + stamina.getStamina());
+        if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+        {
+	        UtilsLogger.getLogger().info("[EventHandler] chakra is: " + chakra.getChakra());
+	        UtilsLogger.getLogger().info("[EventHandler] old chakra is: " + chakra.getChakra());
+	        UtilsLogger.getLogger().info("[EventHandler] stamina is: " + stamina.getStamina());
+	        UtilsLogger.getLogger().info("[EventHandler] old stamina is: " + stamina.getStamina());
+        }
     }
     
     //====================================================================

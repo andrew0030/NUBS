@@ -1,5 +1,6 @@
 package andrews.ubs.handler;
 
+import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
 import andrews.ubs.capabilities.stamina.StaminaProvider;
 import andrews.ubs.utils.IChakra;
@@ -49,12 +50,18 @@ public class UltimateBlockStormClientEventHandler
             {
                 IChakra iChakra = Minecraft.getMinecraft().thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
                 iChakra.set(chakraUpdate);
-                UtilsLogger.getLogger().info("Got chakra update from server " + iChakra.getChakra());
+                if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+            	{
+                	UtilsLogger.getLogger().info("[ClientEventHandler] Got chakra update from server " + iChakra.getChakra());
+            	}
                 haveChakraUpdate = false;
             }
             else
             {
-                UtilsLogger.getLogger().error("Got chakra update from server but the player was null.");
+            	if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+            	{
+            		UtilsLogger.getLogger().error("[ClientEventHandler] Got chakra update from server but the player was null.");
+            	}
             }
         }
         
@@ -65,12 +72,18 @@ public class UltimateBlockStormClientEventHandler
             {
                 IStamina iStamina = Minecraft.getMinecraft().thePlayer.getCapability(StaminaProvider.STAMINA_CAP, null);
                 iStamina.set(staminaUpdate);
-                UtilsLogger.getLogger().info("Got stamina update from server " + iStamina.getStamina());
+                if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+            	{
+                	UtilsLogger.getLogger().info("[ClientEventHandler] Got stamina update from server " + iStamina.getStamina());
+            	}
                 haveStaminaUpdate = false;
             }
             else
             {
-                UtilsLogger.getLogger().error("Got stamina update from server but the player was null.");
+            	if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+            	{
+            		UtilsLogger.getLogger().error("[ClientEventHandler] Got stamina update from server but the player was null.");
+            	}
             }
         }
     }
