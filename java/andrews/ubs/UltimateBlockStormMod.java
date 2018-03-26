@@ -109,9 +109,6 @@ public static final boolean DEVELOPER_MODE = true;//#
 	//Logger message
     	UtilsLogger.getLogger().info("Initialize [#}<======================================================================>{#]");	
 		
-    //To Register The Model Variants
-    	proxy.registerModelBakeryVariants();
-    	
 	//To Register Recipes
 		UltimateBlockStormRecipeHandler.registerCraftingRecipes();
 		UltimateBlockStormRecipeHandler.registerFurnaceRecipes();

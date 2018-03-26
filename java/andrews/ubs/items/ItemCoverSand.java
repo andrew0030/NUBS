@@ -29,7 +29,7 @@ public class ItemCoverSand extends Item
 			list.add("Use on Falling Trap");
 			list.add("Frame to Cover it");
 			list.add("\u00A7f" + "=================");
-			list.add("Use Covered");
+			list.add("Click on Covered");
 			list.add("Trap While Sneaking");
 			list.add("to Remove Cover");
 			list.add("\u00A7f" + "=================");

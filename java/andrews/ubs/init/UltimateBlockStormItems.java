@@ -1,8 +1,6 @@
 package andrews.ubs.init;
 
 import andrews.ubs.Reference;
-import andrews.ubs.handler.UltimateBlockStormEnumHandler;
-import andrews.ubs.handler.UltimateBlockStormEnumHandler.ClothPieceTypes;
 import andrews.ubs.items.ItemBackpack;
 import andrews.ubs.items.ItemBacon;
 import andrews.ubs.items.ItemBigBowl;
@@ -13,7 +11,6 @@ import andrews.ubs.items.ItemChakraInfusedAxePart;
 import andrews.ubs.items.ItemChakraInfusedPickaxePart;
 import andrews.ubs.items.ItemChakraInfusedShovelPart;
 import andrews.ubs.items.ItemChopsticks;
-import andrews.ubs.items.ItemClothPiece;
 import andrews.ubs.items.ItemCookedBacon;
 import andrews.ubs.items.ItemCookedCrabMeat;
 import andrews.ubs.items.ItemCoverCobblestone;
@@ -37,12 +34,10 @@ import andrews.ubs.items.ItemSpecialClay;
 import andrews.ubs.items.ItemTomato;
 import andrews.ubs.items.ItemTomatoSalad;
 import andrews.ubs.items.ItemTomatoSeeds;
-import andrews.ubs.items.ItemTripleBladedScythe;
 import andrews.ubs.items.ItemUncookedBowl;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -84,7 +79,6 @@ public class UltimateBlockStormItems {
 	public static Item cover_cobblestone;
 	public static Item cover_nether;
 	public static Item cover_sand;
-	public static Item cloth_piece;
 
 	
 	public static void init() {
@@ -122,7 +116,6 @@ public class UltimateBlockStormItems {
 		cover_cobblestone = new ItemCoverCobblestone("cover_cobblestone");
 		cover_nether = new ItemCoverNether("cover_nether");
 		cover_sand = new ItemCoverSand("cover_sand");
-		cloth_piece = new ItemClothPiece("cloth_piece");
 
 	}
 	
@@ -161,7 +154,6 @@ public class UltimateBlockStormItems {
 		registerItem(cover_cobblestone);
 		registerItem(cover_nether);
 		registerItem(cover_sand);
-		registerItem(cloth_piece);
 		
 	}
 	
@@ -200,29 +192,18 @@ public class UltimateBlockStormItems {
 		registerRender(cover_cobblestone);
 		registerRender(cover_nether);
 		registerRender(cover_sand);
-		for(int i = 0; i < UltimateBlockStormEnumHandler.ClothPieceTypes.values().length; i++)
-		{
-			registerRender(cloth_piece, i, "cloth_piece_" + ClothPieceTypes.values()[i].getName());
-		}
 		
 	}
 	
-	public static void registerItem(Item item)
-	{
+	public static void registerItem(Item item) {
 		GameRegistry.register(item);
-		UtilsLogger.getLogger().info("Registered Item: " + item.getUnlocalizedName().substring(5));	
+		UtilsLogger.getLogger().info("Registered Item: " + item.getUnlocalizedName().substring(5));
+		
 	}
 	
-	public static void registerRender(Item item)
-	{
+	public static void registerRender(Item item) {
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item.getUnlocalizedName().substring(5)), "inventory"));
 		UtilsLogger.getLogger().info("Registered Render for " + item.getUnlocalizedName().substring(5));
-	}
-	
-	public static void registerRender(Item item, int meta, String fileName)
-	{
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, fileName), "inventory"));
-		UtilsLogger.getLogger().info("Registered Render for " + item.getUnlocalizedName().substring(5) + "_" + ClothPieceTypes.values()[meta].getName());
 	}
 
 }

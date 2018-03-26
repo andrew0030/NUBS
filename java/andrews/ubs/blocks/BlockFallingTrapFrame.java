@@ -101,7 +101,6 @@ public class BlockFallingTrapFrame extends Block
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_grass)
 			{
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_grass.getDefaultState(), 2);
-				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
 					heldItem.stackSize--;
@@ -112,7 +111,6 @@ public class BlockFallingTrapFrame extends Block
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_stone)
 			{
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_stone.getDefaultState(), 2);
-				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
 					heldItem.stackSize--;
@@ -123,7 +121,6 @@ public class BlockFallingTrapFrame extends Block
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_cobblestone)
 			{
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_cobblestone.getDefaultState(), 2);
-				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
 					heldItem.stackSize--;
@@ -134,7 +131,6 @@ public class BlockFallingTrapFrame extends Block
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_nether)
 			{
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_nether.getDefaultState(), 2);
-				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
 					heldItem.stackSize--;
@@ -145,7 +141,6 @@ public class BlockFallingTrapFrame extends Block
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_sand)
 			{
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_sand.getDefaultState(), 2);
-				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
 					heldItem.stackSize--;

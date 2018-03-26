@@ -2,8 +2,6 @@ package andrews.ubs.items;
 
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import andrews.ubs.Reference;
 import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.entity.EntitySmokeBomb;
@@ -52,18 +50,13 @@ public class ItemSmokeBomb extends Item
 
 	     playerIn.addStat(StatList.getObjectUseStats(this));
 	     return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
-	}
+	 }
 	 
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advancedToolTip)
-	{
-		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		{
-			list.add("\u00A78" + "BLINDNESS" + "\u00A77" + ": 1");
-			list.add("\u00A79" + "SLOWNESS" + "\u00A77" + ": 2");
-	    }
-		else
-		{
-	        list.add("Hold " + "\u00A7e" + "Shift" + "\u00A77" + " for More Information");
-		}
-	}
+	 public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
+	 {
+		 par2List.add("\u00A78" + "BLINDNESS" + "\u00A77" + ": 1");
+		 par2List.add("\u00A79" + "SLOWNESS" + "\u00A77" + ": 2");
+	 }
+	 
+	 
 }
