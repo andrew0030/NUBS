@@ -15,8 +15,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -60,12 +62,11 @@ public class BlockFallingTrapGrass extends Block
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
 	}
 	
-//this is used so we can see the blocks around this one, without rendering problems
+//this is used to set if the block should allow light to pass through
 	@Override
 	public boolean isOpaqueCube(IBlockState state) 
 	{
 		return false;
-<<<<<<< HEAD
 	}
 	
 //This is Used so the Blocks next to this one render properly
@@ -73,8 +74,6 @@ public class BlockFallingTrapGrass extends Block
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
-=======
->>>>>>> parent of a5fc9d1... ubs-0.0.16:Bug Fixes, OBJLoader, Items With Metadata
 	}
 		
 //this is used to call the bounding box
@@ -84,6 +83,7 @@ public class BlockFallingTrapGrass extends Block
 		return BOUNDING_BOX;
 	}
 	
+//this is used to call the collision box
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
 	{
@@ -97,20 +97,25 @@ public class BlockFallingTrapGrass extends Block
 		return new ItemStack(UltimateBlockStormBlocks.falling_trap_frame);
 	}
 	
-//to make the block drop chakra berries (start breaking)
+//to make the block drop chakra berries when right clicked
 	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if(!worldIn.isRemote)
 		{
 			if(playerIn.isSneaking())
 			{
-				EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_grass));
-				item.setNoPickupDelay();
-				worldIn.spawnEntityInWorld(item);
+				if(!playerIn.isCreative())
+				{
+					EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_grass));
+					item.setNoPickupDelay();
+					worldIn.spawnEntityInWorld(item);
+				}
 				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_frame.getDefaultState(), 2);
+				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 			}
 		}
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }
 	
 //Used so grass can be placed on top of the Block

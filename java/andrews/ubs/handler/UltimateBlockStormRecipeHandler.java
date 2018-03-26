@@ -6,6 +6,7 @@ import andrews.ubs.init.UltimateBlockStormTools;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -18,7 +19,7 @@ public class UltimateBlockStormRecipeHandler {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.STICK, 2), UltimateBlockStormItems.chopsticks);
 		GameRegistry.addShapelessRecipe(new ItemStack(UltimateBlockStormItems.tomato_seeds, 3), UltimateBlockStormItems.tomato);
 		
-//shaped crafting
+	//Other Crafting Recipes 
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.chopsticks), new Object [] { "sx", "sx", 's', new ItemStack(Items.STICK) });
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.stone_path, 8), new Object [] {"xx", "ss", 's', new ItemStack(Blocks.STONE_SLAB) });
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.camp_fire), new Object [] { "xxx", "xlx", "sss", 'l', Blocks.LOG, 's', new ItemStack(Blocks.STONE) });
@@ -38,6 +39,8 @@ public class UltimateBlockStormRecipeHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.CRAFTING_TABLE), new Object [] { "pp", "pp", 'p', UltimateBlockStormBlocks.planks });
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.salad), new Object [] { "ks", "sx", 'k', new ItemStack(UltimateBlockStormTools.kitchen_knife), 's', new ItemStack(UltimateBlockStormBlocks.wild_salad) });
 		GameRegistry.addShapedRecipe(new ItemStack(Items.SHIELD), new Object [] { "wiw", "www", "xwx", 'w', UltimateBlockStormBlocks.planks, 'i', new ItemStack(Items.IRON_INGOT) });
+		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.falling_trap_frame), new Object [] { "ss", "ss", 's', new ItemStack(Items.STICK) });
+
 	//Chakra Infused Things
 		GameRegistry.addShapedRecipe(new ItemStack(Items.STICK, 4), new Object [] { "px", "px", 'p', new ItemStack(UltimateBlockStormBlocks.planks, 0) });
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.chakra_infused_ladder, 3), new Object [] { "wsw", "wsw", "wsw", 'w', new ItemStack(UltimateBlockStormBlocks.planks, 0), 's', new ItemStack(Items.STICK) });
@@ -67,7 +70,24 @@ public class UltimateBlockStormRecipeHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.avocado_trapdoor, 2), new Object [] { "xxx", "www", "www", 'w', new ItemStack(UltimateBlockStormBlocks.planks, 1, 1) });
 		GameRegistry.addShapedRecipe(new ItemStack(Items.STICK, 4), new Object [] { "px", "px", 'p', new ItemStack(UltimateBlockStormBlocks.planks, 1, 1) });
 		GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormBlocks.planks, 4, 1), new Object [] { "lx", "xx", 'l', new ItemStack(UltimateBlockStormBlocks.log, 1, 1) });
-
+	//MetaData Items
+		for (int i = 0; i < 16; ++i)
+        {
+		//Covers For Falling Traps
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_cobblestone, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', Blocks.PLANKS, 'b', new ItemStack(Blocks.COBBLESTONE) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_cobblestone, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', UltimateBlockStormBlocks.planks, 'b', new ItemStack(Blocks.COBBLESTONE) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_grass, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', Blocks.PLANKS, 'b', new ItemStack(Blocks.GRASS) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_grass, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', UltimateBlockStormBlocks.planks, 'b', new ItemStack(Blocks.GRASS) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_nether, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', Blocks.PLANKS, 'b', new ItemStack(Blocks.NETHERRACK) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_nether, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', UltimateBlockStormBlocks.planks, 'b', new ItemStack(Blocks.NETHERRACK) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_sand, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', Blocks.PLANKS, 'b', new ItemStack(Blocks.SAND) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_sand, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', UltimateBlockStormBlocks.planks, 'b', new ItemStack(Blocks.SAND) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_stone, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', Blocks.PLANKS, 'b', new ItemStack(Blocks.STONE) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cover_stone, 6), new Object [] { "cwc", "cbc", "cwc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i), 'w', UltimateBlockStormBlocks.planks, 'b', new ItemStack(Blocks.STONE) });
+		//Cloth Pieces Stuf
+			GameRegistry.addShapedRecipe(new ItemStack(Blocks.WOOL, 1, i), new Object [] { "cc", "cc", 'c', new ItemStack(UltimateBlockStormItems.cloth_piece, 1, i) });
+			GameRegistry.addShapedRecipe(new ItemStack(UltimateBlockStormItems.cloth_piece, 4, i), new Object [] { "wx", "xx", 'w', new ItemStack(Blocks.WOOL, 1, i) });
+        }
 
 	//registered message
 		UtilsLogger.getLogger().info("Registered Crafting Recipes!");
