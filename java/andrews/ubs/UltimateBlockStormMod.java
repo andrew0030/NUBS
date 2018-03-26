@@ -41,12 +41,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = Reference.MODID, version = Reference.VERSION, name = Reference.NAME)
 public class UltimateBlockStormMod {
 	
-//###############################################
-//                Developer Mode			   #
-//Used To Enable and Disable Logger Information#
-//											   #
+//###################################################
+//                Developer Mode			   		#
+//  Used To Enable and Disable Logger Information   #
+//											   		#
 public static final boolean DEVELOPER_MODE = true;//#
-//##############################################
+//###################################################
 	
     @Instance(Reference.MODID)
     public static UltimateBlockStormMod instance;
