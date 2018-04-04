@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -60,6 +61,9 @@ public class BlockFallingTrapFrame extends Block
 			{
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UltimateBlockStormSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(Items.STICK, 4));
+				item.setPickupDelay(40); //To Set a Small Pickup Delay
+				worldIn.spawnEntityInWorld(item); //To Spawn the Item
 			}
         }
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);

@@ -28,11 +28,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockFallingTrapCobblestone extends Block
+public class BlockFallingTrapNetherSmart extends Block
 {
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0F, 0.0625F * 14F, 0F, 1.0F, 1.0F, 1.0F);
 	
-	public BlockFallingTrapCobblestone(String name) 
+	public BlockFallingTrapNetherSmart(String name) 
 	{
 		super(Material.ROCK);
 		this.setSoundType(SoundType.STONE);
@@ -86,7 +86,7 @@ public class BlockFallingTrapCobblestone extends Block
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn)
 	{
-		if(entityIn instanceof EntityLivingBase)
+		if(entityIn instanceof EntityPlayer)
 		{
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, NULL_AABB);
 		}
@@ -100,7 +100,7 @@ public class BlockFallingTrapCobblestone extends Block
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) 
 	{
-		return new ItemStack(UltimateBlockStormBlocks.falling_trap_frame);
+		return new ItemStack(UltimateBlockStormBlocks.falling_trap_frame_smart);
 	}
 	
 //to make the block drop the cover when used
@@ -113,11 +113,11 @@ public class BlockFallingTrapCobblestone extends Block
 			{
 				if(!playerIn.isCreative())
 				{
-					EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_cobblestone));
+					EntityItem item = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(UltimateBlockStormItems.cover_stone));
 					item.setNoPickupDelay();
 					worldIn.spawnEntityInWorld(item);
 				}
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_frame.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_frame_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 			}
 		}

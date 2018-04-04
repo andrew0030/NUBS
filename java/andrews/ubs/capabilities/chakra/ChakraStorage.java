@@ -21,21 +21,26 @@ public class ChakraStorage implements IStorage<IChakra>
 	public NBTBase writeNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side)
 	{
 	    float chakra = instance.getChakra();
+	    float maxChakra = instance.getMaxChakra();
+	    
 	    if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
 	    {
-	    	UtilsLogger.getLogger().info("[ChakraStorage] saving nbt " + chakra);
+	    	UtilsLogger.getLogger().info("[ChakraStorage] saving nbt, chakra is: " + chakra + " maxChakra is: " + maxChakra);
 	    }
 		return new NBTTagFloat(chakra);
 	}
-
+	
 	@Override
 	public void readNBT(Capability<IChakra> capability, IChakra instance, EnumFacing side, NBTBase nbt)
 	{
 	    float chakra = ((NBTPrimitive) nbt).getFloat();
+	    float maxChakra = ((NBTPrimitive) nbt).getFloat();
+	    
 	    if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
 	    {
-	    	UtilsLogger.getLogger().info("[ChakraStorage] loading nbt " + chakra);
+	    	UtilsLogger.getLogger().info("[ChakraStorage] loading nbt chakra is: " + chakra + " maxChakra is: " + maxChakra);
 	    }
 		instance.set(chakra);
+		instance.setMaxChakra(maxChakra);
 	}
 }

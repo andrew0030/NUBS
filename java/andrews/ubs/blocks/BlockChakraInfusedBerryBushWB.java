@@ -17,6 +17,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
@@ -100,4 +101,11 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
         entityIn.motionY *= 0.2D;
         entityIn.motionZ *= 0.2D;
     }
+    
+//So that you pick block the right item
+  	@Override
+  	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) 
+  	{
+  		return new ItemStack(UltimateBlockStormBlocks.chakra_infused_berry_bush);
+  	}
 }

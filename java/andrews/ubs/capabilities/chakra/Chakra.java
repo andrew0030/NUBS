@@ -14,7 +14,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 public class Chakra implements IChakra
 {
 	private float chakra = 100.0F;
+	private float maxChakra = 100.0F;
 
+//To consume the given amount from Chakra
 	public void consume(float points)
 	{
 		this.chakra -= points;
@@ -27,30 +29,55 @@ public class Chakra implements IChakra
 		}
 	}
 
+//To add the given amount too Chakra 
 	public void fill(float points)
 	{
 		this.chakra += points;
 
-		if (this.chakra > 100.0F)
-			this.chakra = 100.0F;
+		if(this.chakra > this.maxChakra)
+		{
+			this.chakra = this.maxChakra;
+		}
 	}
 
+//To set the Chakra amount
 	public void set(float points)
 	{
 		this.chakra = points;
+		if(this.chakra > this.maxChakra)
+		{
+			this.chakra = this.maxChakra;
+		}
 	}
 
+//To get the Chakra
 	public float getChakra()
 	{
 		return this.chakra;
 	}
+	
+//To the Max Chakra
+	public void setMaxChakra(float points)
+	{
+		this.maxChakra = points;
+		if(this.chakra > this.maxChakra)
+		{
+			this.chakra = points;
+		}
+	}
 
-	public static void syncWithClient(EntityPlayer player, float chakraValue)
+	public float getMaxChakra()
+	{
+		return this.maxChakra;
+	}
+	
+//To sync The Client and Server
+	public static void syncWithClient(EntityPlayer player, float chakraValue, float maxChakraValue)
 	{
 		if (player.worldObj.isRemote)
 		{
 			return;
 		}
-		PacketHandler.INSTANCE.sendTo(new MessageServerChakraUpdate(chakraValue), (EntityPlayerMP) player);
+		PacketHandler.INSTANCE.sendTo(new MessageServerChakraUpdate(chakraValue, maxChakraValue), (EntityPlayerMP) player);
 	}
 }

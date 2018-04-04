@@ -13,4 +13,8 @@ public interface IChakra
 	public void set(float points);
 
 	public float getChakra();
+	
+	public void setMaxChakra(float points);
+	
+	public float getMaxChakra();
 }

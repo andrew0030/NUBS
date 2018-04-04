@@ -2,6 +2,8 @@ package andrews.ubs.blocks;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import andrews.ubs.Reference;
 import andrews.ubs.UltimateBlockStormMod;
 import andrews.ubs.handler.UltimateBlockStormSoundHandler;
@@ -13,8 +15,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -55,6 +59,9 @@ public class BlockFallingTrapFrameSmart extends Block
 			{
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UltimateBlockStormSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(Items.STICK, 4));
+				item.setPickupDelay(40); //To Set a Small Pickup Delay
+				worldIn.spawnEntityInWorld(item); //To Spawn the Item
 			}
         }
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
@@ -87,6 +94,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		return BOUNDING_BOX;
 	}
 	
+//This is Used to set the Collision Box
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn)
 	{
@@ -109,7 +117,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		//Grass Version
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_grass)
 			{
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_grass.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_grass_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
@@ -120,7 +128,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		//Stone Version
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_stone)
 			{
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_stone.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_stone_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
@@ -131,7 +139,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		//Cobblestone Version
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_cobblestone)
 			{
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_cobblestone.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_cobblestone_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
@@ -142,7 +150,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		//Netherrack Version
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_nether)
 			{
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_nether.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_nether_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
@@ -153,7 +161,7 @@ public class BlockFallingTrapFrameSmart extends Block
 		//Sand Version
 			if(heldItem.getItem() == UltimateBlockStormItems.cover_sand)
 			{
-				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_sand.getDefaultState(), 2);
+				worldIn.setBlockState(pos, UltimateBlockStormBlocks.falling_trap_sand_smart.getDefaultState(), 2);
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1.6F, 1.6F);
 				if(!playerIn.isCreative())
 				{
@@ -162,5 +170,23 @@ public class BlockFallingTrapFrameSmart extends Block
 			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+	}
+	
+//This is Used to add the Item Information
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advancedToolTip)
+	{
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+		{
+			list.add("\u00A7f" + "=================");
+			list.add("This Version of the");
+			list.add("Falling Trap will only");
+			list.add("break, if a Player");
+			list.add("Walks over it!");
+			list.add("\u00A7f" + "=================");
+        }
+		else
+		{
+            list.add("Hold " + "\u00A7e" + "Shift" + "\u00A77" + " for More Information");
+		}
 	}
 }

@@ -63,7 +63,7 @@ public class UltimateBlockStormEventHandler
 		            		stamina.consume(5);
 		            		Stamina.syncWithClient(player, stamina.getStamina());
 		            		chakra.consume(3);
-		            		Chakra.syncWithClient(player, chakra.getChakra());
+		            		Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
 		            	}
 		            	
 		                if(player.moveForward == 1)
@@ -195,7 +195,7 @@ public class UltimateBlockStormEventHandler
                     chakra.consume(cost);
 
                     event.setDistance(0);
-                    Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra());
+                    Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
 
                     String message = String.format("Dodged death Bitch. It costed §7%d§r chakra, you have §7%d§r chakra left.", (int) cost, (int) chakra.getChakra());
                     player.addChatMessage(new TextComponentString(message));
@@ -270,7 +270,7 @@ public class UltimateBlockStormEventHandler
         stamina.fill(100);
         Stamina.syncWithClient(player, stamina.getStamina());
         chakra.fill(100);
-        Chakra.syncWithClient(player, chakra.getChakra());
+        Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
         
         String message = String.format("You refreshed yourself in the bed. You restored your chakra, you have §7%d§r chakra left.", (int) chakra.getChakra());
 
@@ -329,7 +329,7 @@ public class UltimateBlockStormEventHandler
 	            if(chakra.getChakra() < 20)
 				{
 	                chakra.fill(100);
-	                Chakra.syncWithClient(player, chakra.getChakra());
+	                Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
 				}
 	        //Stamina
 	            if(stamina.getStamina() < 20)

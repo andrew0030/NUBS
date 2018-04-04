@@ -9,10 +9,18 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BlockAvocadoFence extends BlockFence {
 
@@ -38,5 +46,4 @@ public class BlockAvocadoFence extends BlockFence {
         	: block == UltimateBlockStormBlocks.grill ? false 
         	: ((!(block instanceof BlockFence) || block.getMaterial(null) != this.blockMaterial) && !(block instanceof BlockFenceGate) ? (block.getMaterial(null).isOpaque() && iblockstate.isFullCube() ? block.getMaterial(null) != Material.GOURD : false) : true);
     }
-
 }

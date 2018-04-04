@@ -18,13 +18,15 @@ public class UltimateBlockStormClientEventHandler
     
     private static boolean haveChakraUpdate = false;
     private static float chakraUpdate = 0F;
+    private static float maxChakraUpdate = 0F;
     private static boolean haveStaminaUpdate = false;
     private static float staminaUpdate = 0F;
     
 //Chakra
-    public static void setChakraUpdate(float chakra)
+    public static void setChakraUpdate(float chakra, float maxChakra)
     {
         chakraUpdate = chakra;
+        maxChakraUpdate = maxChakra;
         haveChakraUpdate = true;
     }
     
@@ -48,11 +50,13 @@ public class UltimateBlockStormClientEventHandler
         {
             if (Minecraft.getMinecraft().thePlayer != null)
             {
-                IChakra iChakra = Minecraft.getMinecraft().thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
-                iChakra.set(chakraUpdate);
+                IChakra chakra = Minecraft.getMinecraft().thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
+                
+                chakra.set(chakraUpdate);
+                chakra.setMaxChakra(maxChakraUpdate);
                 if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
             	{
-                	UtilsLogger.getLogger().info("[ClientEventHandler] Got chakra update from server " + iChakra.getChakra());
+                	UtilsLogger.getLogger().info("[ClientEventHandler] Got chakra and maxChakra update from server, chakra is: " + chakra.getChakra() + " and maxChakra is: " + chakra.getMaxChakra());
             	}
                 haveChakraUpdate = false;
             }

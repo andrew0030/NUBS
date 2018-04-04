@@ -123,6 +123,12 @@ tile.falling_trap_stone.name=Falling Trap Stone
 tile.falling_trap_cobblestone.name=Falling Trap Cobblestone
 tile.falling_trap_nether.name=Falling Trap Nether
 tile.falling_trap_sand.name=Falling Trap Sand
+tile.falling_trap_frame_smart.name=Smart Falling Trap Frame
+tile.falling_trap_grass.name=Smart Falling Trap Grass
+tile.falling_trap_stone_smart.name=Smart Falling Trap Stone
+tile.falling_trap_cobblestone_smart.name=Smart Falling Trap Cobblestone
+tile.falling_trap_nether_smart.name=Smart Falling Trap Nether
+tile.falling_trap_sand_smart.name=Smart Falling Trap Sand
 
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown

@@ -33,12 +33,17 @@ import andrews.ubs.blocks.BlockCookieJar;
 import andrews.ubs.blocks.BlockCookingPot;
 import andrews.ubs.blocks.BlockEndChakraOre;
 import andrews.ubs.blocks.BlockFallingTrapCobblestone;
+import andrews.ubs.blocks.BlockFallingTrapCobblestoneSmart;
 import andrews.ubs.blocks.BlockFallingTrapFrame;
 import andrews.ubs.blocks.BlockFallingTrapFrameSmart;
 import andrews.ubs.blocks.BlockFallingTrapGrass;
+import andrews.ubs.blocks.BlockFallingTrapGrassSmart;
 import andrews.ubs.blocks.BlockFallingTrapNether;
+import andrews.ubs.blocks.BlockFallingTrapNetherSmart;
 import andrews.ubs.blocks.BlockFallingTrapSand;
+import andrews.ubs.blocks.BlockFallingTrapSandSmart;
 import andrews.ubs.blocks.BlockFallingTrapStone;
+import andrews.ubs.blocks.BlockFallingTrapStoneSmart;
 import andrews.ubs.blocks.BlockGrill;
 import andrews.ubs.blocks.BlockNetherChakraOre;
 import andrews.ubs.blocks.BlockSalad;
@@ -116,6 +121,11 @@ public class UltimateBlockStormBlocks {
 	public static Block falling_trap_nether;
 	public static Block falling_trap_sand;
 	public static Block falling_trap_frame_smart;
+	public static Block falling_trap_grass_smart;
+	public static Block falling_trap_stone_smart;
+	public static Block falling_trap_cobblestone_smart;
+	public static Block falling_trap_nether_smart;
+	public static Block falling_trap_sand_smart;
 	
 	public static void init() {
 		chakra_infused_stairs = new BlockChakraInfusedStairs("chakra_infused_stairs");
@@ -170,6 +180,11 @@ public class UltimateBlockStormBlocks {
 		falling_trap_nether = new BlockFallingTrapNether("falling_trap_nether");
 		falling_trap_sand = new BlockFallingTrapSand("falling_trap_sand");
 		falling_trap_frame_smart = new BlockFallingTrapFrameSmart("falling_trap_frame_smart");
+		falling_trap_grass_smart = new BlockFallingTrapGrassSmart("falling_trap_grass_smart");
+		falling_trap_stone_smart = new BlockFallingTrapStoneSmart("falling_trap_stone_smart");
+		falling_trap_cobblestone_smart = new BlockFallingTrapCobblestoneSmart("falling_trap_cobblestone_smart");
+		falling_trap_nether_smart = new BlockFallingTrapNetherSmart("falling_trap_nether_smart");
+		falling_trap_sand_smart = new BlockFallingTrapSandSmart("falling_trap_sand_smart");
 		
 	}
 
@@ -226,6 +241,12 @@ public class UltimateBlockStormBlocks {
 		GameRegistry.register(falling_trap_nether);
 		GameRegistry.register(falling_trap_sand);
 		registerBlock(falling_trap_frame_smart);
+		GameRegistry.register(falling_trap_grass_smart);
+		GameRegistry.register(falling_trap_stone_smart);
+		GameRegistry.register(falling_trap_cobblestone_smart);
+		GameRegistry.register(falling_trap_nether_smart);
+		GameRegistry.register(falling_trap_sand_smart);
+		
 		
 	}
 	

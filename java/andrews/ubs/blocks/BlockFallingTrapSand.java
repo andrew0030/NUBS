@@ -1,5 +1,7 @@
 package andrews.ubs.blocks;
 
+import java.util.List;
+
 import andrews.ubs.Reference;
 import andrews.ubs.handler.UltimateBlockStormSoundHandler;
 import andrews.ubs.init.UltimateBlockStormBlocks;
@@ -13,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -50,6 +53,9 @@ public class BlockFallingTrapSand extends Block
 				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UltimateBlockStormSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 				worldIn.notifyNeighborsOfStateChange(pos, this);
+				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(Items.STICK, 4));
+				item.setPickupDelay(40); //To Set a Small Pickup Delay
+				worldIn.spawnEntityInWorld(item); //To Spawn the Item
 			}
 	    }
 		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
@@ -76,11 +82,18 @@ public class BlockFallingTrapSand extends Block
 		return BOUNDING_BOX;
 	}
 	
-//this is used to call the collision box
+//This is Used to set the Collision Box
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn)
 	{
-		return NULL_AABB;
+		if(entityIn instanceof EntityLivingBase)
+		{
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, NULL_AABB);
+		}
+		else
+		{
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+		}
 	}
 	
 //So that you pick block the right item

@@ -50,7 +50,7 @@ public class UltimateBlockStormCapabilityHandler
     		EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
     		
     		IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
-    		Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra());
+    		Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra(), chakra.getMaxChakra());
     		
     		IStamina stamina = player.getCapability(StaminaProvider.STAMINA_CAP, null);
     		Stamina.syncWithClient((EntityPlayerMP) player, stamina.getStamina());

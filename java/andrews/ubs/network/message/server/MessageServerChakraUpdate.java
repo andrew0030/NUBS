@@ -11,36 +11,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MessageServerChakraUpdate implements IMessage, IMessageHandler<MessageServerChakraUpdate, IMessage>
 {
     private float chakra;
+    private float maxChakra;
     
-    public MessageServerChakraUpdate() {
-    }
+    public MessageServerChakraUpdate() {}
     
-    public MessageServerChakraUpdate(float chakra) {
+    public MessageServerChakraUpdate(float chakra, float maxChakra)
+    {
         this.chakra = chakra;
+        this.maxChakra = maxChakra;
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeFloat(chakra);
+        buf.writeFloat(maxChakra);
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         chakra = buf.readFloat();
+        maxChakra = buf.readFloat();
     }
 
     @Override
     public IMessage onMessage(MessageServerChakraUpdate message, MessageContext ctx)
     {
-        updatePlayersChakra(message.chakra);
+        updatePlayersChakra(message.chakra, message.maxChakra);
         return null;
     }
     
     @SideOnly(Side.CLIENT)
-    private void updatePlayersChakra(float chakra)
+    private void updatePlayersChakra(float chakra, float maxChakra)
     {
-        UltimateBlockStormClientEventHandler.setChakraUpdate(chakra);
+        UltimateBlockStormClientEventHandler.setChakraUpdate(chakra, maxChakra);
     }
 }

@@ -55,6 +55,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJar.class, new RendererJar());
 		
 		registerBlockColorHandler(UltimateBlockStormBlocks.falling_trap_grass);
+		registerBlockColorHandler(UltimateBlockStormBlocks.falling_trap_grass_smart);
 	}
 
 	@Override
