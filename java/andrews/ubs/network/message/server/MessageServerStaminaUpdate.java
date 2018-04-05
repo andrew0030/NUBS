@@ -11,36 +11,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MessageServerStaminaUpdate implements IMessage, IMessageHandler<MessageServerStaminaUpdate, IMessage>
 {
     private float stamina;
+    private float maxStamina;
     
-    public MessageServerStaminaUpdate() {
-    }
+    public MessageServerStaminaUpdate() {}
     
-    public MessageServerStaminaUpdate(float stamina) {
+    public MessageServerStaminaUpdate(float stamina, float maxStamina)
+    {
         this.stamina = stamina;
+        this.maxStamina = maxStamina;
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeFloat(stamina);
+        buf.writeFloat(maxStamina);
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
     	stamina = buf.readFloat();
+    	maxStamina = buf.readFloat();
     }
 
     @Override
     public IMessage onMessage(MessageServerStaminaUpdate message, MessageContext ctx)
     {
-        updatePlayersStamina(message.stamina);
+        updatePlayersStamina(message.stamina, message.maxStamina);
         return null;
     }
     
     @SideOnly(Side.CLIENT)
-    private void updatePlayersStamina(float stamina)
+    private void updatePlayersStamina(float stamina, float maxStamina)
     {
-        UltimateBlockStormClientEventHandler.setStaminaUpdate(stamina);
+        UltimateBlockStormClientEventHandler.setStaminaUpdate(stamina, maxStamina);
     }
 }

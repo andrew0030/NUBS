@@ -53,7 +53,7 @@ public class UltimateBlockStormCapabilityHandler
     		Chakra.syncWithClient((EntityPlayerMP) player, chakra.getChakra(), chakra.getMaxChakra());
     		
     		IStamina stamina = player.getCapability(StaminaProvider.STAMINA_CAP, null);
-    		Stamina.syncWithClient((EntityPlayerMP) player, stamina.getStamina());
+    		Stamina.syncWithClient((EntityPlayerMP) player, stamina.getStamina(), stamina.getMaxStamina());
     	}
     }
 }

@@ -23,6 +23,7 @@ public class Chakra implements IChakra
 
 		if (this.chakra < 0.0F)
 			this.chakra = 0.0F;
+		
 		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
 		{
 			UtilsLogger.getLogger().info("[Chakra] consume " + chakra);
@@ -35,8 +36,11 @@ public class Chakra implements IChakra
 		this.chakra += points;
 
 		if(this.chakra > this.maxChakra)
+		   this.chakra = this.maxChakra;
+		
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
 		{
-			this.chakra = this.maxChakra;
+			UtilsLogger.getLogger().info("[Chakra] fill " + chakra);
 		}
 	}
 
@@ -45,8 +49,11 @@ public class Chakra implements IChakra
 	{
 		this.chakra = points;
 		if(this.chakra > this.maxChakra)
+		   this.chakra = this.maxChakra;
+		
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
 		{
-			this.chakra = this.maxChakra;
+			UtilsLogger.getLogger().info("[Chakra] set " + chakra);
 		}
 	}
 
@@ -64,8 +71,14 @@ public class Chakra implements IChakra
 		{
 			this.chakra = points;
 		}
+		
+		if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
+		{
+			UtilsLogger.getLogger().info("[Chakra] setMax " + maxChakra);
+		}
 	}
 
+//To get Max Chakra
 	public float getMaxChakra()
 	{
 		return this.maxChakra;

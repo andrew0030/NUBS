@@ -9,17 +9,13 @@ import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.IStamina;
 import andrews.ubs.utils.UtilsLogger;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.GuiScreenEvent.PotionShiftEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -61,7 +57,7 @@ public class UltimateBlockStormEventHandler
 		            	if(!player.isCreative())
 		            	{
 		            		stamina.consume(5);
-		            		Stamina.syncWithClient(player, stamina.getStamina());
+		            		Stamina.syncWithClient(player, stamina.getStamina(), stamina.getMaxStamina());
 		            		chakra.consume(3);
 		            		Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
 		            	}
@@ -99,7 +95,7 @@ public class UltimateBlockStormEventHandler
 	            		if(!player.isCreative())
 		            	{
 		            		stamina.consume(2);
-		            		Stamina.syncWithClient(player, stamina.getStamina());
+		            		Stamina.syncWithClient(player, stamina.getStamina(), stamina.getMaxStamina());
 		            	}
 	            		
 		                if(player.moveForward == 1)
@@ -249,9 +245,11 @@ public class UltimateBlockStormEventHandler
         IChakra chakra = player.getCapability(ChakraProvider.CHAKRA_CAP, null);
         IStamina stamina = player.getCapability(StaminaProvider.STAMINA_CAP, null);
 
-        String message = String.format("Hello there, you have §7%d§r chakra and §7%d§r stamina left.", (int) chakra.getChakra(), (int) stamina.getStamina());
+        String message1 = String.format("Hello there, you have §7%d§r chakra and §7%d§r stamina left.", (int) chakra.getChakra(), (int) stamina.getStamina());
+        String message2 = String.format("Hello there, you have §7%d§r maxChakra and §7%d§r maxStamina left.", (int) chakra.getMaxChakra(), (int) stamina.getMaxStamina());
 
-        player.addChatMessage(new TextComponentString(message));
+        player.addChatMessage(new TextComponentString(message1));
+        player.addChatMessage(new TextComponentString(message2));
     }
 
     //===========
@@ -268,7 +266,7 @@ public class UltimateBlockStormEventHandler
         IStamina stamina = player.getCapability(StaminaProvider.STAMINA_CAP, null);
 
         stamina.fill(100);
-        Stamina.syncWithClient(player, stamina.getStamina());
+        Stamina.syncWithClient(player, stamina.getStamina(), stamina.getMaxStamina());
         chakra.fill(100);
         Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
         
@@ -328,14 +326,14 @@ public class UltimateBlockStormEventHandler
             //Chakra
 	            if(chakra.getChakra() < 20)
 				{
-	                chakra.fill(100);
+	                chakra.fill(1000);
 	                Chakra.syncWithClient(player, chakra.getChakra(), chakra.getMaxChakra());
 				}
 	        //Stamina
 	            if(stamina.getStamina() < 20)
 	            {
-	            	stamina.fill(100);
-	                Stamina.syncWithClient(player, stamina.getStamina());
+	            	stamina.fill(1000);
+	            	Stamina.syncWithClient(player, stamina.getStamina(), stamina.getMaxStamina());
 	            }
             }
         }

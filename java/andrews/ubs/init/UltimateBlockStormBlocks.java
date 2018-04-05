@@ -47,6 +47,7 @@ import andrews.ubs.blocks.BlockFallingTrapStoneSmart;
 import andrews.ubs.blocks.BlockGrill;
 import andrews.ubs.blocks.BlockNetherChakraOre;
 import andrews.ubs.blocks.BlockSalad;
+import andrews.ubs.blocks.BlockSpikes;
 import andrews.ubs.blocks.BlockStonePath;
 import andrews.ubs.blocks.BlockStoneSalt;
 import andrews.ubs.blocks.BlockTomato;
@@ -126,6 +127,7 @@ public class UltimateBlockStormBlocks {
 	public static Block falling_trap_cobblestone_smart;
 	public static Block falling_trap_nether_smart;
 	public static Block falling_trap_sand_smart;
+	public static Block spikes;
 	
 	public static void init() {
 		chakra_infused_stairs = new BlockChakraInfusedStairs("chakra_infused_stairs");
@@ -185,6 +187,7 @@ public class UltimateBlockStormBlocks {
 		falling_trap_cobblestone_smart = new BlockFallingTrapCobblestoneSmart("falling_trap_cobblestone_smart");
 		falling_trap_nether_smart = new BlockFallingTrapNetherSmart("falling_trap_nether_smart");
 		falling_trap_sand_smart = new BlockFallingTrapSandSmart("falling_trap_sand_smart");
+		spikes = new BlockSpikes("spikes");
 		
 	}
 
@@ -246,6 +249,7 @@ public class UltimateBlockStormBlocks {
 		GameRegistry.register(falling_trap_cobblestone_smart);
 		GameRegistry.register(falling_trap_nether_smart);
 		GameRegistry.register(falling_trap_sand_smart);
+		registerBlock(spikes);
 		
 		
 	}
@@ -288,6 +292,7 @@ public class UltimateBlockStormBlocks {
 		registerRender(cooking_pot);
 		registerRender(falling_trap_frame);
 		registerRender(falling_trap_frame_smart);
+		registerRender(spikes);
 		
 		for(int i = 0; i < BlockUBSPlanks.EnumType.values().length; i++)
 		{
