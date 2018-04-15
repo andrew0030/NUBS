@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down": { "model": "ubs:candel_top" },
+        "facing=up": { "model": "ubs:candel_base" },
+        "facing=north": { "model": "ubs:candel_wall" },
+        "facing=south": { "model": "ubs:candel_wall", "y": 180 },
+        "facing=west": { "model": "ubs:candel_wall", "y": 270 },
+        "facing=east": { "model": "ubs:candel_wall", "y": 90 }
+    }
+}

@@ -1,0 +1,54 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "ubs:kubikiribocho.obj"
+  },
+  "variants": {
+    "inventory": [
+      {
+        "transform": {
+          "thirdperson_lefthand": {
+            "rotation": [ { "x": 9 }, { "y": 0 }, { "z": 0 } ],
+            "translation": [ 0, 0.225, 0.125 ],
+            "scale": [ -0.004, 0.004, -0.004 ]
+          },
+          "thirdperson_righthand": {
+            "rotation": [ { "x": 9 }, { "y": 0 }, { "z": 0 } ],
+            "translation": [ 0, 0.225, 0.125 ],
+            "scale": [ -0.004, 0.004, -0.004 ]
+          },
+          "gui": {
+            "rotation": [ { "x": 32 }, { "y": 56 }, { "z": -74 } ],
+            "translation": [ -0.16, -0.225, 0 ],
+            "scale": [ -0.0017, 0.0017, -0.0017 ]
+          },
+          "firstperson_righthand": {
+            "rotation": [ { "x": -5 }, { "y": 0 }, { "z": 0 } ],
+            "translation": [ 0.2, 0.1, 0.0 ],
+            "scale": [ -0.0025, 0.0025, -0.0025 ]
+          },
+          "firstperson_lefthand": {
+            "rotation": [ { "x": -5 }, { "y": 0 }, { "z": 0 } ],
+            "translation": [ 0.2, 0.1, 0.0 ],
+            "scale": [ -0.0025, 0.0025, -0.0025 ]
+          },
+          "ground": {
+            "rotation": [ { "x": 50 }, { "y": 180 }, { "z": 0 } ],
+            "translation": [ 0, 0.1, 0 ],
+            "scale": [ -0.0015, 0.0015, -0.0015 ]
+          },
+          "fixed": {
+            "rotation": [ { "x": 0 }, { "y": -90 }, { "z": 0 } ],
+            "translation":  [ 0, -0.275, 0 ],
+            "scale": [ -0.0015, 0.0015, -0.0015 ]
+          },
+          "head": {
+            "rotation": [ { "x": 0 }, { "y": 0 }, { "z": 0 } ],
+            "translation":  [ 0, 0, 0 ],
+            "scale": [ -0.002, 0.002, -0.002 ]
+          }
+        }
+      }
+    ]
+  }
+}

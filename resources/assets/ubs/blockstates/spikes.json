@@ -1,5 +1,10 @@
 {
     "variants": {
-        "normal": { "model": "ubs:spikes" }
+        "facing=down": { "model": "ubs:spikes", "x": 90 },
+        "facing=up": { "model": "ubs:spikes", "x": 270 },
+        "facing=north": { "model": "ubs:spikes" },
+        "facing=south": { "model": "ubs:spikes", "y": 180 },
+        "facing=west": { "model": "ubs:spikes", "y": 270 },
+        "facing=east": { "model": "ubs:spikes", "y": 90 }
     }
 }

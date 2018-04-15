@@ -5,17 +5,23 @@ import andrews.ubs.capabilities.chakra.Chakra;
 import andrews.ubs.capabilities.chakra.ChakraProvider;
 import andrews.ubs.capabilities.stamina.Stamina;
 import andrews.ubs.capabilities.stamina.StaminaProvider;
+import andrews.ubs.items.ItemKubikiribocho;
 import andrews.ubs.utils.IChakra;
 import andrews.ubs.utils.IStamina;
 import andrews.ubs.utils.UtilsLogger;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -295,15 +301,15 @@ public class UltimateBlockStormEventHandler
         IChakra oldChakra = event.getOriginal().getCapability(ChakraProvider.CHAKRA_CAP, null);
         IStamina oldStamina = event.getOriginal().getCapability(StaminaProvider.STAMINA_CAP, null);
 
+        chakra.setMaxChakra(oldChakra.getMaxChakra());
         chakra.set(oldChakra.getChakra());
+        stamina.setMaxStamina(oldStamina.getMaxStamina());
         stamina.set(oldStamina.getStamina());
 
         if(UltimateBlockStormMod.DEVELOPER_MODE) //Developer Mode
         {
-	        UtilsLogger.getLogger().info("[EventHandler] chakra is: " + chakra.getChakra());
-	        UtilsLogger.getLogger().info("[EventHandler] old chakra is: " + chakra.getChakra());
-	        UtilsLogger.getLogger().info("[EventHandler] stamina is: " + stamina.getStamina());
-	        UtilsLogger.getLogger().info("[EventHandler] old stamina is: " + stamina.getStamina());
+	        UtilsLogger.getLogger().info("[EventHandler] chakra is: " + chakra.getChakra() + " old chakra is: " + oldChakra.getChakra());
+	        UtilsLogger.getLogger().info("[EventHandler] stamina is: " + stamina.getStamina() + " old stamina is: " + oldStamina.getStamina());
         }
     }
     

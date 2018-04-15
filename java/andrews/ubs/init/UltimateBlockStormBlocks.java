@@ -12,6 +12,7 @@ import andrews.ubs.blocks.BlockAvocadoSlabHalf;
 import andrews.ubs.blocks.BlockAvocadoStairs;
 import andrews.ubs.blocks.BlockAvocadoTrapdoor;
 import andrews.ubs.blocks.BlockCampFire;
+import andrews.ubs.blocks.BlockCandel;
 import andrews.ubs.blocks.BlockChakraInfusedBerryBush;
 import andrews.ubs.blocks.BlockChakraInfusedBerryBushWB;
 import andrews.ubs.blocks.BlockChakraInfusedBush;
@@ -31,6 +32,7 @@ import andrews.ubs.blocks.BlockChakraInfusedTrapdoor;
 import andrews.ubs.blocks.BlockChakraOre;
 import andrews.ubs.blocks.BlockCookieJar;
 import andrews.ubs.blocks.BlockCookingPot;
+import andrews.ubs.blocks.BlockDispensingSpikes;
 import andrews.ubs.blocks.BlockEndChakraOre;
 import andrews.ubs.blocks.BlockFallingTrapCobblestone;
 import andrews.ubs.blocks.BlockFallingTrapCobblestoneSmart;
@@ -50,6 +52,7 @@ import andrews.ubs.blocks.BlockSalad;
 import andrews.ubs.blocks.BlockSpikes;
 import andrews.ubs.blocks.BlockStonePath;
 import andrews.ubs.blocks.BlockStoneSalt;
+import andrews.ubs.blocks.BlockTester;
 import andrews.ubs.blocks.BlockTomato;
 import andrews.ubs.blocks.BlockUBSLeaves;
 import andrews.ubs.blocks.BlockUBSLog;
@@ -128,6 +131,9 @@ public class UltimateBlockStormBlocks {
 	public static Block falling_trap_nether_smart;
 	public static Block falling_trap_sand_smart;
 	public static Block spikes;
+//	public static Block dispensing_spikes;
+	public static Block tester;
+	public static Block candel;
 	
 	public static void init() {
 		chakra_infused_stairs = new BlockChakraInfusedStairs("chakra_infused_stairs");
@@ -188,6 +194,9 @@ public class UltimateBlockStormBlocks {
 		falling_trap_nether_smart = new BlockFallingTrapNetherSmart("falling_trap_nether_smart");
 		falling_trap_sand_smart = new BlockFallingTrapSandSmart("falling_trap_sand_smart");
 		spikes = new BlockSpikes("spikes");
+//		dispensing_spikes = new BlockDispensingSpikes("dispensing_spikes");
+		tester = new BlockTester("tester");
+		candel = new BlockCandel("candel");
 		
 	}
 
@@ -250,6 +259,9 @@ public class UltimateBlockStormBlocks {
 		GameRegistry.register(falling_trap_nether_smart);
 		GameRegistry.register(falling_trap_sand_smart);
 		registerBlock(spikes);
+//		registerBlock(dispensing_spikes);
+		GameRegistry.register(tester);
+		registerBlock(candel);
 		
 		
 	}
@@ -293,6 +305,8 @@ public class UltimateBlockStormBlocks {
 		registerRender(falling_trap_frame);
 		registerRender(falling_trap_frame_smart);
 		registerRender(spikes);
+//		registerRender(dispensing_spikes);
+		registerRender(candel);
 		
 		for(int i = 0; i < BlockUBSPlanks.EnumType.values().length; i++)
 		{

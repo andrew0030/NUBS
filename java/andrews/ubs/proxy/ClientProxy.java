@@ -37,6 +37,8 @@ public class ClientProxy extends CommonProxy {
 	//To make the ForgeOBJLoader load the given item with as an OBJ 
 		OBJLoader.INSTANCE.addDomain(Reference.MODID);
 		registerModel(UltimateBlockStormTools.triple_bladed_scythe);
+		OBJLoader.INSTANCE.addDomain(Reference.MODID);
+		registerModel(UltimateBlockStormTools.kubikiribocho);
 		
 	//To register the Renders
 		UltimateBlockStormItems.registerRenders();

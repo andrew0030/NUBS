@@ -66,6 +66,7 @@ item.cloth_piece.green.name=Green Cloth Piece
 item.cloth_piece.red.name=Red Cloth Piece
 item.cloth_piece.black.name=Black Cloth Piece
 item.triple_bladed_scythe.name=Triple Bladed Scythe
+item.kubikiribocho.name=Kubikiribocho
 
 
 
@@ -129,6 +130,10 @@ tile.falling_trap_stone_smart.name=Smart Falling Trap Stone
 tile.falling_trap_cobblestone_smart.name=Smart Falling Trap Cobblestone
 tile.falling_trap_nether_smart.name=Smart Falling Trap Nether
 tile.falling_trap_sand_smart.name=Smart Falling Trap Sand
+tile.candel.name=Candel
+
+//Death Messages
+death.attack.spikes=%1$s was pierced to death in spikes.
 
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown

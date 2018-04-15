@@ -1,52 +1,53 @@
 package andrews.ubs.blocks;
 
-import java.util.List;
+import java.util.Random;
 
 import andrews.ubs.Reference;
 import andrews.ubs.UltimateBlockStormMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.EnumFaceDirection;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockSpikes extends Block 
+public class BlockCandel extends Block
 {
 	public static final PropertyDirection FACING = BlockDirectional.FACING;
 	
-	public static final AxisAlignedBB AABB_DOWN = new AxisAlignedBB(0F, 0.0625F * 8F, 0F, 1.0F, 1.0F, 1.0F);
-	public static final AxisAlignedBB AABB_UP = new AxisAlignedBB(0F, 0F, 0F, 1.0F, 0.0625F * 8F, 1.0F);
-	public static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0F, 0F, 0.0625F * 8F, 1F, 1F, 1F);
-	public static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0F, 0F, 0F, 1F, 1F, 0.0625F * 8F);
-	public static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0.0625F * 8F, 0F, 0F, 1F, 1F, 1F);
-	public static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0F, 0F, 0F, 0.0625F * 8F, 1F, 1F);
+	public static final AxisAlignedBB AABB_DOWN = new AxisAlignedBB(0.0625F * 3F, 0.0625F * 4F, 0.0625F * 3F, 0.0625F * 13F, 1, 0.0625F * 13F);
+	public static final AxisAlignedBB AABB_UP = new AxisAlignedBB(0.0625F * 3F, 0F, 0.0625F * 4F, 0.0625F * 12F, 0.0625F * 7F, 0.0625F * 12F);
+	public static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0.0625F * 4F, 0.0625F * 1F, 0.0625F * 2F, 0.0625F * 12F, 0.0625F * 14F, 1F);
+	public static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0.0625F * 4F, 0.0625F * 1F, 0F, 0.0625F * 12F, 0.0625F * 14F, 0.0625F * 14F);
+	public static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0.0625F * 2F, 0.0625F * 1F, 0.0625F * 4F, 1F, 0.0625F * 14F, 0.0625F * 12F);
+	public static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0F, 0.0625F * 1F, 0.0625F * 4F, 0.0625F * 14F, 0.0625F * 14F, 0.0625F * 12F);
 	
-	public static DamageSource spikes = new DamageSource("spikes");
-
-	public BlockSpikes(String name)
+	public BlockCandel(String name)
 	{
-		super(Material.WOOD);
-		this.setSoundType(SoundType.WOOD);
+		super(Material.IRON);
+		this.setSoundType(SoundType.METAL);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.useNeighborBrightness = true;
 		this.setHardness(2);
-		this.setCreativeTab(UltimateBlockStormMod.instance.itemtab);
+		this.setCreativeTab(UltimateBlockStormMod.instance.blocktab);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setLightLevel(1);
 	}
 	
 //this is used so we can see the blocks around this one, without rendering problems
@@ -60,6 +61,20 @@ public class BlockSpikes extends Block
 	public boolean isFullCube(IBlockState state) 
 	{
 		return false;
+	}
+	
+//this is used so the block will not render the pixels without a texture black
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT;
+	}
+	
+//The Collision box
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	{
+		return NULL_AABB;
 	}
 	
 //this is used to call the bounding box
@@ -86,43 +101,36 @@ public class BlockSpikes extends Block
         }
     }
 	
-//This is Used to set the Collision Box
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
-	{
-		return NULL_AABB;
-	}
-	
-//Called When an Entity Collided with the Block
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-    	if(entityIn instanceof EntityPlayer)
-    	{
-    		EntityPlayer player = (EntityPlayer) entityIn;
-    		
-    		if(!player.isCreative())
-    		{
-	    		entityIn.motionX *= 0.2D;
-		        entityIn.motionY *= 0.2D;
-		        entityIn.motionZ *= 0.2D;
-    		}
-	        
-	        entityIn.attackEntityFrom(spikes, 4.0F);
-    	}
-    	else if(entityIn instanceof EntityLivingBase)
-    	{
-	        entityIn.motionX *= 0.2D;
-	        entityIn.motionY *= 0.2D;
-	        entityIn.motionZ *= 0.2D;
-	        
-	        entityIn.attackEntityFrom(spikes, 4.0F);
-    	}
+        EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
+
+        switch (enumfacing)
+        {
+        	case EAST:
+        		worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.63, pos.getY() + 0.9, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+        		break;
+            case WEST:
+                worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.37, pos.getY() + 0.9, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+                break;
+            case SOUTH:
+                worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.9, pos.getZ() + 0.63, 0, 0, 0, new int[0]);
+                break;
+            case NORTH:
+            	worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.9, pos.getZ() + 0.37, 0, 0, 0, new int[0]);
+                break;
+            case UP:
+            	worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.48, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+            	break;
+            case DOWN:
+            	worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.82, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+        }
     }
-    
-    @Override
+	
+	@Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-//    	return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer));
     	return canPlaceBlock(worldIn, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(FACING, facing) : this.getDefaultState().withProperty(FACING, EnumFacing.DOWN);
     }
     
@@ -174,7 +182,9 @@ public class BlockSpikes extends Block
 //lock, etc.
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
+    	
         if (this.checkForDrop(worldIn, pos, state) && !canPlaceBlock(worldIn, pos, ((EnumFacing)state.getValue(FACING)).getOpposite()))
+        if(this.checkForDrop(worldIn, pos, state))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
