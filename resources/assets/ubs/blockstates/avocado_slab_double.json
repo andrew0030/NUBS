@@ -1,6 +1,5 @@
 {
     "variants": {
-        "half=top": { "model": "ubs:planks_avocado" },
-        "half=bottom": { "model": "ubs:planks_avocado" }
+        "variant=default": { "model": "ubs:avocado_slab_double" }
     }
 }

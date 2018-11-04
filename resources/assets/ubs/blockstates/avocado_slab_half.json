@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=top": { "model": "ubs:avocado_slab_top" },
-        "half=bottom": { "model": "ubs:avocado_slab_bottom" }
+        "half=bottom,variant=default": { "model": "ubs:avocado_slab_bottom" },
+        "half=top,variant=default": { "model": "ubs:avocado_slab_top" }
     }
 }
