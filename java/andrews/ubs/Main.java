@@ -17,9 +17,14 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION, name = Reference.NAME)
-
 public class Main
 {
+	//###################################################
+	//  Developer Mode			   						#
+	//Used To Enable and Disable Logger Information   	#
+	//								   					#
+	public static final boolean DEVELOPER_MODE = true;//#
+	//###################################################
 	
 //An instance for the Mod
 	@Instance(Reference.MODID)
@@ -37,7 +42,7 @@ public class Main
     
 //PreInit
     @EventHandler
-    public void preinit(FMLPreInitializationEvent event)
+    public static void preinit(FMLPreInitializationEvent event)
     {
     	UBSLogger.getLogger().info("[Main] Forge PreInitializationEvent");
     	RegistryManager.preInitRegistries();
@@ -45,7 +50,7 @@ public class Main
     
 //Init
     @EventHandler
-    public void init(FMLInitializationEvent event)
+    public static void init(FMLInitializationEvent event)
     {
     	UBSLogger.getLogger().info("[Main] Forge InitializationEvent");
     	RegistryManager.initRegistries();
@@ -53,7 +58,7 @@ public class Main
     
 //PostInit
     @EventHandler
-    public void postinit(FMLPostInitializationEvent event)
+    public static void postinit(FMLPostInitializationEvent event)
     {
     	UBSLogger.getLogger().info("[Main] Forge PostInitializationEvent");
     	RegistryManager.postInitRegistries();

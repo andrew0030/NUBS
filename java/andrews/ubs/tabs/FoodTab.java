@@ -1,5 +1,6 @@
 package andrews.ubs.tabs;
 
+import andrews.ubs.init.ItemInit;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,6 @@ public class FoodTab extends CreativeTabs
 	@Override
 	public ItemStack getTabIconItem()
 	{
-		return new ItemStack(Items.PORKCHOP);
+		return new ItemStack(ItemInit.RAMEN);
 	}
 }

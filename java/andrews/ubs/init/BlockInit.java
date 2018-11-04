@@ -30,7 +30,10 @@ import andrews.ubs.objects.blocks.BlockChakraInfusedPressurePlate;
 import andrews.ubs.objects.blocks.BlockChakraInfusedStairs;
 import andrews.ubs.objects.blocks.BlockChakraInfusedTallBush;
 import andrews.ubs.objects.blocks.BlockChakraInfusedTrapdoor;
+import andrews.ubs.objects.blocks.BlockSalad;
+import andrews.ubs.objects.blocks.BlockTomato;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 
 public class BlockInit
 {
@@ -61,6 +64,8 @@ public class BlockInit
 	public static final Block CHAKRA_INFUSED_STAIRS = new BlockChakraInfusedStairs("chakra_infused_stairs");
 	public static final Block CHAKRA_INFUSED_TALL_BUSH = new BlockChakraInfusedTallBush("chakra_infused_tall_bush");
 	public static final Block CHAKRA_INFUSED_TRAPDOOR = new BlockChakraInfusedTrapdoor("chakra_infused_trapdoor");
-//	public static final BlockAvocadoSlabDouble AVOCADO_SLAB_DOUBLE = new BlockAvocadoSlabDouble("avocado_slab_double");
-//	public static final BlockAvocadoSlabHalf AVOCADO_SLAB_HALF = new BlockAvocadoSlabHalf("avocado_slab_half");
+	public static final Block SALAD = new BlockSalad("salad");
+	public static final Block TOMATO = new BlockTomato("tomato");
+	public static final BlockAvocadoSlabHalf AVOCADO_SLAB_HALF = new BlockAvocadoSlabHalf("avocado_slab_half");
+	public static final BlockAvocadoSlabDouble AVOCADO_SLAB_DOUBLE = new BlockAvocadoSlabDouble("avocado_slab_double");
 }

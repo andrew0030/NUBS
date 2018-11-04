@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -39,6 +40,7 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
 		this.setSoundType(SoundType.PLANT);
 		
 		BlockInit.BLOCKS.add(this);
+		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));
 	}
 	
 //this is used so the block will not render the pixels without a texture black
@@ -77,10 +79,10 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
 			EntityItem berry = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(ItemInit.CHAKRA_BERRIES));
 			berry.setNoPickupDelay();
 			worldIn.spawnEntity(berry);
+		//to make the block become a chakra bush without berries
+			worldIn.setBlockState(pos, BlockInit.CHAKRA_INFUSED_BERRY_BUSH.getDefaultState(), 2);
 		}
 		
-	//to make the block become a chakra bush without berries
-		worldIn.setBlockState(pos, BlockInit.CHAKRA_INFUSED_BERRY_BUSH.getDefaultState(), 2);
         return true;
 	}
 	
@@ -93,14 +95,15 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
 			EntityItem berry = new EntityItem(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(ItemInit.CHAKRA_BERRIES));
 			berry.setNoPickupDelay();
 			worldIn.spawnEntity(berry);
+			
+		//to make the block become a chakra bush without berries
+			worldIn.setBlockState(pos, BlockInit.CHAKRA_INFUSED_BERRY_BUSH.getDefaultState(), 2);
 		}
 		
-	//to make the block become a chakra bush without berries
-		worldIn.setBlockState(pos, BlockInit.CHAKRA_INFUSED_BERRY_BUSH.getDefaultState(), 2);
     }
 	
 //Called When an Entity Collided with the Block
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         entityIn.motionX *= 0.2D;
         entityIn.motionY *= 0.2D;

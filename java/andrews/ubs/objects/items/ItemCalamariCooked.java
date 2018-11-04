@@ -7,11 +7,11 @@ import andrews.ubs.util.interfaces.IHasModel;
 import net.minecraft.item.ItemFood;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemBacon extends ItemFood implements IHasModel
+public class ItemCalamariCooked extends ItemFood implements IHasModel
 {
-	public ItemBacon(String name) 
+	public ItemCalamariCooked(String name)
 	{
-		super(3, 4, true);
+		super(12, 10, false);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.setCreativeTab(Main.instance.foodtab);

@@ -1,20 +1,21 @@
-package andrews.ubs.objects.items;
+package andrews.ubs.objects.tools;
 
 import andrews.ubs.Main;
 import andrews.ubs.Reference;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.util.interfaces.IHasModel;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemBacon extends ItemFood implements IHasModel
+public class ItemKatana extends ItemSword implements IHasModel
 {
-	public ItemBacon(String name) 
+
+	public ItemKatana(String name, ToolMaterial material)
 	{
-		super(3, 4, true);
+		super(material);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
-		this.setCreativeTab(Main.instance.foodtab);
+		this.setCreativeTab(Main.instance.tooltab);
 		
 		ItemInit.ITEMS.add(this);
 	}

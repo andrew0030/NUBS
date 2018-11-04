@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "ubs:items/cooked_crab_meat"
+        "layer0": "ubs:items/crab_meat_cooked"
     },
     "display": {
         "gui": {

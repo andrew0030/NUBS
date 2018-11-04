@@ -1,20 +1,22 @@
-package andrews.ubs.objects.items;
+package andrews.ubs.objects.tools;
 
 import andrews.ubs.Main;
 import andrews.ubs.Reference;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.util.interfaces.IHasModel;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemBacon extends ItemFood implements IHasModel
+public class ItemTripleBladedScythe extends ItemSword implements IHasModel
 {
-	public ItemBacon(String name) 
+
+	public ItemTripleBladedScythe(String name, ToolMaterial material)
 	{
-		super(3, 4, true);
+		super(material);
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
-		this.setCreativeTab(Main.instance.foodtab);
+		this.setCreativeTab(Main.instance.tooltab);
+		this.setMaxStackSize(1);
 		
 		ItemInit.ITEMS.add(this);
 	}
@@ -22,6 +24,6 @@ public class ItemBacon extends ItemFood implements IHasModel
 	@Override
 	public void registerModels()
 	{
-		Main.proxy.registerItemRenderer(this, 0, "inventory");
+		Main.proxy.registerItemObjRenderer(this, 0, "inventory");
 	}
 }

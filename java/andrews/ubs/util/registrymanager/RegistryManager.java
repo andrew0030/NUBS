@@ -16,6 +16,40 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @EventBusSubscriber
 public class RegistryManager 
 {	
+//Used to register the items from the blocks
+	@SubscribeEvent
+	public static void registerBlock(RegistryEvent.Register<Block> event)
+	{
+		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
+	}
+	
+//Used to register the items
+	@SubscribeEvent
+	public static void registerItem(RegistryEvent.Register<Item> event)
+	{
+		event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
+	}
+	
+//Used to register the models for the items and Blocks
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event)
+	{	
+		for(Block block : BlockInit.BLOCKS)
+		{
+			if(block instanceof IHasModel)
+			{
+				((IHasModel)block).registerModels();
+			}
+		}
+		
+		for(Item item : ItemInit.ITEMS)
+		{
+			if(item instanceof IHasModel)
+			{
+				((IHasModel)item).registerModels();
+			}
+		}
+	}
 	
 //Pre Init
 	public static void preInitRegistries()
@@ -33,40 +67,5 @@ public class RegistryManager
 	public static void postInitRegistries()
 	{
 		Main.proxy.postinit();
-	}
-	
-//Used to register the items
-	@SubscribeEvent
-	public static void registerItem(RegistryEvent.Register<Item> event)
-	{
-		event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
-	}
-	
-//Used to register the items from the blocks
-	@SubscribeEvent
-	public static void registerBlock(RegistryEvent.Register<Block> event)
-	{
-		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
-	}
-	
-//Used to register the models for the items and Blocks
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event)
-	{		
-		for(Item item : ItemInit.ITEMS)
-		{
-			if(item instanceof IHasModel)
-			{
-				((IHasModel)item).registerModels();
-			}
-		}
-		
-		for(Block block : BlockInit.BLOCKS)
-		{
-			if(block instanceof IHasModel)
-			{
-				((IHasModel)block).registerModels();
-			}
-		}
 	}
 }
