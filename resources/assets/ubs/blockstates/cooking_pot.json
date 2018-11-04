@@ -2,13 +2,9 @@
     "forge_marker": 1,
     "variants": 
     {
-        "burning=false,facing=north": { "model": "ubs:cooking_pot" },
-        "burning=false,facing=east": { "model": "ubs:cooking_pot", "y": 90 },
-        "burning=false,facing=south": { "model": "ubs:cooking_pot", "y": 180 },
-        "burning=false,facing=west": { "model": "ubs:cooking_pot", "y": 270 },
-        "burning=true,facing=north": { "model": "ubs:cooking_pot_on" },
-        "burning=true,facing=east": { "model": "ubs:cooking_pot_on", "y": 90 },
-        "burning=true,facing=south": { "model": "ubs:cooking_pot_on", "y": 180 },
-        "burning=true,facing=west": { "model": "ubs:cooking_pot_on", "y":270  }
+        "facing=north": { "model": "ubs:cooking_pot" },
+        "facing=east": { "model": "ubs:cooking_pot", "y": 90 },
+        "facing=south": { "model": "ubs:cooking_pot", "y": 180 },
+        "facing=west": { "model": "ubs:cooking_pot", "y": 270 }
     }
 }

@@ -1,13 +1,18 @@
 package andrews.ubs.proxy;
 
 import andrews.ubs.Reference;
+import andrews.ubs.init.BlockInit;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ClientProxy extends CommonProxy
 {
@@ -34,12 +39,26 @@ public class ClientProxy extends CommonProxy
 	public void init()
 	{
 		super.init();
+		registerBlockColorHandler(BlockInit.FALLING_TRAP_GRASS);
 	}
 	
 	@Override
 	public void postinit()
 	{
 		super.postinit();
+	}
+	
+//Block ColorMap Handler
+	private void registerBlockColorHandler(Block block)
+	{
+	    Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler( new IBlockColor()
+	    {
+	    	@Override
+	    	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
+	    	{
+	    		return BiomeColorHelper.getGrassColorAtPos(worldIn, pos);
+	    	}
+	    }, block);
 	}
 	
 }

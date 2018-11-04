@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ubs:blocks/chakra_infused_planks",
+        "side": "ubs:blocks/chakra_infused_planks"
+    }
+}

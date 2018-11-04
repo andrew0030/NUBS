@@ -122,6 +122,5 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
 	{
 		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
 	}
-  	
 }
 

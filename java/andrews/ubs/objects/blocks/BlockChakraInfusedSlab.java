@@ -19,11 +19,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class BlockAvocadoSlab extends BlockSlab
+public abstract class BlockChakraInfusedSlab extends BlockSlab
 {
 	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
 	
-	public BlockAvocadoSlab(String name)
+	public BlockChakraInfusedSlab(String name)
 	{
 		super(Material.WOOD);
 		this.setUnlocalizedName(name);
@@ -64,14 +64,14 @@ public abstract class BlockAvocadoSlab extends BlockSlab
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return Item.getItemFromBlock(BlockInit.AVOCADO_SLAB_HALF);
+		return Item.getItemFromBlock(BlockInit.CHAKRA_INFUSED_SLAB_HALF);
 	}
 	
 	
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return new ItemStack(BlockInit.AVOCADO_SLAB_HALF);
+		return new ItemStack(BlockInit.CHAKRA_INFUSED_SLAB_HALF);
 	}
 	
 	@Override

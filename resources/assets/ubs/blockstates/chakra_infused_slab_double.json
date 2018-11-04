@@ -1,6 +1,5 @@
 {
     "variants": {
-        "half=top": { "model": "ubs:planks_chakra_infused" },
-        "half=bottom": { "model": "ubs:planks_chakra_infused" }
+        "variant=default": { "model": "ubs:chakra_infused_slab_double" }
     }
 }

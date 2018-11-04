@@ -7,13 +7,13 @@ import andrews.ubs.util.interfaces.IHasModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSlab;
 
-public class BlockAvocadoSlabHalf extends BlockAvocadoSlab implements IHasModel
+public class BlockChakraInfusedSlabHalf extends BlockAvocadoSlab implements IHasModel
 {
-	public BlockAvocadoSlabHalf(String name)
+	public BlockChakraInfusedSlabHalf(String name)
 	{
 		super(name);
 		
-		ItemInit.ITEMS.add(new ItemSlab(this, this, BlockInit.AVOCADO_SLAB_DOUBLE).setRegistryName(name));
+		ItemInit.ITEMS.add(new ItemSlab(this, this, BlockInit.CHAKRA_INFUSED_SLAB_DOUBLE).setRegistryName(name));
 	}
 
 	@Override
