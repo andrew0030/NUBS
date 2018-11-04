@@ -29,9 +29,12 @@ public class ItemRamen extends ItemFood implements IHasModel
     {
         super.onItemUseFinish(stack, worldIn, entity);
         
-        EntityItem item = new EntityItem(worldIn, entity.posX, entity.posY, entity.posZ, new ItemStack(ItemInit.CHOPSTICKS));
-		item.setPickupDelay(0);
-		worldIn.spawnEntity(item); //To Spawn the Item
+        if(!worldIn.isRemote)
+        {
+        	EntityItem item = new EntityItem(worldIn, entity.posX, entity.posY, entity.posZ, new ItemStack(ItemInit.CHOPSTICKS));
+        	item.setPickupDelay(0);
+        	worldIn.spawnEntity(item); //To Spawn the Item
+        }
 		
         return new ItemStack(ItemInit.BIG_BOWL);
     }

@@ -66,6 +66,6 @@ public class BlockInit
 	public static final Block CHAKRA_INFUSED_TRAPDOOR = new BlockChakraInfusedTrapdoor("chakra_infused_trapdoor");
 	public static final Block SALAD = new BlockSalad("salad");
 	public static final Block TOMATO = new BlockTomato("tomato");
-	public static final BlockAvocadoSlabHalf AVOCADO_SLAB_HALF = new BlockAvocadoSlabHalf("avocado_slab_half");
-	public static final BlockAvocadoSlabDouble AVOCADO_SLAB_DOUBLE = new BlockAvocadoSlabDouble("avocado_slab_double");
+	public static final BlockSlab AVOCADO_SLAB_DOUBLE = new BlockAvocadoSlabDouble("avocado_slab_double");
+	public static final BlockSlab AVOCADO_SLAB_HALF = new BlockAvocadoSlabHalf("avocado_slab_half");
 }

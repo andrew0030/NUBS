@@ -13,7 +13,7 @@ public class BlockAvocadoSlabHalf extends BlockAvocadoSlab implements IHasModel
 	{
 		super(name);
 		
-		ItemInit.ITEMS.add(new ItemBlockSlab(BlockInit.AVOCADO_SLAB_HALF, BlockInit.AVOCADO_SLAB_HALF, BlockInit.AVOCADO_SLAB_DOUBLE).setRegistryName(name));
+		ItemInit.ITEMS.add(new ItemBlockSlab(this, this, BlockInit.AVOCADO_SLAB_DOUBLE).setRegistryName(name));
 	}
 
 	@Override
