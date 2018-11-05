@@ -1,5 +1,6 @@
 package andrews.ubs;
 
+import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.proxy.CommonProxy;
 import andrews.ubs.tabs.BlockTab;
 import andrews.ubs.tabs.FoodTab;

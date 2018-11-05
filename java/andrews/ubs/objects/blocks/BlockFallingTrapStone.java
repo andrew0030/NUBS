@@ -2,11 +2,10 @@ package andrews.ubs.objects.blocks;
 
 import java.util.List;
 
-import andrews.ubs.Main;
 import andrews.ubs.Reference;
+import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.init.BlockInit;
 import andrews.ubs.init.ItemInit;
-import andrews.ubs.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,8 +17,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -55,7 +52,7 @@ public class BlockFallingTrapStone extends Block
 	    {	
 			if(entityIn instanceof EntityLivingBase)
 			{
-//				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UltimateBlockStormSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UBSSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 				worldIn.notifyNeighborsOfStateChange(pos, this, enableStats);
 				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(Items.STICK, 4));

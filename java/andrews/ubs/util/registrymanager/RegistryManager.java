@@ -1,6 +1,7 @@
 package andrews.ubs.util.registrymanager;
 
 import andrews.ubs.Main;
+import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.init.BlockInit;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.objects.blocks.BlockAvocadoDoor;
@@ -59,7 +60,8 @@ public class RegistryManager
 	
 //Init
 	public static void initRegistries()
-	{
+	{	
+		UBSSoundHandler.registerSounds();
 		Main.proxy.init();
 	}
 	

@@ -36,11 +36,17 @@ import andrews.ubs.objects.blocks.BlockChakraOre;
 import andrews.ubs.objects.blocks.BlockCookingPot;
 import andrews.ubs.objects.blocks.BlockEndChakraOre;
 import andrews.ubs.objects.blocks.BlockFallingTrapCobblestone;
+import andrews.ubs.objects.blocks.BlockFallingTrapCobblestoneSmart;
 import andrews.ubs.objects.blocks.BlockFallingTrapFrame;
+import andrews.ubs.objects.blocks.BlockFallingTrapFrameSmart;
 import andrews.ubs.objects.blocks.BlockFallingTrapGrass;
+import andrews.ubs.objects.blocks.BlockFallingTrapGrassSmart;
 import andrews.ubs.objects.blocks.BlockFallingTrapNether;
+import andrews.ubs.objects.blocks.BlockFallingTrapNetherSmart;
 import andrews.ubs.objects.blocks.BlockFallingTrapSand;
+import andrews.ubs.objects.blocks.BlockFallingTrapSandSmart;
 import andrews.ubs.objects.blocks.BlockFallingTrapStone;
+import andrews.ubs.objects.blocks.BlockFallingTrapStoneSmart;
 import andrews.ubs.objects.blocks.BlockGrill;
 import andrews.ubs.objects.blocks.BlockNetherChakraOre;
 import andrews.ubs.objects.blocks.BlockNetherSalt;
@@ -49,6 +55,7 @@ import andrews.ubs.objects.blocks.BlockSpikes;
 import andrews.ubs.objects.blocks.BlockStonePath;
 import andrews.ubs.objects.blocks.BlockStoneSalt;
 import andrews.ubs.objects.blocks.BlockTomato;
+import andrews.ubs.objects.blocks.BlockUBSPlanks;
 import andrews.ubs.objects.blocks.BlockWildSalad;
 import andrews.ubs.objects.blocks.BlockWildTomato;
 import net.minecraft.block.Block;
@@ -106,4 +113,12 @@ public class BlockInit
 	public static final Block FALLING_TRAP_COBBLESTONE = new BlockFallingTrapCobblestone("falling_trap_cobblestone");
 	public static final Block FALLING_TRAP_NETHER = new BlockFallingTrapNether("falling_trap_nether");
 	public static final Block FALLING_TRAP_SAND = new BlockFallingTrapSand("falling_trap_sand");
+	public static final Block FALLING_TRAP_FRAME_SMART = new BlockFallingTrapFrameSmart("falling_trap_frame_smart");
+	public static final Block FALLING_TRAP_GRASS_SMART = new BlockFallingTrapGrassSmart("falling_trap_grass_smart");
+	public static final Block FALLING_TRAP_STONE_SMART = new BlockFallingTrapStoneSmart("falling_trap_stone_smart");
+	public static final Block FALLING_TRAP_COBBLESTONE_SMART = new BlockFallingTrapCobblestoneSmart("falling_trap_cobblestone_smart");
+	public static final Block FALLING_TRAP_NETHER_SMART = new BlockFallingTrapNetherSmart("falling_trap_nether_smart");
+	public static final Block FALLING_TRAP_SAND_SMART = new BlockFallingTrapSandSmart("falling_trap_sand_smart");
+	public static final Block PLANKS = new BlockUBSPlanks("planks");
+	
 }

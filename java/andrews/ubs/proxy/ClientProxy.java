@@ -40,6 +40,7 @@ public class ClientProxy extends CommonProxy
 	{
 		super.init();
 		registerBlockColorHandler(BlockInit.FALLING_TRAP_GRASS);
+		registerBlockColorHandler(BlockInit.FALLING_TRAP_GRASS_SMART);
 	}
 	
 	@Override

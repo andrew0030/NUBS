@@ -3,6 +3,7 @@ package andrews.ubs.objects.blocks;
 import java.util.List;
 
 import andrews.ubs.Reference;
+import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.init.BlockInit;
 import andrews.ubs.init.ItemInit;
 import net.minecraft.block.Block;
@@ -51,7 +52,7 @@ public class BlockFallingTrapCobblestone extends Block
 	    {	
 			if(entityIn instanceof EntityLivingBase)
 			{
-//				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UltimateBlockStormSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound((EntityPlayer)null, pos.getX(), pos.getY(), pos.getZ(), UBSSoundHandler.fall_trap, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 				worldIn.notifyNeighborsOfStateChange(pos, this, enableStats);
 				EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, new ItemStack(Items.STICK, 4));
