@@ -5,6 +5,8 @@ import java.awt.Color;
 import org.lwjgl.opengl.GL11;
 
 import andrews.ubs.Reference;
+import andrews.ubs.capabilities.ninja.NinjaProvider;
+import andrews.ubs.util.interfaces.INinja;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -28,7 +30,7 @@ public class Bars extends Gui
 		{		
 			Minecraft mc = Minecraft.getMinecraft();
 			
-//			IChakra chakra = mc.thePlayer.getCapability(ChakraProvider.CHAKRA_CAP, null);
+			INinja ninjaCap = mc.player.getCapability(NinjaProvider.NINJA_CAP, null);
 			
 		//To set the Position of the Bar and Number
 			int posXNumber = event.getResolution().getScaledWidth() / 2 + 180;
@@ -37,12 +39,12 @@ public class Bars extends Gui
 			int posY = event.getResolution().getScaledHeight() - 22;
 			
 		//The Values For The Number
-//			int maxChakraValue = (int) chakra.getMaxChakra();
-//			int chakraValue = (int) chakra.getChakra();
+			int maxChakraValue = (int) ninjaCap.getMaxChakra();
+			int chakraValue = (int) ninjaCap.getChakra();
 			
 		//How Much of the Bar Should be Rendered
-//			float points = chakra.getChakra();
-//			int texture_width = (int) (points);
+			float points = ninjaCap.getChakra();
+			int texture_width = (int) (points);
 			
 			mc.renderEngine.bindTexture(CHAKRA_BAR);
 			mc.renderEngine.bindTexture(STAMINA_BAR);
@@ -52,12 +54,12 @@ public class Bars extends Gui
 				if(!mc.player.isCreative()) 
 				{
 					drawTexturedModalRect(posX, posY, 0, 0, tex_width, tex_height);			    //The Bar
-//					drawTexturedModalRect(posX + 1, posY + 1, 0, 11, texture_width, tex_height);
+					drawTexturedModalRect(posX + 1, posY + 1, 0, 11, texture_width, tex_height);
 					
 					GlStateManager.pushMatrix();												//The Number
 					GlStateManager.pushAttrib();
 					GlStateManager.disableDepth();
-//					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posX + 5, posY + 2, Color.BLACK.getRGB());
+					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posX + 5, posY + 2, Color.BLACK.getRGB());
 					GL11.glColor4f(1F, 1F, 1F, 1F);
 					GlStateManager.popAttrib();
 					GlStateManager.popMatrix();

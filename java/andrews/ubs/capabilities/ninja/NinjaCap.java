@@ -7,7 +7,10 @@ import andrews.ubs.util.interfaces.IChakra;
 import andrews.ubs.util.interfaces.INinja;
 import andrews.ubs.util.interfaces.IStamina;
 import andrews.ubs.util.logger.UBSLogger;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 //=================================
 //Default implementation of IChakra
@@ -148,23 +151,32 @@ public class NinjaCap implements INinja
 		return this.maxChakra;
 	}
 	
+	protected IMessage getUpdateMessage(EntityPlayerMP entityPlayer)
+	{
+        NBTTagCompound compound = (NBTTagCompound)NinjaProvider.NINJA_CAP.getStorage().writeNBT(NinjaProvider.NINJA_CAP, this, null);
+        return new MessageNinjaUpdate(entityPlayer.getEntityId(), compound);
+    }
+	
 //To sync The Client and Server
 	@Override
     public void syncToAll(EntityPlayerMP entityPlayer)
 	{
+		if (entityPlayer.getEntityWorld().isRemote)
+		{
+		    return;
+		}
         syncToPlayer(entityPlayer);
-        syncToAllTracking();
+        syncToAllTracking(entityPlayer);
     }
 	
-    @Override
+	@Override
     public void syncToPlayer(EntityPlayerMP entityPlayer)
     {
-    	PacketHandler.INSTANCE.sendTo(MessageNinjaUpdate(), entityPlayer);
+    	PacketHandler.INSTANCE.sendTo(getUpdateMessage(entityPlayer), entityPlayer);
     }
 
-    @Override
-    public void syncToAllTracking() 
+    public void syncToAllTracking(EntityPlayerMP entityPlayer) 
     {
-    	PacketHandler.INSTANCE.sendToAllTracking(MessageNinjaUpdate(), entity);
+    	PacketHandler.INSTANCE.sendToAllTracking(getUpdateMessage(entityPlayer), entityPlayer);
     }
 }

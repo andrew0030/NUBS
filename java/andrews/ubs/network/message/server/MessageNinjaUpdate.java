@@ -71,16 +71,16 @@ public class MessageNinjaUpdate implements IMessage, IMessageHandler<MessageNinj
             
             if (entity != null)
             {
-                NinjaCap ninjaCapability = entity.getCapability(NinjaCap, null)
+                INinja ninjaCapability = entity.getCapability(NinjaProvider.NINJA_CAP, null);
                 
                 if (ninjaCapability != null)
                 {
-                    NinjaProvider.NINJA_CAP.getStorage().readNBT(NinjaCap.ENTITY_SKIN_CAP, skinCapability, null, compound);
+                	NinjaProvider.NINJA_CAP.getStorage().readNBT(NinjaProvider.NINJA_CAP, ninjaCapability , null, compound);
                 }
             }
             else
             {
-                UBSLogger.getLogger().info(Level.WARN, String.format("Failed to get entity with %d when updating IEntitySkinCapability.", entityId));
+                UBSLogger.getLogger().info("Failed to get entity with when updating.", entityId);
             }
         }
     }

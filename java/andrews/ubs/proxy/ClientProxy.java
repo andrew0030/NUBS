@@ -1,6 +1,7 @@
 package andrews.ubs.proxy;
 
 import andrews.ubs.Reference;
+import andrews.ubs.gui.overlay.Bars;
 import andrews.ubs.handlers.UBSRenderHandler;
 import andrews.ubs.init.BlockInit;
 import net.minecraft.block.Block;
@@ -15,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy
 {
@@ -58,6 +60,9 @@ public class ClientProxy extends CommonProxy
 	public void postinit()
 	{
 		super.postinit();
+	
+	//Bars
+		MinecraftForge.EVENT_BUS.register(new Bars());
 	}
 	
 //Block ColorMap Handler
