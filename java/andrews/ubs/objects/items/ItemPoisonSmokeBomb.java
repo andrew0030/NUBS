@@ -6,12 +6,21 @@ import org.lwjgl.input.Keyboard;
 
 import andrews.ubs.Main;
 import andrews.ubs.Reference;
+import andrews.ubs.entity.EntityPoisonSmokeBomb;
+import andrews.ubs.entity.EntitySmokeBomb;
+import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.util.interfaces.IHasModel;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemPoisonSmokeBomb extends Item implements IHasModel 
@@ -27,30 +36,29 @@ public class ItemPoisonSmokeBomb extends Item implements IHasModel
 		ItemInit.ITEMS.add(this);
 	}
 	
-	/**
-	* Called when the equipped item is right clicked.
-
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+//Called when the equipped item is right clicked.
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if (!playerIn.capabilities.isCreativeMode)
-		{
-			itemStackIn.shrink(1);
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+
+        if (!playerIn.capabilities.isCreativeMode)
+        {
+            itemstack.shrink(1);
 	    }
 	
-	    worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, UltimateBlockStormSoundHandler.sb_thrown, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+	    worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, UBSSoundHandler.sb_thrown, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 	    playerIn.getCooldownTracker().setCooldown(this, 20);
 	        
 	    if (!worldIn.isRemote)
 	    {
-	    	EntitySmokeBomb entity = new EntitySmokeBomb(worldIn, playerIn);
-	        entity.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-	        worldIn.spawnEntityInWorld(entity);
+	    	EntityPoisonSmokeBomb entity = new EntityPoisonSmokeBomb(worldIn, playerIn);
+	        entity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+	        worldIn.spawnEntity(entity);
 	    }
 	
 	    playerIn.addStat(StatList.getObjectUseStats(this));
-	    return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+	    return new ActionResult(EnumActionResult.SUCCESS, itemstack);
 	}
-	*/
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)

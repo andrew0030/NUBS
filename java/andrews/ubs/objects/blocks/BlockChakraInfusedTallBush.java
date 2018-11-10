@@ -12,13 +12,20 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockChakraInfusedTallBush extends BlockBush implements IPlantable, IHasModel
 {
+	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0F, 0F, 0F, 0.0625F * 16F, 0.0625F * 17F, 0.0625F * 16F);
+	
 	public BlockChakraInfusedTallBush(String name)
 	{
 		super(Material.PLANTS);
@@ -50,6 +57,12 @@ public class BlockChakraInfusedTallBush extends BlockBush implements IPlantable,
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		return BOUNDING_BOX;
 	}
 	
 	@Override

@@ -5,7 +5,7 @@ itemGroup.UBS Foods=UBS Foods
 itemGroup.UBS Tools=UBS Tools
 
 //entities
-entity.ubs.crab.name=Crab
+entity.Crab.name=Crab
 
 //containers
 container.cooking_pot=Cooking Pot

@@ -55,7 +55,10 @@ import andrews.ubs.objects.blocks.BlockSpikes;
 import andrews.ubs.objects.blocks.BlockStonePath;
 import andrews.ubs.objects.blocks.BlockStoneSalt;
 import andrews.ubs.objects.blocks.BlockTomato;
+import andrews.ubs.objects.blocks.BlockUBSLeaves;
+import andrews.ubs.objects.blocks.BlockUBSLog;
 import andrews.ubs.objects.blocks.BlockUBSPlanks;
+import andrews.ubs.objects.blocks.BlockUBSSapling;
 import andrews.ubs.objects.blocks.BlockWildSalad;
 import andrews.ubs.objects.blocks.BlockWildTomato;
 import net.minecraft.block.Block;
@@ -120,5 +123,8 @@ public class BlockInit
 	public static final Block FALLING_TRAP_NETHER_SMART = new BlockFallingTrapNetherSmart("falling_trap_nether_smart");
 	public static final Block FALLING_TRAP_SAND_SMART = new BlockFallingTrapSandSmart("falling_trap_sand_smart");
 	public static final Block PLANKS = new BlockUBSPlanks("planks");
+	public static final Block LOG = new BlockUBSLog("log");
+	public static final Block LEAVES = new BlockUBSLeaves("leaves");
+	public static final Block SAPLING = new BlockUBSSapling("sapling");
 	
 }

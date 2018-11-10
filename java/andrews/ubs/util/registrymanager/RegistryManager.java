@@ -1,8 +1,11 @@
 package andrews.ubs.util.registrymanager;
 
 import andrews.ubs.Main;
+import andrews.ubs.entity.behavior.UBSBehavior;
+import andrews.ubs.handlers.UBSFuelHandler;
 import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.init.BlockInit;
+import andrews.ubs.init.EntityInit;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.objects.blocks.BlockAvocadoDoor;
 import andrews.ubs.objects.blocks.item.ItemBlockDoor;
@@ -13,6 +16,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public class RegistryManager 
@@ -55,13 +59,21 @@ public class RegistryManager
 //Pre Init
 	public static void preInitRegistries()
 	{
+	//To make a dispenser dispense entities and not just the items (smoke bombs)
+    	UBSBehavior.DispenserBehaviorRegistry();
+		
 		Main.proxy.preinit();
 	}
 	
 //Init
 	public static void initRegistries()
 	{	
+	//SoundHandler Registry
 		UBSSoundHandler.registerSounds();
+		
+	//Fuel Handler Registry
+		GameRegistry.registerFuelHandler(new UBSFuelHandler());
+		
 		Main.proxy.init();
 	}
 	
