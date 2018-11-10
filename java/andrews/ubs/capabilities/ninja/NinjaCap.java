@@ -149,6 +149,13 @@ public class NinjaCap implements INinja
 	}
 	
 //To sync The Client and Server
+	@Override
+    public void syncToAll(EntityPlayerMP entityPlayer)
+	{
+        syncToPlayer(entityPlayer);
+        syncToAllTracking();
+    }
+	
     @Override
     public void syncToPlayer(EntityPlayerMP entityPlayer)
     {

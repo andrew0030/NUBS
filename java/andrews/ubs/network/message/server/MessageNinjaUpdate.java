@@ -3,6 +3,7 @@ package andrews.ubs.network.message.server;
 import java.util.logging.Level;
 
 import andrews.ubs.capabilities.ninja.NinjaCap;
+import andrews.ubs.capabilities.ninja.NinjaProvider;
 import andrews.ubs.handlers.UBSDelayedMessageHandler;
 import andrews.ubs.handlers.UBSDelayedMessageHandler.IDelayedMessage;
 import andrews.ubs.util.interfaces.INinja;
@@ -70,11 +71,11 @@ public class MessageNinjaUpdate implements IMessage, IMessageHandler<MessageNinj
             
             if (entity != null)
             {
-                INinja ninjaCapability = NinjaCap.get((EntityLivingBase) entity);
+                NinjaCap ninjaCapability = entity.getCapability(NinjaCap, null)
                 
                 if (ninjaCapability != null)
                 {
-                    EntitySkinCapability.ENTITY_SKIN_CAP.getStorage().readNBT(EntitySkinCapability.ENTITY_SKIN_CAP, skinCapability, null, compound);
+                    NinjaProvider.NINJA_CAP.getStorage().readNBT(NinjaCap.ENTITY_SKIN_CAP, skinCapability, null, compound);
                 }
             }
             else
