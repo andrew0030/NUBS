@@ -1,5 +1,7 @@
 package andrews.ubs;
 
+import andrews.ubs.commands.CommandChakra;
+import andrews.ubs.commands.CommandStamina;
 import andrews.ubs.handlers.UBSSoundHandler;
 import andrews.ubs.proxy.CommonProxy;
 import andrews.ubs.tabs.BlockTab;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION, name = Reference.NAME)
 public class Main
@@ -64,4 +67,12 @@ public class Main
     	UBSLogger.getLogger().info("[Main] Forge PostInitializationEvent");
     	RegistryManager.postInitRegistries();
     }  
+    
+//Server Starting Event
+    @EventHandler
+    public void serverStart(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandChakra());
+        event.registerServerCommand(new CommandStamina());
+    }
 }

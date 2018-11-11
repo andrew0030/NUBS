@@ -11,7 +11,7 @@ public class NinjaFactory implements Callable<INinja>
 	@Override
 	public INinja call() throws Exception
 	{
-		return new NinjaCap();
+		return new NinjaCap(null);
 	}
 	
 }

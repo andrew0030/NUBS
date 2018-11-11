@@ -1,5 +1,6 @@
 package andrews.ubs.proxy;
 
+import andrews.ubs.handlers.UBSEventHandler;
 import andrews.ubs.init.BiomeInit;
 import andrews.ubs.init.EntityInit;
 import andrews.ubs.world.gen.ChakraBerryBushGen;
@@ -13,6 +14,7 @@ import andrews.ubs.world.gen.TreeGen;
 import andrews.ubs.world.gen.WildSaladGen;
 import andrews.ubs.world.gen.WildTomatoGen;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy
@@ -22,7 +24,11 @@ public class CommonProxy
 	public void registerItemVariantRenderer(Item item, int meta, String filename, String id) {}
 	
 //Pre Init
-	public void preinit() {}
+	public void preinit()
+	{
+	//To register the server events
+		MinecraftForge.EVENT_BUS.register(new UBSEventHandler());
+	}
 	
 //Init
 	public void init()

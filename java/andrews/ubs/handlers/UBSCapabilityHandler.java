@@ -2,12 +2,15 @@ package andrews.ubs.handlers;
 
 import java.util.concurrent.Callable;
 
+import andrews.ubs.Main;
 import andrews.ubs.Reference;
 import andrews.ubs.capabilities.ninja.NinjaCap;
+import andrews.ubs.capabilities.ninja.NinjaFactory;
 import andrews.ubs.capabilities.ninja.NinjaProvider;
 import andrews.ubs.capabilities.ninja.NinjaStorage;
 import andrews.ubs.util.interfaces.INinja;
 import andrews.ubs.util.interfaces.IStamina;
+import andrews.ubs.util.logger.UBSLogger;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,6 +28,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 //=========================================================
 //Capability handler									  #
@@ -38,14 +42,7 @@ public class UBSCapabilityHandler
 	
 	public static void register()
 	{
-        CapabilityManager.INSTANCE.register(INinja.class, new NinjaStorage(), new Callable<INinja>()
-        {
-            @Override
-            public INinja call() throws Exception 
-            {
-                return new NinjaCap();
-            }
-        });
+        CapabilityManager.INSTANCE.register(INinja.class, new NinjaStorage(), new NinjaFactory());
 	}
 	
 	@SubscribeEvent
@@ -54,11 +51,11 @@ public class UBSCapabilityHandler
 		if (!(event.getObject() instanceof EntityPlayer))
         return;
 
-		event.addCapability(NINJA_CAP, new NinjaProvider());
+		event.addCapability(NINJA_CAP, new NinjaProvider((EntityLivingBase) event.getObject()));
 	}	
 	
 	@SubscribeEvent
-    public static void onStartTracking(PlayerEvent.StartTracking event)
+    public void onStartTracking(PlayerEvent.StartTracking event)
 	{
         if (event.getTarget() instanceof EntityLivingBase)
         {
@@ -72,48 +69,43 @@ public class UBSCapabilityHandler
 	}
 	
 	@SubscribeEvent
-    public static void onPlayerLoggedIn(PlayerLoggedInEvent event)
+    public void onPlayerLoggedIn(PlayerLoggedInEvent event)
 	{
         INinja ninjaCapability = event.player.getCapability(NinjaProvider.NINJA_CAP, null);
         
         if(ninjaCapability != null)
         {
-            ninjaCapability.syncToAll((EntityPlayerMP) event.player);
+            ninjaCapability.syncToPlayer((EntityPlayerMP) event.player);
         }
 	}
 	
-//	@SubscribeEvent
-//    public static void onPlayerClone(PlayerEvent.Clone event) 
-//	{
-//        World world = event.getEntityPlayer().getEntityWorld();
-//        
-//        if (event.isWasDeath())
-//        {
-//            NBTBase nbt = null;
-//            INinja ninjaCap = event.getEntityPlayer().getCapability(NinjaProvider.NINJA_CAP, null)
-//            IStorage<INinja> storageWardrobe = PlayerWardrobeCap.PLAYER_WARDROBE_CAP.getStorage();
-//            nbt = storageWardrobe.writeNBT(PlayerWardrobeCap.PLAYER_WARDROBE_CAP, wardrobeCapOld, null);
-//            storageWardrobe.readNBT(PlayerWardrobeCap.PLAYER_WARDROBE_CAP, wardrobeCapNew, null, nbt);
-//            
-//            IEntitySkinCapability skinCapOld = EntitySkinCapability.get(event.getOriginal());
-//            IEntitySkinCapability skinCapNew = EntitySkinCapability.get(event.getEntityPlayer());
-//            IStorage<IEntitySkinCapability> storageEntitySkin = EntitySkinCapability.ENTITY_SKIN_CAP.getStorage();
-//            nbt = storageEntitySkin.writeNBT(EntitySkinCapability.ENTITY_SKIN_CAP, skinCapOld, null);
-//            storageEntitySkin.readNBT(EntitySkinCapability.ENTITY_SKIN_CAP, skinCapNew, null, nbt);
-//        }
-//    }
-//    
-//    @SubscribeEvent
-//    public static void onRespawn(PlayerRespawnEvent event) {
-//        // Called after onPlayerClone. Used to sync after death.
-//        if (!event.isEndConquered()) {
-//            IPlayerWardrobeCap wardrobeCap = PlayerWardrobeCap.get(event.player);
-//            wardrobeCap.syncToAllTracking();
-//            wardrobeCap.syncToPlayer((EntityPlayerMP) event.player);
-//            
-//            IEntitySkinCapability skinCap = EntitySkinCapability.get(event.player);
-//            skinCap.syncToAllTracking();
-//            skinCap.syncToPlayer((EntityPlayerMP) event.player);
-//        }
-//}
+//Copy data from dead player to the new player
+	@SubscribeEvent
+    public void onPlayerClone(PlayerEvent.Clone event)
+	{
+        World world = event.getEntityPlayer().getEntityWorld();
+        EntityPlayer player = event.getEntityPlayer();
+        
+        if (event.isWasDeath())
+        {
+            NBTBase nbt = null;
+            
+            INinja ninjaCapOld = event.getOriginal().getCapability(NinjaProvider.NINJA_CAP, null);
+            INinja ninjaCapNew = player.getCapability(NinjaProvider.NINJA_CAP, null);
+            IStorage<INinja> storageNinja = NinjaProvider.NINJA_CAP.getStorage();
+            nbt = storageNinja.writeNBT(NinjaProvider.NINJA_CAP, ninjaCapOld, null);
+            storageNinja.readNBT(NinjaProvider.NINJA_CAP, ninjaCapNew, null, nbt);
+        }
+	}
+   
+    @SubscribeEvent
+    public void onRespawn(PlayerRespawnEvent event)
+    {
+    // Called after onPlayerClone. Used to sync after death.
+        if (!event.isEndConquered())
+        {
+            INinja ninjaCap = event.player.getCapability(NinjaProvider.NINJA_CAP, null);
+            ninjaCap.syncToAll();
+        }
+    }
 }

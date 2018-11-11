@@ -136,6 +136,10 @@ tile.candel.name=Candel
 //Death Messages
 death.attack.spikes=%1$s was pierced to death in spikes.
 
+//Commands
+commands.ubs.chakra.usage=This commands is used to set the chakra and the Max chakra amount
+commands.ubs.stamina.usage=This commands is used to set the stamina and the Max stamina amount
+
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown
 subtitle.backpack=Backpack Opened

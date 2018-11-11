@@ -45,7 +45,7 @@ public class ItemChopsticks extends Item implements IHasModel
 				{
 					ninjaCap.setMaxChakra(10);
 					ninjaCap.setMaxStamina(10);
-					ninjaCap.syncToAll((EntityPlayerMP) player);
+					ninjaCap.syncToAll();
 					if(Main.DEVELOPER_MODE) //Developer Mode
 					{   
 						UBSLogger.logger.info("[ItemChopsticks] (Consume)-new Max Chakra is: " + ninjaCap.getMaxChakra() + " and the new Chakra amount is: " + ninjaCap.getChakra());
@@ -56,7 +56,7 @@ public class ItemChopsticks extends Item implements IHasModel
 				{
 					ninjaCap.setMaxChakra(110);
 					ninjaCap.setMaxStamina(110);
-					ninjaCap.syncToAll((EntityPlayerMP) player);
+					ninjaCap.syncToAll();
 					if(Main.DEVELOPER_MODE) //Developer Mode
 					{
 						UBSLogger.logger.info("[ItemChopsticks] (Add)-new Max Chakra is: " + ninjaCap.getMaxChakra() + " and the new Chakra amount is: " + ninjaCap.getChakra());

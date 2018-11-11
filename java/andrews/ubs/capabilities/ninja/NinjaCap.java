@@ -8,6 +8,7 @@ import andrews.ubs.util.interfaces.INinja;
 import andrews.ubs.util.interfaces.IStamina;
 import andrews.ubs.util.logger.UBSLogger;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -21,6 +22,13 @@ public class NinjaCap implements INinja
 	private float maxChakra = 100.0F;
 	private float stamina = 100.0F;
 	private float maxStamina = 100.0F;
+	
+	private final EntityLivingBase entity;
+	
+	public NinjaCap(EntityLivingBase entity)
+	{
+	    this.entity = entity;
+	}
 
 //To consume the given amount from Chakra
 	public void consumeChakra(float points)
@@ -151,32 +159,35 @@ public class NinjaCap implements INinja
 		return this.maxChakra;
 	}
 	
-	protected IMessage getUpdateMessage(EntityPlayerMP entityPlayer)
+	protected IMessage getUpdateMessage()
 	{
         NBTTagCompound compound = (NBTTagCompound)NinjaProvider.NINJA_CAP.getStorage().writeNBT(NinjaProvider.NINJA_CAP, this, null);
-        return new MessageNinjaUpdate(entityPlayer.getEntityId(), compound);
+        return new MessageNinjaUpdate(entity.getEntityId(), compound);
     }
 	
 //To sync The Client and Server
 	@Override
-    public void syncToAll(EntityPlayerMP entityPlayer)
+	public void syncToAll()
 	{
-		if (entityPlayer.getEntityWorld().isRemote)
+		if (entity.getEntityWorld().isRemote)
 		{
-		    return;
+			return;
 		}
-        syncToPlayer(entityPlayer);
-        syncToAllTracking(entityPlayer);
-    }
+		if (entity instanceof EntityPlayerMP)
+		{
+			syncToPlayer((EntityPlayerMP)entity);
+		}
+		syncToAllTracking();
+	}
 	
 	@Override
     public void syncToPlayer(EntityPlayerMP entityPlayer)
     {
-    	PacketHandler.INSTANCE.sendTo(getUpdateMessage(entityPlayer), entityPlayer);
+    	PacketHandler.INSTANCE.sendTo(getUpdateMessage(), entityPlayer);
     }
 
-    public void syncToAllTracking(EntityPlayerMP entityPlayer) 
+	public void syncToAllTracking() 
     {
-    	PacketHandler.INSTANCE.sendToAllTracking(getUpdateMessage(entityPlayer), entityPlayer);
+    	PacketHandler.INSTANCE.sendToAllTracking(getUpdateMessage(), entity);
     }
 }

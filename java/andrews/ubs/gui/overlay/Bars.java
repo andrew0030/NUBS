@@ -24,7 +24,7 @@ public class Bars extends Gui
 	
 //To Load the stamina bar
 	@SubscribeEvent
-	public void onRenderGameOverlayBar(RenderGameOverlayEvent.Text event) //Bars and Numbers
+	public void onRenderGameOverlayBar(RenderGameOverlayEvent event) //Bars and Numbers
 	{
 		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) 
 		{		
@@ -33,33 +33,37 @@ public class Bars extends Gui
 			INinja ninjaCap = mc.player.getCapability(NinjaProvider.NINJA_CAP, null);
 			
 		//To set the Position of the Bar and Number
-			int posXNumber = event.getResolution().getScaledWidth() / 2 + 180;
-			int posYNumber = event.getResolution().getScaledHeight() + 39;		
-			int posX = event.getResolution().getScaledWidth() / 2 + 92;
-			int posY = event.getResolution().getScaledHeight() - 22;
+			int posXchakra = event.getResolution().getScaledWidth() / 2 + 92;
+			int posYchakra = event.getResolution().getScaledHeight() - 22;	
+			int posXstamina = event.getResolution().getScaledWidth() / 2 + 92;
+			int posYstamina = event.getResolution().getScaledHeight() - 12;
 			
 		//The Values For The Number
 			int maxChakraValue = (int) ninjaCap.getMaxChakra();
 			int chakraValue = (int) ninjaCap.getChakra();
+			int maxStaminaValue = (int) ninjaCap.getMaxStamina();
+			int staminaValue = (int) ninjaCap.getStamina();
 			
 		//How Much of the Bar Should be Rendered
-			float points = ninjaCap.getChakra();
-			int texture_width = (int) (points);
-			
-			mc.renderEngine.bindTexture(CHAKRA_BAR);
-			mc.renderEngine.bindTexture(STAMINA_BAR);
+			int texture_width_chakra = (int) Math.floor(ninjaCap.getChakra() / ninjaCap.getMaxChakra() * 100);
+			int texture_width_stamina = (int) Math.floor(ninjaCap.getStamina() / ninjaCap.getMaxStamina() * 100);
 			
 			if(mc.player != null)
 			{
 				if(!mc.player.isCreative()) 
-				{
-					drawTexturedModalRect(posX, posY, 0, 0, tex_width, tex_height);			    //The Bar
-					drawTexturedModalRect(posX + 1, posY + 1, 0, 11, texture_width, tex_height);
-					
-					GlStateManager.pushMatrix();												//The Number
+				{	
+					GlStateManager.pushMatrix();												
 					GlStateManager.pushAttrib();
 					GlStateManager.disableDepth();
-					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posX + 5, posY + 2, Color.BLACK.getRGB());
+					mc.renderEngine.bindTexture(CHAKRA_BAR);
+					drawTexturedModalRect(posXchakra, posYchakra, 0, 0, tex_width, tex_height);			    
+					drawTexturedModalRect(posXchakra + 1, posYchakra + 1, 0, 11, texture_width_chakra, tex_height);
+					mc.renderEngine.bindTexture(STAMINA_BAR);
+					drawTexturedModalRect(posXstamina, posYstamina, 0, 0, tex_width, tex_height);			    
+					drawTexturedModalRect(posXstamina + 1, posYstamina + 1, 0, 11, texture_width_stamina, tex_height);
+					GL11.glColor4f(0F, 0F, 0F, 1F);
+					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posXchakra + 5, posYchakra + 2, Color.BLACK.getRGB());
+					mc.fontRenderer.drawString(staminaValue + "/" + maxStaminaValue, posXstamina + 5, posYstamina + 2, Color.BLACK.getRGB());
 					GL11.glColor4f(1F, 1F, 1F, 1F);
 					GlStateManager.popAttrib();
 					GlStateManager.popMatrix();

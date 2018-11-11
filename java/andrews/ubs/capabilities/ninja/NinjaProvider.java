@@ -1,6 +1,7 @@
 package andrews.ubs.capabilities.ninja;
 
 import andrews.ubs.util.interfaces.INinja;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,7 +13,12 @@ public class NinjaProvider implements ICapabilitySerializable<NBTBase>
 	@CapabilityInject(INinja.class)
 	public static final Capability<INinja> NINJA_CAP = null;
 
-	private INinja instance = NINJA_CAP.getDefaultInstance();
+	private final INinja instance;
+	
+	public NinjaProvider(EntityLivingBase entity)
+	{
+	    instance = new NinjaCap(entity);
+	}
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
