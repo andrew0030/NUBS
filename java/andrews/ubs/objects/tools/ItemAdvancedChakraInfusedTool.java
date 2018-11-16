@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 
 import andrews.ubs.Main;
 import andrews.ubs.Reference;
+import andrews.ubs.init.BlockInit;
 import andrews.ubs.init.ItemInit;
 import andrews.ubs.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
@@ -15,7 +16,7 @@ public class ItemAdvancedChakraInfusedTool extends ItemTool implements IHasModel
 {
 	public ItemAdvancedChakraInfusedTool(String name, Item.ToolMaterial material)
     {
-        super(0.0F, -2.4F, material, Sets.newHashSet(Block.REGISTRY));
+        super(0.0F, -2.4F, material, Sets.newHashSet(BlockInit.BLOCKS));
         this.setUnlocalizedName(name);
         this.setHarvestLevel("pickaxe", material.getHarvestLevel());
         this.setRegistryName(new ResourceLocation(Reference.MODID, name));

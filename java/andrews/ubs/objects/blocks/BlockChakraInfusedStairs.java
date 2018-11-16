@@ -16,7 +16,7 @@ public class BlockChakraInfusedStairs extends BlockStairs implements IHasModel
 {
 	public BlockChakraInfusedStairs(String name)
 	{
-		super(Blocks.COAL_BLOCK.getDefaultState());
+		super(Blocks.PLANKS.getDefaultState());
 		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.setCreativeTab(Main.instance.blocktab);

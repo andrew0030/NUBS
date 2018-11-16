@@ -1,6 +1,7 @@
 package andrews.ubs.proxy;
 
 import andrews.ubs.Reference;
+import andrews.ubs.controlls.KeyBinds;
 import andrews.ubs.gui.overlay.Bars;
 import andrews.ubs.handlers.UBSRenderHandler;
 import andrews.ubs.init.BlockInit;
@@ -43,6 +44,8 @@ public class ClientProxy extends CommonProxy
 	public void preinit()
 	{
 		super.preinit();
+	//Key Binds
+		KeyBinds.register();
 		
 	//To register the Entity Renderes
     	UBSRenderHandler.registerEntityRenderers();

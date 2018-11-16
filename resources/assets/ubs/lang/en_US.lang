@@ -140,6 +140,12 @@ death.attack.spikes=%1$s was pierced to death in spikes.
 commands.ubs.chakra.usage=This commands is used to set the chakra and the Max chakra amount
 commands.ubs.stamina.usage=This commands is used to set the stamina and the Max stamina amount
 
+//Key Categories
+key.categories.ubs=Ultimate Block Storm
+
+//Keys
+key.chakra=Chakra Collection Key
+
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown
 subtitle.backpack=Backpack Opened

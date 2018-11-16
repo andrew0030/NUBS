@@ -1,5 +1,6 @@
 package andrews.ubs.proxy;
 
+import andrews.ubs.controlls.KeyBinds;
 import andrews.ubs.handlers.UBSEventHandler;
 import andrews.ubs.init.BiomeInit;
 import andrews.ubs.init.EntityInit;
@@ -25,7 +26,7 @@ public class CommonProxy
 	
 //Pre Init
 	public void preinit()
-	{
+	{	
 	//To register the server events
 		MinecraftForge.EVENT_BUS.register(new UBSEventHandler());
 	}

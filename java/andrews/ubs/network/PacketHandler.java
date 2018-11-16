@@ -1,6 +1,7 @@
 package andrews.ubs.network;
 
 import andrews.ubs.Reference;
+import andrews.ubs.network.message.server.MessageCollectingChakra;
 import andrews.ubs.network.message.server.MessageNinjaUpdate;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -20,9 +21,9 @@ public class PacketHandler
 	public static void init(String channelName)
 	{
 	//Server Side
-		//Nothing Yet
 		
 	//Client Side
 		INSTANCE.registerMessage(MessageNinjaUpdate.class, MessageNinjaUpdate.class, nextID(), Side.CLIENT);
+		INSTANCE.registerMessage(MessageCollectingChakra.class, MessageCollectingChakra.class, nextID(), Side.CLIENT);
 	}
 }

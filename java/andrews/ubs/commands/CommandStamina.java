@@ -68,7 +68,7 @@ public class CommandStamina extends CommandBase
 				else if("amount".equals(args[1]))
 				{
 					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
-					int i2 = parseInt(args[2], 1, (int) Math.floor(ninjaCap.getMaxChakra()));
+					int i2 = parseInt(args[2], 1, (int) Math.floor(ninjaCap.getMaxStamina()));
 					
 					ninjaCap.setStamina(i2);
 					ninjaCap.syncToAll();

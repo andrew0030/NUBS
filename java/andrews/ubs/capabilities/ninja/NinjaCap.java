@@ -23,6 +23,8 @@ public class NinjaCap implements INinja
 	private float stamina = 100.0F;
 	private float maxStamina = 100.0F;
 	
+	private boolean collectingChakra;
+	
 	private final EntityLivingBase entity;
 	
 	public NinjaCap(EntityLivingBase entity)
@@ -157,6 +159,16 @@ public class NinjaCap implements INinja
 	public float getMaxChakra()
 	{
 		return this.maxChakra;
+	}
+	
+	public void setCollectingChakra(boolean collectingChakra)
+	{
+		this.collectingChakra = collectingChakra;
+	}
+	
+	public boolean getCollectingChakra()
+	{
+		return this.collectingChakra;
 	}
 	
 	protected IMessage getUpdateMessage()

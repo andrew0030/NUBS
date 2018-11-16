@@ -26,7 +26,7 @@ public class Bars extends Gui
 	@SubscribeEvent
 	public void onRenderGameOverlayBar(RenderGameOverlayEvent event) //Bars and Numbers
 	{
-		if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) 
+		if(event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) 
 		{		
 			Minecraft mc = Minecraft.getMinecraft();
 			
@@ -50,23 +50,16 @@ public class Bars extends Gui
 			
 			if(mc.player != null)
 			{
-				if(!mc.player.isCreative()) 
+				if(!mc.player.isCreative() && !mc.player.isSpectator()) 
 				{	
-					GlStateManager.pushMatrix();												
-					GlStateManager.pushAttrib();
-					GlStateManager.disableDepth();
 					mc.renderEngine.bindTexture(CHAKRA_BAR);
 					drawTexturedModalRect(posXchakra, posYchakra, 0, 0, tex_width, tex_height);			    
 					drawTexturedModalRect(posXchakra + 1, posYchakra + 1, 0, 11, texture_width_chakra, tex_height);
 					mc.renderEngine.bindTexture(STAMINA_BAR);
 					drawTexturedModalRect(posXstamina, posYstamina, 0, 0, tex_width, tex_height);			    
 					drawTexturedModalRect(posXstamina + 1, posYstamina + 1, 0, 11, texture_width_stamina, tex_height);
-					GL11.glColor4f(0F, 0F, 0F, 1F);
 					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posXchakra + 5, posYchakra + 2, Color.BLACK.getRGB());
 					mc.fontRenderer.drawString(staminaValue + "/" + maxStaminaValue, posXstamina + 5, posYstamina + 2, Color.BLACK.getRGB());
-					GL11.glColor4f(1F, 1F, 1F, 1F);
-					GlStateManager.popAttrib();
-					GlStateManager.popMatrix();
 				}
 			}
 		}

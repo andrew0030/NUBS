@@ -17,4 +17,8 @@ public interface IChakra
 	public void setMaxChakra(float points);
 	
 	public float getMaxChakra();
+	
+	public void setCollectingChakra(boolean colleactingChakra);
+	
+	public boolean getCollectingChakra();
 }
