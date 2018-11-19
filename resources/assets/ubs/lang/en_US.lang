@@ -137,8 +137,8 @@ tile.candel.name=Candel
 death.attack.spikes=%1$s was pierced to death in spikes.
 
 //Commands
-commands.ubs.chakra.usage=This commands is used to set the chakra and the Max chakra amount
-commands.ubs.stamina.usage=This commands is used to set the stamina and the Max stamina amount
+commands.ubs.chakra.usage=/chakra <add|remove|set> <player> <amount|max> <value>
+commands.ubs.stamina.usage=/stamina <add|remove|set> <player> <amount|max> <value>
 
 //Key Categories
 key.categories.ubs=Ultimate Block Storm

@@ -24,7 +24,7 @@ public class Bars extends Gui
 	
 //To Load the stamina bar
 	@SubscribeEvent
-	public void onRenderGameOverlayBar(RenderGameOverlayEvent event) //Bars and Numbers
+	public void onRenderGameOverlayBar(RenderGameOverlayEvent.Pre event) //Bars and Numbers
 	{
 		if(event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR) 
 		{		
@@ -60,6 +60,7 @@ public class Bars extends Gui
 					drawTexturedModalRect(posXstamina + 1, posYstamina + 1, 0, 11, texture_width_stamina, tex_height);
 					mc.fontRenderer.drawString(chakraValue + "/" + maxChakraValue, posXchakra + 5, posYchakra + 2, Color.BLACK.getRGB());
 					mc.fontRenderer.drawString(staminaValue + "/" + maxStaminaValue, posXstamina + 5, posYstamina + 2, Color.BLACK.getRGB());
+
 				}
 			}
 		}

@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class CommandStamina extends CommandBase
 {
-	 private static final String[] SUB_OPTIONS1 = new String[] {"set"};
+	private static final String[] SUB_OPTIONS1 = new String[] {"set", "add", "remove"};
 	 private static final String[] SUB_OPTIONS2 = new String[] {"amount", "max"};
 	
 	@Override
@@ -25,7 +25,7 @@ public class CommandStamina extends CommandBase
 	
 	public int getRequiredPermissionLevel()
     {
-        return 4;
+        return 2;
     }
 
 	@Override
@@ -43,6 +43,10 @@ public class CommandStamina extends CommandBase
         }
         else if(args.length == 2)
         {
+        	return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        }
+        else if(args.length == 3)
+        {
         	return getListOfStringsMatchingLastWord(args, SUB_OPTIONS2);
         }
         return super.getTabCompletions(server, sender, args, targetPos);
@@ -51,33 +55,70 @@ public class CommandStamina extends CommandBase
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
-		if(args.length > 2)
-		{
+		if(args.length > 3)
+		{	
 			if("set".equals(args[0]))
 			{
-				EntityPlayerMP player = getCommandSenderAsPlayer(sender);
+				EntityPlayer player = getPlayer(server, sender, args[1]);
 				
-				if("max".equals(args[1]))
+				if("max".equals(args[2]))
 				{	
 					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
-					int i1 = parseInt(args[2], 10);
+					int maxStamina = parseInt(args[3], 10);
 					
-					ninjaCap.setMaxStamina(i1);
+					ninjaCap.setMaxStamina(maxStamina);
 					ninjaCap.syncToAll();
 				}
-				else if("amount".equals(args[1]))
+				else if("amount".equals(args[2]))
 				{
 					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
-					int i2 = parseInt(args[2], 1, (int) Math.floor(ninjaCap.getMaxStamina()));
+					int stamina = parseInt(args[3], 1, (int) Math.floor(ninjaCap.getMaxStamina()));
 					
-					ninjaCap.setStamina(i2);
+					ninjaCap.setStamina(stamina);
 					ninjaCap.syncToAll();
 				}
 			}
-			
-			if(sender instanceof EntityPlayer)
+			else if("add".equals(args[0]))
 			{
+				EntityPlayer player = getPlayer(server, sender, args[1]);
 				
+				if("max".equals(args[2]))
+				{	
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int maxStamina = parseInt(args[3], 1);
+					
+					ninjaCap.setMaxStamina(ninjaCap.getMaxStamina() + maxStamina);
+					ninjaCap.syncToAll();
+				}
+				else if("amount".equals(args[2]))
+				{
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int stamina = parseInt(args[3], 1);
+					
+					ninjaCap.fillStamina(stamina);
+					ninjaCap.syncToAll();
+				}
+			}
+			else if("remove".equals(args[0]))
+			{
+				EntityPlayer player = getPlayer(server, sender, args[1]);
+				
+				if("max".equals(args[2]))
+				{	
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int maxStamina = parseInt(args[3], 1, (int) Math.floor(ninjaCap.getMaxStamina() - 10));
+					
+					ninjaCap.setMaxStamina(ninjaCap.getMaxStamina() - maxStamina);
+					ninjaCap.syncToAll();
+				}
+				else if("amount".equals(args[2]))
+				{
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int stamina = parseInt(args[3], 1);
+					
+					ninjaCap.consumeStamina(stamina);
+					ninjaCap.syncToAll();
+				}
 			}
 		}
 	}

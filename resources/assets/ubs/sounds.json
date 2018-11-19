@@ -2,23 +2,23 @@
     "sb_thrown": {
        "category": "master",
        "subtitle": "subtitle.sm_thrown",
-       "sounds": [ { "name": "ubs:sb_thrown", "stream": true } ]
+       "sounds": [ { "name": "ubs:sb_thrown", "stream": false } ]
     },
     "backpack": {
        "category": "master",
        "subtitle": "subtitle.backpack",
-       "sounds": [ { "name": "ubs:backpack", "stream": true } ]
+       "sounds": [ { "name": "ubs:backpack", "stream": false } ]
     },
     "fall_trap": {
        "category": "blocks",
        "subtitle": "subtitle.fall_trap",
-       "sounds": [ { "name": "ubs:fall_trap", "stream": true } ]
+       "sounds": [ { "name": "ubs:fall_trap", "stream": false } ]
     },
     "jump": {
        "category": "master",
        "subtitle": "subtitle.jump",
        "sounds":
-        [ { "name": "ubs:jump_1", "stream": true }, { "name": "ubs:jump_2", "stream": true }, { "name": "ubs:jump_3", "stream": true } ]
+        [ { "name": "ubs:jump_1", "stream": false, "weight": 5 }, { "name": "ubs:jump_2", "stream": false, "weight": 5 }, { "name": "ubs:jump_3", "stream": false, "weight": 5 } ]
     }
     
 }

@@ -8,13 +8,12 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 
 public class CommandChakra extends CommandBase
 {
-	 private static final String[] SUB_OPTIONS1 = new String[] {"set"};
+	 private static final String[] SUB_OPTIONS1 = new String[] {"set", "add", "remove"};
 	 private static final String[] SUB_OPTIONS2 = new String[] {"amount", "max"};
 	
 	@Override
@@ -25,7 +24,7 @@ public class CommandChakra extends CommandBase
 	
 	public int getRequiredPermissionLevel()
     {
-        return 4;
+        return 2;
     }
 
 	@Override
@@ -43,6 +42,10 @@ public class CommandChakra extends CommandBase
         }
         else if(args.length == 2)
         {
+        	return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
+        }
+        else if(args.length == 3)
+        {
         	return getListOfStringsMatchingLastWord(args, SUB_OPTIONS2);
         }
         return super.getTabCompletions(server, sender, args, targetPos);
@@ -51,33 +54,70 @@ public class CommandChakra extends CommandBase
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
 	{
-		if(args.length > 2)
-		{
+		if(args.length > 3)
+		{	
 			if("set".equals(args[0]))
 			{
-				EntityPlayerMP player = getCommandSenderAsPlayer(sender);
+				EntityPlayer player = getPlayer(server, sender, args[1]);
 				
-				if("max".equals(args[1]))
+				if("max".equals(args[2]))
 				{	
 					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
-					int i1 = parseInt(args[2], 10);
+					int maxChakra = parseInt(args[3], 10);
 					
-					ninjaCap.setMaxChakra(i1);
+					ninjaCap.setMaxChakra(maxChakra);
 					ninjaCap.syncToAll();
 				}
-				else if("amount".equals(args[1]))
+				else if("amount".equals(args[2]))
 				{
 					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
-					int i2 = parseInt(args[2], 1, (int) Math.floor(ninjaCap.getMaxChakra()));
+					int chakra = parseInt(args[3], 1, (int) Math.floor(ninjaCap.getMaxChakra()));
 					
-					ninjaCap.setChakra(i2);
+					ninjaCap.setChakra(chakra);
 					ninjaCap.syncToAll();
 				}
 			}
-			
-			if(sender instanceof EntityPlayer)
+			else if("add".equals(args[0]))
 			{
+				EntityPlayer player = getPlayer(server, sender, args[1]);
 				
+				if("max".equals(args[2]))
+				{	
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int maxChakra = parseInt(args[3], 1);
+					
+					ninjaCap.setMaxChakra(ninjaCap.getMaxChakra() + maxChakra);
+					ninjaCap.syncToAll();
+				}
+				else if("amount".equals(args[2]))
+				{
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int chakra = parseInt(args[3], 1);
+					
+					ninjaCap.fillChakra(chakra);
+					ninjaCap.syncToAll();
+				}
+			}
+			else if("remove".equals(args[0]))
+			{
+				EntityPlayer player = getPlayer(server, sender, args[1]);
+				
+				if("max".equals(args[2]))
+				{	
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int maxChakra = parseInt(args[3], 1, (int) Math.floor(ninjaCap.getMaxChakra() - 10));
+					
+					ninjaCap.setMaxChakra(ninjaCap.getMaxChakra() - maxChakra);
+					ninjaCap.syncToAll();
+				}
+				else if("amount".equals(args[2]))
+				{
+					INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+					int chakra = parseInt(args[3], 1);
+					
+					ninjaCap.consumeChakra(chakra);
+					ninjaCap.syncToAll();
+				}
 			}
 		}
 	}

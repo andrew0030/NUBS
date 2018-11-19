@@ -8,13 +8,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageCollectingChakra implements IMessage, IMessageHandler<MessageCollectingChakra, IMessage>
+public class MessageKeyBoardUpdate implements IMessage, IMessageHandler<MessageKeyBoardUpdate, IMessage>
 {	
 	private boolean collecting_chakra;
 	
-	public MessageCollectingChakra() {}
+	public MessageKeyBoardUpdate() {}
 	
-	public MessageCollectingChakra(boolean collecting_chakra)
+	public MessageKeyBoardUpdate(boolean collecting_chakra)
 	{
 		this.collecting_chakra = collecting_chakra;
 	}
@@ -32,7 +32,7 @@ public class MessageCollectingChakra implements IMessage, IMessageHandler<Messag
 	}
 	
 	@Override
-	public IMessage onMessage(MessageCollectingChakra message, MessageContext ctx)
+	public IMessage onMessage(MessageKeyBoardUpdate message, MessageContext ctx)
 	{
 		EntityPlayer player = ctx.getServerHandler().player;
 
