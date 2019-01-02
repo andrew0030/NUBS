@@ -32,6 +32,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockUBSLeaves extends BlockLeaves implements IMetaName, IHasModel
 {
@@ -134,18 +136,18 @@ public class BlockUBSLeaves extends BlockLeaves implements IMetaName, IHasModel
 	{
 		return false;
 	}
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
 	
-	@Override
-	public BlockRenderLayer getBlockLayer() 
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-	
-	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
-	    return true;
-	}
+	@SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        return true;
+    }
 	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)

@@ -131,7 +131,7 @@ tile.falling_trap_stone_smart.name=Smart Falling Trap Stone
 tile.falling_trap_cobblestone_smart.name=Smart Falling Trap Cobblestone
 tile.falling_trap_nether_smart.name=Smart Falling Trap Nether
 tile.falling_trap_sand_smart.name=Smart Falling Trap Sand
-tile.candel.name=Candel
+tile.candel.name=Candle
 
 //Death Messages
 death.attack.spikes=%1$s was pierced to death in spikes.
@@ -145,6 +145,7 @@ key.categories.ubs=Ultimate Block Storm
 
 //Keys
 key.chakra=Chakra Collection Key
+key.menu=Mod Menu Key
 
 //subtitles
 subtitle.sm_thrown=Smoke Bomb Thrown

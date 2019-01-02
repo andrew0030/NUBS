@@ -30,10 +30,8 @@ public class ModParticleManager
     private static final ArrayList<Particle> PARTICLES = new ArrayList<Particle>();
     private static Minecraft mc = Minecraft.getMinecraft();
     
-    public static void spawnParticle(ParticleChakra particle)
-    {
-        PARTICLES.add(particle);
-    }
+    public static void spawnParticleChakra(ParticleChakra particle) { PARTICLES.add(particle); }
+    public static void spawnParticleSandCloud(ParticleSandCloud particle) { PARTICLES.add(particle); }
     
     @SubscribeEvent
     public static void render(RenderWorldLastEvent event)

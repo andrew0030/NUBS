@@ -1,30 +1,20 @@
 package andrews.ubs.handlers;
 
-import java.util.concurrent.Callable;
-
-import andrews.ubs.Main;
 import andrews.ubs.Reference;
-import andrews.ubs.capabilities.ninja.NinjaCap;
 import andrews.ubs.capabilities.ninja.NinjaFactory;
 import andrews.ubs.capabilities.ninja.NinjaProvider;
 import andrews.ubs.capabilities.ninja.NinjaStorage;
 import andrews.ubs.util.interfaces.INinja;
-import andrews.ubs.util.interfaces.IStamina;
-import andrews.ubs.util.logger.UBSLogger;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;

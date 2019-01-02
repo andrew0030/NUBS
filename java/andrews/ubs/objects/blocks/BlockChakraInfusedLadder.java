@@ -19,6 +19,7 @@ public class BlockChakraInfusedLadder extends BlockLadder implements IHasModel
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.setCreativeTab(Main.instance.blocktab);
 		this.setSoundType(SoundType.WOOD);
+		this.setHardness(0.4F);
 		
 		BlockInit.BLOCKS.add(this);
 		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));

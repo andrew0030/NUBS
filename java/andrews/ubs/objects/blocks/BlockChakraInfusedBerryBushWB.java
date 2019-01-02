@@ -28,7 +28,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantable, IHasModel
+public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantable
 {
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625F * 1F, 0F, 0.0625F * 1F, 0.0625F * 15F, 0.0625F * 15F, 0.0625F * 15F);
 	
@@ -40,7 +40,6 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
 		this.setSoundType(SoundType.PLANT);
 		
 		BlockInit.BLOCKS.add(this);
-		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));
 	}
 	
 //this is used so the block will not render the pixels without a texture black
@@ -116,11 +115,5 @@ public class BlockChakraInfusedBerryBushWB extends BlockBush implements IPlantab
   	{
   		return new ItemStack(BlockInit.CHAKRA_INFUSED_BERRY_BUSH);
   	}
-  	
-  	@Override
-	public void registerModels()
-	{
-		Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
-	}
 }
 

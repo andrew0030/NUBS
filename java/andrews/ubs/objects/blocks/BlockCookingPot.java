@@ -39,6 +39,7 @@ public class BlockCookingPot extends Block implements IHasModel
 		this.setCreativeTab(Main.instance.blocktab);
 		this.setSoundType(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.setHardness(2F);
         
         BlockInit.BLOCKS.add(this);
 		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));

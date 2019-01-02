@@ -21,6 +21,7 @@ public class BlockChakraInfusedPressurePlate extends BlockPressurePlate implemen
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.setCreativeTab(Main.instance.blocktab);
 		this.setSoundType(SoundType.WOOD);
+		this.setHardness(0.5F);
 		
 		BlockInit.BLOCKS.add(this);
 		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));

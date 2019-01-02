@@ -26,9 +26,10 @@ public class BlockAvocadoButton extends BlockButton implements IHasModel
 		this.setRegistryName(new ResourceLocation(Reference.MODID, name));
 		this.setCreativeTab(Main.instance.blocktab);
 		this.setSoundType(SoundType.WOOD);
+		this.setHardness(0.5F);
 		
 		BlockInit.BLOCKS.add(this);
-		ItemInit.ITEMS.add(new ItemBlockDoor(this).setRegistryName(name));
+		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));
 	}
 	
 //How many world ticks before ticking

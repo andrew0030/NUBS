@@ -2,29 +2,43 @@ package andrews.ubs.handlers;
 
 import java.util.Random;
 
+import org.omg.IOP.TAG_POLICIES;
+
 import andrews.ubs.Main;
 import andrews.ubs.capabilities.ninja.NinjaProvider;
 import andrews.ubs.controlls.KeyBinds;
+import andrews.ubs.gui.menu.GuiStats;
+import andrews.ubs.init.BlockInit;
 import andrews.ubs.network.PacketHandler;
+import andrews.ubs.network.message.client.MessageKeyBoardUpdate;
 import andrews.ubs.network.message.server.MessageChakraParticles;
 import andrews.ubs.network.message.server.MessageJumpParticles;
-import andrews.ubs.network.message.server.MessageKeyBoardUpdate;
 import andrews.ubs.util.interfaces.INinja;
 import andrews.ubs.util.logger.UBSLogger;
+import net.minecraft.advancements.critereon.PlayerHurtEntityTrigger;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -224,7 +238,7 @@ public class UBSEventHandler
         {
             EntityPlayer player = (EntityPlayer)event.getEntity();
             World world = player.world;
-            BlockPos playerPos = new BlockPos(player);
+            BlockPos playerPos = new BlockPos(player.posX, player.posY + 0.0D, player.posZ);
             INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
             
             if(ninjaCap.getChakra() > 10)
@@ -311,6 +325,7 @@ public class UBSEventHandler
     @SubscribeEvent
     public void onKeyTyped(InputEvent.KeyInputEvent event)
     {
+    //Chakra 
     	if(KeyBinds.KEY_CHAKRA.isKeyDown())
     	{
     		if(!collecting_chakra)
@@ -333,6 +348,12 @@ public class UBSEventHandler
 			{
 				UBSLogger.getLogger().info("[EventHandler] sent CollectingChakra value: " + collecting_chakra);
 			}
+    	}
+    	
+    //Mod menu
+    	if(KeyBinds.KEY_MENU.isPressed())
+    	{
+    		Minecraft.getMinecraft().displayGuiScreen(new GuiStats());
     	}
     }
     
@@ -360,5 +381,5 @@ public class UBSEventHandler
 	    		}
     		}
 	    }
-    }
+    }	
 }

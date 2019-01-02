@@ -20,6 +20,7 @@ public class BlockChakraInfusedTrapdoor extends BlockTrapDoor implements IHasMod
         this.setRegistryName(new ResourceLocation(Reference.MODID, name));
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(Main.instance.blocktab);
+        this.setHardness(3.0F);
         
         BlockInit.BLOCKS.add(this);
 		ItemInit.ITEMS.add(new ItemBlock(this).setRegistryName(name));

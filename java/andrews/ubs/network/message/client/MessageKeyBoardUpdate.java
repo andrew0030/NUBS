@@ -1,4 +1,4 @@
-package andrews.ubs.network.message.server;
+package andrews.ubs.network.message.client;
 
 import andrews.ubs.capabilities.ninja.NinjaProvider;
 import andrews.ubs.util.interfaces.INinja;
