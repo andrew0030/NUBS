@@ -2,46 +2,38 @@ package andrews.ubs.handlers;
 
 import java.util.Random;
 
-import org.omg.IOP.TAG_POLICIES;
-
 import andrews.ubs.Main;
 import andrews.ubs.capabilities.ninja.NinjaProvider;
+import andrews.ubs.capabilities.stats.StatsProvider;
 import andrews.ubs.controlls.KeyBinds;
 import andrews.ubs.gui.menu.GuiStats;
-import andrews.ubs.init.BlockInit;
 import andrews.ubs.network.PacketHandler;
 import andrews.ubs.network.message.client.MessageKeyBoardUpdate;
 import andrews.ubs.network.message.server.MessageChakraParticles;
 import andrews.ubs.network.message.server.MessageJumpParticles;
 import andrews.ubs.util.interfaces.INinja;
+import andrews.ubs.util.interfaces.IStats;
 import andrews.ubs.util.logger.UBSLogger;
-import net.minecraft.advancements.critereon.PlayerHurtEntityTrigger;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
-import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class UBSEventHandler
 {
@@ -322,6 +314,7 @@ public class UBSEventHandler
     //=================
     //Key Input Manager
     //=================
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onKeyTyped(InputEvent.KeyInputEvent event)
     {
@@ -358,17 +351,18 @@ public class UBSEventHandler
     }
     
     
-  	//=================
-    //Chakra Collecting
-    //=================
+  	//=================================
+    //Chakra Collecting and Max Setting
+    //=================================
     @SubscribeEvent
-    public void chakraCollectionEvent(PlayerTickEvent event)
+    public void chakraCollectionEvent(LivingUpdateEvent event)
     {
-    	if(event.player != null)
+    	if(event.getEntity() != null && event.getEntity() instanceof EntityPlayer )
 	    {
-    		EntityPlayer player = event.player;
+    		EntityPlayer player = (EntityPlayer) event.getEntity();
     		
     		INinja ninjaCap = player.getCapability(NinjaProvider.NINJA_CAP, null);
+    		IStats statsCap = player.getCapability(StatsProvider.STATS_CAP, null);
     		
     		if(ninjaCap.getCollectingChakra())
     		{	
@@ -376,10 +370,16 @@ public class UBSEventHandler
     			{	
     				PacketHandler.INSTANCE.sendToAllTracking(new MessageChakraParticles(player.getEntityId()), player);
     				PacketHandler.INSTANCE.sendTo(new MessageChakraParticles(player.getEntityId()), (EntityPlayerMP) player);
-	    			ninjaCap.fillChakra(20);
+	    			ninjaCap.fillChakra(statsCap.getMeditation() * 10);
 	    			ninjaCap.syncToAll();
 	    		}
     		}
+    		
+    		if(statsCap.getReserve() * 20 != ninjaCap.getMaxChakra())
+    		{
+    			ninjaCap.setMaxChakra(statsCap.getReserve() * 20);
+    			ninjaCap.syncToAll();
+    		}
 	    }
-    }	
+    }
 }

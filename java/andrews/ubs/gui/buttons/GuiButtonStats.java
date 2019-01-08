@@ -1,7 +1,9 @@
 package andrews.ubs.gui.buttons;
 
 import andrews.ubs.Reference;
+import andrews.ubs.capabilities.stats.StatsProvider;
 import andrews.ubs.gui.menu.GuiStats;
+import andrews.ubs.util.interfaces.IStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

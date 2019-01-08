@@ -2,8 +2,10 @@ package andrews.ubs.network.message.server;
 
 import java.util.Random;
 
+import andrews.ubs.capabilities.stats.StatsProvider;
 import andrews.ubs.particles.ModParticleManager;
 import andrews.ubs.particles.ParticleChakra;
+import andrews.ubs.util.interfaces.IStats;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -53,15 +55,46 @@ public class MessageChakraParticles implements IMessage, IMessageHandler<Message
 	@SideOnly(Side.CLIENT)
 	public void spawnParticles(Entity entity, double posX, double posY, double posZ)
 	{		
-		for(int i = 0; i < 4; i++)
-		{	
-			Random rand = new Random();
-			double particleX = entity.posX + ((rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D);
-			double particleY = entity.posY + 1.3D + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
-			double particleZ = entity.posZ + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
-			
-			ParticleChakra particle = new ParticleChakra(entity.getEntityWorld(), entity, particleX, particleY, particleZ, 0, 0, 0);
-			ModParticleManager.spawnParticleChakra(particle);
+		IStats statsCap =  entity.getCapability(StatsProvider.STATS_CAP, null);
+		
+		if(statsCap.getMeditation() < 10)
+		{
+			for(int i = 0; i < 1; i++)
+			{	
+				Random rand = new Random();
+				double particleX = entity.posX + ((rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D);
+				double particleY = entity.posY + 1.3D + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				double particleZ = entity.posZ + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				
+				ParticleChakra particle = new ParticleChakra(entity.getEntityWorld(), entity, particleX, particleY, particleZ, 0, 0, 0);
+				ModParticleManager.spawnParticleChakra(particle);
+			}
+		}
+		else if (statsCap.getMeditation() < 300)
+		{
+			for(int i = 0; i < (statsCap.getMeditation() / 10) + 1; i++)
+			{	
+				Random rand = new Random();
+				double particleX = entity.posX + ((rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D);
+				double particleY = entity.posY + 1.3D + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				double particleZ = entity.posZ + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				
+				ParticleChakra particle = new ParticleChakra(entity.getEntityWorld(), entity, particleX, particleY, particleZ, 0, 0, 0);
+				ModParticleManager.spawnParticleChakra(particle);
+			}
+		}
+		else
+		{
+			for(int i = 0; i < 30; i++)
+			{	
+				Random rand = new Random();
+				double particleX = entity.posX + ((rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D);
+				double particleY = entity.posY + 1.3D + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				double particleZ = entity.posZ + (rand.nextDouble() - 0.5D) / (double)entity.width * 3.0D;
+				
+				ParticleChakra particle = new ParticleChakra(entity.getEntityWorld(), entity, particleX, particleY, particleZ, 0, 0, 0);
+				ModParticleManager.spawnParticleChakra(particle);
+			}
 		}
 	}
 }

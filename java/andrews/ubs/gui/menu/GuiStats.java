@@ -3,9 +3,10 @@ package andrews.ubs.gui.menu;
 import java.awt.Color;
 import java.io.IOException;
 
-import org.lwjgl.opengl.GLSync;
-
 import andrews.ubs.Reference;
+import andrews.ubs.capabilities.ninja.NinjaProvider;
+import andrews.ubs.capabilities.stats.StatsProvider;
+import andrews.ubs.controlls.KeyBinds;
 import andrews.ubs.gui.buttons.GuiButtonClan;
 import andrews.ubs.gui.buttons.GuiButtonJutsus;
 import andrews.ubs.gui.buttons.GuiButtonNinjaAnimal;
@@ -14,21 +15,30 @@ import andrews.ubs.gui.buttons.GuiButtonPoints;
 import andrews.ubs.gui.buttons.GuiButtonStats;
 import andrews.ubs.gui.buttons.GuiButtonTailedBeast;
 import andrews.ubs.init.ItemInit;
+import andrews.ubs.network.PacketHandler;
+import andrews.ubs.network.message.client.MessageStatRaised;
+import andrews.ubs.util.interfaces.INinja;
+import andrews.ubs.util.interfaces.IStats;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiStats extends GuiScreen
 {
 	
 	private final ResourceLocation texture = new ResourceLocation(Reference.MODID + ":textures/gui/menus/menu.png");
 	private final ResourceLocation scroll = new ResourceLocation(Reference.MODID + ":textures/gui/menus/scrolls.png");
 	private final ResourceLocation button = new ResourceLocation(Reference.MODID + ":textures/gui/buttons/main_buttons.png");
+	private final ResourceLocation details = new ResourceLocation(Reference.MODID + ":textures/gui/menus/stats_details.png");
+	private final ResourceLocation releases = new ResourceLocation(Reference.MODID + ":textures/gui/menus/releases.png");
 	
 	private final int tex_width = 256;
 	private final int tex_height = 180;
@@ -45,7 +55,7 @@ public class GuiStats extends GuiScreen
 	//Buttons to add points
 	private GuiButtonPoints strength;
 	private GuiButtonPoints defense;
-	private GuiButtonPoints chakra;
+	private GuiButtonPoints reserve;
 	private GuiButtonPoints meditation;
 	private GuiButtonPoints ninjutsu;
 	private GuiButtonPoints taijutsu;
@@ -61,7 +71,7 @@ public class GuiStats extends GuiScreen
 	//Button Ids to add points
 	private final int STRENGHT = 6;
 	private final int DEFENSE = 7;
-	private final int CHAKRA = 8;
+	private final int RESERVE = 8;
 	private final int MEDITATION = 9;
 	private final int NINJUTSU = 10;
 	private final int TAIJUTSU = 11;
@@ -71,6 +81,8 @@ public class GuiStats extends GuiScreen
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
+		IStats statsCap = mc.player.getCapability(StatsProvider.STATS_CAP, null);
+		
 //		super.drawScreen(mouseX, mouseY, partialTicks);
 		drawDefaultBackground();
 		mc.renderEngine.bindTexture(texture);
@@ -82,6 +94,20 @@ public class GuiStats extends GuiScreen
 		mc.renderEngine.bindTexture(scroll);
 		drawTexturedModalRect(centerX + 255, centerY - 9, 39, 0, scroll_width, scroll_height);
 		drawTexturedModalRect(centerX - 38, centerY - 9, 0, 0, scroll_width, scroll_height);
+	//Menu Details (Player background, 3 slots next to player)
+		mc.renderEngine.bindTexture(details);
+		drawTexturedModalRect(centerX + 23, centerY + 28, 0, 0, 51, 64);
+		drawTexturedModalRect(centerX + 4, centerY + 30, 51, 0, 18, 18);
+		drawTexturedModalRect(centerX + 4, centerY + 51, 51, 18, 18, 18);
+		drawTexturedModalRect(centerX + 4, centerY + 72, 51, 36, 18, 18);
+		
+	//Player in Menu
+		EntityPlayer player = mc.player;
+		GlStateManager.pushMatrix();
+		GlStateManager.pushAttrib();
+		GuiInventory.drawEntityOnScreen(centerX + 48, centerY + 85, 26, (mouseX - (centerX + 48)) * -1, (mouseY - (centerY + 42)) * -1, player);
+		GlStateManager.popAttrib();
+		GlStateManager.popMatrix();
 		
 	//Experience bar
 		mc.renderEngine.bindTexture(button);
@@ -93,7 +119,7 @@ public class GuiStats extends GuiScreen
 		GlStateManager.pushAttrib();
 		GlStateManager.translate(centerX + 140, centerY + 16, 0);
 		GlStateManager.scale(0.7, 0.7, 0.7);
-		mc.fontRenderer.drawStringWithShadow("§lEXP:20/100", 0, 0, 0x37b742);
+		mc.fontRenderer.drawStringWithShadow("\u00A7lEXP:20/100", 0, 0, 0x37b742);
 		GlStateManager.color(1, 1, 1);
 		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
@@ -102,11 +128,36 @@ public class GuiStats extends GuiScreen
 		GlStateManager.pushAttrib();
 		GlStateManager.translate(centerX + 207, centerY + 22, 0);
 		GlStateManager.scale(0.7, 0.7, 0.7);
-		mc.fontRenderer.drawStringWithShadow("§lLvl:5", 0, 0, 0xcecaca);
+		mc.fontRenderer.drawStringWithShadow("\u00A7lLvl:5", 0, 0, 0xcecaca);
 		GlStateManager.color(1, 1, 1);
 		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 		
+	//Releases
+		mc.renderEngine.bindTexture(releases);
+		GlStateManager.pushMatrix();
+		GlStateManager.pushAttrib();
+		GlStateManager.translate(centerX + 111, centerY + 36, 0);
+		GlStateManager.scale(0.25, 0.25, 0.25);
+		drawTexturedModalRect(0, 0, 0, 0, 50, 50);//fire
+		GlStateManager.translate(54, 0, 0);
+		drawTexturedModalRect(0, 0, 50, 0, 50, 50);//air
+		GlStateManager.translate(54, 0, 0);
+		drawTexturedModalRect(0, 0, 100, 0, 50, 50);//lightning
+		GlStateManager.translate(54, 0, 0);
+		drawTexturedModalRect(0, 0, 150, 0, 50, 50);//earth
+		GlStateManager.translate(54, 0, 0);
+		drawTexturedModalRect(0, 0, 200, 0, 50, 50);//water
+		GlStateManager.popAttrib();
+		GlStateManager.popMatrix();
+		
+		GlStateManager.pushMatrix();
+		GlStateManager.pushAttrib();
+		mc.fontRenderer.drawString("Releases:", centerX + 111, centerY + 28, Color.BLACK.getRGB());
+		GlStateManager.color(1, 1, 1);
+		GlStateManager.popAttrib();
+		GlStateManager.popMatrix();
+			
 	//Costume buttons
 		mc.renderEngine.bindTexture(scroll);
 		drawTexturedModalRect(centerX - 37, centerY + 31, 0, 199, 37, 9);
@@ -119,7 +170,7 @@ public class GuiStats extends GuiScreen
 		//Points buttons
 		strength.drawButton(mc, mouseX, mouseY, partialTicks);
 		defense.drawButton(mc, mouseX, mouseY, partialTicks);
-		chakra.drawButton(mc, mouseX, mouseY, partialTicks);
+		reserve.drawButton(mc, mouseX, mouseY, partialTicks);
 		meditation.drawButton(mc, mouseX, mouseY, partialTicks);
 		ninjutsu.drawButton(mc, mouseX, mouseY, partialTicks);
 		taijutsu.drawButton(mc, mouseX, mouseY, partialTicks);
@@ -127,7 +178,7 @@ public class GuiStats extends GuiScreen
 		
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();
-		GlStateManager.translate((width / 2) - 10, (height / 2) - 58, 0);
+		GlStateManager.translate((width / 2) + 90, (height / 2) + 50, 0);
 		GlStateManager.scale(2, 2, 2);
 		GlStateManager.enableLight(0);
 		mc.getRenderItem().renderItemIntoGUI(new ItemStack(ItemInit.RAMEN), 0, 0);
@@ -140,26 +191,27 @@ public class GuiStats extends GuiScreen
 		int fontPosX = centerX + 12;
 		int fontPosY = centerY + 103;
 		//Available points
-		mc.fontRenderer.drawString("Available Points: 10", fontPosX - 8, fontPosY - 9, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Available Points: " + (int) statsCap.getAvPoint(), fontPosX - 8, fontPosY - 9, Color.BLACK.getRGB());
 		
 		//All the stats names
-		mc.fontRenderer.drawString("Strength", fontPosX, fontPosY, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Defense", fontPosX, fontPosY + 9, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Chakra", fontPosX, fontPosY + 18, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Meditation", fontPosX, fontPosY + 27, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Ninjutsu", fontPosX, fontPosY + 36, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Taijutsu", fontPosX, fontPosY + 45, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Genjutsu", fontPosX, fontPosY + 54, Color.BLACK.getRGB());
-		mc.fontRenderer.drawStringWithShadow("§lTotal", fontPosX - 8, fontPosY + 63, Color.LIGHT_GRAY.getRGB());
+		mc.fontRenderer.drawString("Strength", fontPosX + 4, fontPosY, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Defense", fontPosX + 4, fontPosY + 9, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Chakra", fontPosX + 4, fontPosY + 18, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Meditation", fontPosX + 4, fontPosY + 27, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Ninjutsu", fontPosX + 4, fontPosY + 36, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Taijutsu", fontPosX + 4, fontPosY + 45, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Genjutsu", fontPosX + 4, fontPosY + 54, Color.BLACK.getRGB());
+		mc.fontRenderer.drawStringWithShadow("\u00A7lTotal", fontPosX - 8, fontPosY + 63, Color.LIGHT_GRAY.getRGB());
 		//All the stats levels
-		mc.fontRenderer.drawString("Lvl:15", fontPosX + 58, fontPosY, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:30", fontPosX + 58, fontPosY + 9, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:35", fontPosX + 58, fontPosY + 18, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:12", fontPosX + 58, fontPosY + 27, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:17", fontPosX + 58, fontPosY + 36, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:4", fontPosX + 58, fontPosY + 45, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("Lvl:2", fontPosX + 58, fontPosY + 54, Color.BLACK.getRGB());
-		mc.fontRenderer.drawString("§l115", fontPosX + 58, fontPosY + 63, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getStrength(), fontPosX + 58, fontPosY, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getDefense(), fontPosX + 58, fontPosY + 9, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getReserve(), fontPosX + 58, fontPosY + 18, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getMeditation(), fontPosX + 58, fontPosY + 27, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getNinjutsu(), fontPosX + 58, fontPosY + 36, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getTaijutsu(), fontPosX + 58, fontPosY + 45, Color.BLACK.getRGB());
+		mc.fontRenderer.drawString("Lvl\u00A78\u00A7l:\u00A70" + (int)statsCap.getGenjutsu(), fontPosX + 58, fontPosY + 54, Color.BLACK.getRGB());
+		int total = (int)(statsCap.getStrength() + statsCap.getDefense() + statsCap.getReserve() + statsCap.getMeditation() + statsCap.getNinjutsu() + statsCap.getTaijutsu() + statsCap.getGenjutsu());
+		mc.fontRenderer.drawString("\u00A7l" + total, fontPosX + 58, fontPosY + 63, Color.BLACK.getRGB());
 	}
 	
 //Gets called every time the GUI updates (screen rescale, fullscreen mode...) 
@@ -177,7 +229,7 @@ public class GuiStats extends GuiScreen
 		//All stats buttons
 		buttonList.add(strength = new GuiButtonPoints(STRENGHT, (width / 2) - 124, (height / 2) + 13));
 		buttonList.add(defense = new GuiButtonPoints(DEFENSE, (width / 2) - 124, (height / 2) + 22));
-		buttonList.add(chakra = new GuiButtonPoints(CHAKRA, (width / 2) - 124, (height / 2) + 31));
+		buttonList.add(reserve = new GuiButtonPoints(RESERVE, (width / 2) - 124, (height / 2) + 31));
 		buttonList.add(meditation = new GuiButtonPoints(MEDITATION, (width / 2) - 124, (height / 2) + 40));
 		buttonList.add(ninjutsu = new GuiButtonPoints(NINJUTSU, (width / 2) - 124, (height / 2) + 49));
 		buttonList.add(taijutsu = new GuiButtonPoints(TAIJUTSU, (width / 2) - 124, (height / 2) + 58));
@@ -188,25 +240,69 @@ public class GuiStats extends GuiScreen
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
+		Minecraft mc = Minecraft.getMinecraft();
+		IStats statsCap = mc.player.getCapability(StatsProvider.STATS_CAP, null);
 		switch(button.id)
 		{
 		case STATS:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiStats());
+			mc.displayGuiScreen(new GuiStats());
 			break;
 		case JUTSUS:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiJutsus());
+			mc.displayGuiScreen(new GuiJutsus());
 			break;
 		case TAILED_BEAST:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiTailedBeast());
+			mc.displayGuiScreen(new GuiTailedBeast());
 			break;
 		case CLAN:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiClan());
+			mc.displayGuiScreen(new GuiClan());
 			break;
 		case PARTY:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiParty());
+			mc.displayGuiScreen(new GuiParty());
 			break;
 		case NINJA_ANIMAL:
-			Minecraft.getMinecraft().displayGuiScreen(new GuiNinjaAnimal());
+			mc.displayGuiScreen(new GuiNinjaAnimal());
+			break;
+		case STRENGHT:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 0));
+			}
+			break;
+		case DEFENSE:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 1));
+			}
+			break;
+		case RESERVE:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 2));
+			}
+			break;
+		case MEDITATION:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 3));
+			}
+			break;
+		case NINJUTSU:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 4));
+			}
+			break;
+		case TAIJUTSU:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 5));
+			}
+			break;
+		case GENJUTSU:
+			if(statsCap.getAvPoint() > 0)
+			{
+				PacketHandler.INSTANCE.sendToServer(new MessageStatRaised((byte) 6));
+			}
 			break;
 		}
 		super.actionPerformed(button);
@@ -217,6 +313,10 @@ public class GuiStats extends GuiScreen
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		super.keyTyped(typedChar, keyCode);
+		if (keyCode == 1 || keyCode == KeyBinds.KEY_MENU.getKeyCode())
+		{
+            this.mc.player.closeScreen();
+		}
 	}
 	
 	@Override

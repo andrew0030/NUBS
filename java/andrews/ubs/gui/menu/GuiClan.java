@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.IOException;
 
 import andrews.ubs.Reference;
+import andrews.ubs.controlls.KeyBinds;
 import andrews.ubs.gui.buttons.GuiButtonClan;
 import andrews.ubs.gui.buttons.GuiButtonJutsus;
 import andrews.ubs.gui.buttons.GuiButtonNinjaAnimal;
@@ -14,7 +15,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiClan extends GuiScreen
 {
 	
@@ -112,6 +116,10 @@ public class GuiClan extends GuiScreen
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		super.keyTyped(typedChar, keyCode);
+		if (keyCode == 1 || keyCode == KeyBinds.KEY_MENU.getKeyCode())
+		{
+            this.mc.player.closeScreen();
+		}
 	}
 	
 	@Override

@@ -23,12 +23,12 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 @Mod(modid = Reference.MODID, version = Reference.VERSION, name = Reference.NAME)
 public class Main
 {
-	//###################################################
-	//  Developer Mode			   						#
-	//Used To Enable and Disable Logger Information   	#
-	//								   					#
-	public static final boolean DEVELOPER_MODE = true;//#
-	//###################################################
+	//####################################################
+	//  Developer Mode			   						 #
+	//Used To Enable and Disable Logger Information   	 #
+	//								   					 #
+	public static final boolean DEVELOPER_MODE = true; //#
+	//####################################################
 	
 //An instance for the Mod
 	@Instance(Reference.MODID)

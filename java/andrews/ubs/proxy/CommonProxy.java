@@ -38,7 +38,7 @@ public class CommonProxy
 		EntityInit.registerEntities();
 		
 	//To register the Ore Generator
-			GameRegistry.registerWorldGenerator(new OreGen(), 0);
+		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 			
 	//To register Generation in Biomes
 		/** Trees */
